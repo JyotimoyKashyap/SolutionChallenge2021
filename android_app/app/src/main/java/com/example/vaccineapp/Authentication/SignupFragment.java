@@ -37,11 +37,13 @@ public class SignupFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_signup, container, false);
 
+        mAuth = FirebaseAuth.getInstance();
         dummyFragment = new DummyFragment();
         email = view.findViewById(R.id.email);
         password = view.findViewById(R.id.password);
         conpassword = view.findViewById(R.id.confpassword);
         signupbtn = view.findViewById(R.id.signupbtn);
+        pb = view.findViewById(R.id.progresssignup);
 
         signupbtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -77,6 +79,12 @@ public class SignupFragment extends Fragment {
         else if(Password.length()<6){
             Toast.makeText(getActivity(), "Password length must be greater than 6!", Toast.LENGTH_SHORT).show();
             password.setError("");
+            pb.setVisibility(View.INVISIBLE);
+        }
+        else if(!Password.equals(ConPassword)){
+            Toast.makeText(getActivity(), "Password and Confirm Password doen't match", Toast.LENGTH_SHORT).show();
+            password.setError("");
+            conpassword.setError("");
             pb.setVisibility(View.INVISIBLE);
         }
         else{
