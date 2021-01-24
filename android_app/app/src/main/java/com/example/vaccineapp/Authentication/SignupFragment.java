@@ -109,6 +109,7 @@ public class SignupFragment extends Fragment {
                 }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
+                pb.setVisibility(View.INVISIBLE);
                 Toast.makeText(getActivity(),""+e.toString(),Toast.LENGTH_SHORT).show();
             }
         });
