@@ -61,7 +61,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="Date of Birth"
+            android:hint="dd/mm/yyyy"
             android:fontFamily="@font/poppins_light"
             android:inputType="date"
             android:textStyle="normal"/>

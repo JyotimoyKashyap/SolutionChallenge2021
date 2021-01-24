@@ -26,7 +26,7 @@ public class SignupFragment extends Fragment {
 
     private EditText email,password,conpassword;
     private Button signupbtn;
-    private ProgressBar pb;
+    private ProgressBar progressBar;
 
     private FirebaseAuth mAuth;
     private DummyFragment dummyFragment;
@@ -41,14 +41,14 @@ public class SignupFragment extends Fragment {
         dummyFragment = new DummyFragment();
         email = view.findViewById(R.id.email);
         password = view.findViewById(R.id.password);
-        conpassword = view.findViewById(R.id.confpassword);
-        signupbtn = view.findViewById(R.id.signupbtn);
-        pb = view.findViewById(R.id.progresssignup);
+        conpassword = view.findViewById(R.id.confirm_password);
+        signupbtn = view.findViewById(R.id.sign_up_btn);
+        progressBar = view.findViewById(R.id.progress_bar_sign_up);
 
         signupbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                pb.setVisibility(View.VISIBLE);
+                progressBar.setVisibility(View.VISIBLE);
                 checkdata();
             }
         });
@@ -64,28 +64,28 @@ public class SignupFragment extends Fragment {
         if(Email.length()==0){
             Toast.makeText(getActivity(),"please enter email filed",Toast.LENGTH_SHORT).show();
             email.setError("");
-            pb.setVisibility(View.INVISIBLE);
+            progressBar.setVisibility(View.INVISIBLE);
         }
         else if(Password.length()==0) {
             Toast.makeText(getActivity(), "please enter password field", Toast.LENGTH_SHORT).show();
             password.setError("");
-            pb.setVisibility(View.INVISIBLE);
+            progressBar.setVisibility(View.INVISIBLE);
         }
         else if(ConPassword.length()==0) {
             Toast.makeText(getActivity(), "please enter password field", Toast.LENGTH_SHORT).show();
             conpassword.setError("");
-            pb.setVisibility(View.INVISIBLE);
+            progressBar.setVisibility(View.INVISIBLE);
         }
         else if(Password.length()<6){
             Toast.makeText(getActivity(), "Password length must be greater than 6!", Toast.LENGTH_SHORT).show();
             password.setError("");
-            pb.setVisibility(View.INVISIBLE);
+            progressBar.setVisibility(View.INVISIBLE);
         }
         else if(!Password.equals(ConPassword)){
             Toast.makeText(getActivity(), "Password and Confirm Password doen't match", Toast.LENGTH_SHORT).show();
             password.setError("");
             conpassword.setError("");
-            pb.setVisibility(View.INVISIBLE);
+            progressBar.setVisibility(View.INVISIBLE);
         }
         else{
             Signup();
@@ -98,7 +98,7 @@ public class SignupFragment extends Fragment {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
-                            pb.setVisibility(View.INVISIBLE);
+                            progressBar.setVisibility(View.INVISIBLE);
                             Toast.makeText(getActivity(),"Signup Successful by " + email.getText().toString().trim(),Toast.LENGTH_SHORT).show();
                             setFragment(dummyFragment);
                         }
@@ -109,7 +109,7 @@ public class SignupFragment extends Fragment {
                 }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                pb.setVisibility(View.INVISIBLE);
+                progressBar.setVisibility(View.INVISIBLE);
                 Toast.makeText(getActivity(),""+e.toString(),Toast.LENGTH_SHORT).show();
             }
         });

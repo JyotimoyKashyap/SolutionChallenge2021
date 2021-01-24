@@ -34,6 +34,7 @@
         android:id="@+id/email_txtiplayout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -131,7 +132,7 @@
 
 
     <ProgressBar
-        android:id="@+id/progresslogin"
+        android:id="@+id/progress_bar_sign_up"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:visibility="invisible"
@@ -143,7 +144,7 @@
 
 
     <Button
-        android:id="@+id/Loginbtn"
+        android:id="@+id/sign_up_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
