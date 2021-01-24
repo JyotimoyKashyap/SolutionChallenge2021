@@ -50,7 +50,6 @@
             android:hint="Email ID"
             android:fontFamily="@font/poppins_light"
             android:inputType="textEmailAddress"
-            android:textAlignment="center"
             android:textStyle="normal"/>
 
 
@@ -78,12 +77,7 @@
             android:hint="Password"
             android:fontFamily="@font/poppins_light"
             android:inputType="textPassword"
-            android:textAlignment="center"
-            android:textStyle="normal"
-            app:layout_constraintBottom_toTopOf="@+id/Loginbtn"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.497"
-            app:layout_constraintStart_toStartOf="parent" />
+            android:textStyle="normal" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -105,7 +99,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="Login"
+        android:text="Sign in"
         android:paddingLeft="40dp"
         android:paddingRight="40dp"
         android:paddingTop="10dp"
@@ -121,7 +115,7 @@
     <TextView
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Login"
+        android:text="Sign in"
         android:fontFamily="@font/poppins_bold"
         app:layout_constraintBottom_toTopOf="@id/guideline_login2"
         app:layout_constraintLeft_toLeftOf="parent"
