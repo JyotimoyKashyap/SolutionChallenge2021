@@ -6,19 +6,17 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
 
-import com.example.vaccineapp.Authentication.LoginFragment;
+import com.example.vaccineapp.SplashFragment.SplashFragment;
 
 public class MainActivity extends AppCompatActivity {
 
-    private LoginFragment loginFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        loginFragment = new LoginFragment();
-        setFragment(loginFragment);
+        setFragment(new SplashFragment());
     }
 
     private void setFragment(Fragment fragment) {
