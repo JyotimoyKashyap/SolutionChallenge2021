@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.vaccineapp.DummyFragment;
@@ -29,7 +30,10 @@ public class LoginFragment extends Fragment {
     private EditText email,password;
     private Button login;
     private DummyFragment dummyFragment;
+    private SignupFragment signupFragment;
+    private ForgatPasswordFragment forgatPasswordFragment;
     private ProgressBar pb;
+    private TextView txt,ttt;
 
     private FirebaseAuth mAuth;
 
@@ -42,11 +46,29 @@ public class LoginFragment extends Fragment {
 
         mAuth = FirebaseAuth.getInstance();
         dummyFragment = new DummyFragment();
+        signupFragment = new SignupFragment();
+        forgatPasswordFragment = new ForgatPasswordFragment();
 
+        txt = view.findViewById(R.id.signup_fragment);
+        ttt = view.findViewById(R.id.forgot_password);
         pb = view.findViewById(R.id.progresslogin);
         email = view.findViewById(R.id.email);
         password = view.findViewById(R.id.password);
         login = view.findViewById(R.id.Loginbtn);
+
+        txt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setFragment(signupFragment);
+            }
+        });
+
+        ttt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setFragment(forgatPasswordFragment);
+            }
+        });
 
         login.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -67,14 +89,9 @@ public class LoginFragment extends Fragment {
             email.setError("");
             pb.setVisibility(View.INVISIBLE);
         }
-        else if(P.length()==0){
-            Toast.makeText(getActivity(),"please enter password field",Toast.LENGTH_SHORT).show();
+        else if(P.length()==0) {
+            Toast.makeText(getActivity(), "please enter password field", Toast.LENGTH_SHORT).show();
             password.setError("");
-            pb.setVisibility(View.INVISIBLE);
-        }
-        else if(password.getText().toString().trim().length()<6){
-            Toast.makeText(getActivity(),"please enter a valid password of length gretaer than 6",Toast.LENGTH_SHORT).show();
-            password.setError("Invalid password");
             pb.setVisibility(View.INVISIBLE);
         }
         else{
@@ -108,7 +125,7 @@ public class LoginFragment extends Fragment {
     private void setFragment(Fragment fragment) {
         FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.mainframe,fragment);
-        fragmentTransaction.commit();
+        fragmentTransaction.addToBackStack(null).commit();
     }
 
 }
