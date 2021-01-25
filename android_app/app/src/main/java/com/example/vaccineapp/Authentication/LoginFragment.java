@@ -18,6 +18,7 @@ import android.widget.Toast;
 
 import com.example.vaccineapp.DummyFragment;
 import com.example.vaccineapp.R;
+import com.example.vaccineapp.databinding.FragmentLoginBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
@@ -27,53 +28,49 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class LoginFragment extends Fragment {
 
-    private EditText email,password;
-    private Button login,signup;
+
     private DummyFragment dummyFragment;
     private SignupFragment signupFragment;
     private ForgatPasswordFragment forgatPasswordFragment;
-    private ProgressBar pb;
-    private TextView ttt;
+
 
     private FirebaseAuth mAuth;
+
+    private FragmentLoginBinding binding;
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_login, container, false);
+        binding = FragmentLoginBinding.inflate(inflater, container, false);
+        View view = binding.getRoot();
 
         mAuth = FirebaseAuth.getInstance();
         dummyFragment = new DummyFragment();
         signupFragment = new SignupFragment();
         forgatPasswordFragment = new ForgatPasswordFragment();
-        signup = view.findViewById(R.id.sign_up_btn);
 
-        ttt = view.findViewById(R.id.forgot_password_fragment);
-        pb = view.findViewById(R.id.progresslogin);
-        email = view.findViewById(R.id.email);
-        password = view.findViewById(R.id.password);
-        login = view.findViewById(R.id.Loginbtn);
 
-        signup.setOnClickListener(new View.OnClickListener() {
+        binding.signUpBtn.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View view) {
                 setFragment(signupFragment);
             }
         });
 
-        ttt.setOnClickListener(new View.OnClickListener() {
+        binding.forgotPasswordFragment.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View view) {
                 setFragment(forgatPasswordFragment);
             }
         });
 
-        login.setOnClickListener(new View.OnClickListener() {
+
+        binding.Loginbtn.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                pb.setVisibility(View.VISIBLE);
+            public void onClick(View view) {
+                binding.progresslogin.setVisibility(View.VISIBLE);
                 checkdata();
             }
         });
@@ -82,17 +79,17 @@ public class LoginFragment extends Fragment {
     }
 
     private void checkdata() {
-        String E = email.getText().toString();
-        String P = password.getText().toString();
+        String E = binding.email.getText().toString();
+        String P = binding.password.getText().toString();
         if(E.length()==0){
             Toast.makeText(getActivity(),"please enter email filed",Toast.LENGTH_SHORT).show();
-            email.setError("");
-            pb.setVisibility(View.INVISIBLE);
+            binding.emailTxtiplayout.setError("");
+            binding.progresslogin.setVisibility(View.INVISIBLE);
         }
         else if(P.length()==0) {
             Toast.makeText(getActivity(), "please enter password field", Toast.LENGTH_SHORT).show();
-            password.setError("");
-            pb.setVisibility(View.INVISIBLE);
+            binding.passwordTxtiplayout.setError("");
+            binding.progresslogin.setVisibility(View.INVISIBLE);
         }
         else{
             logincheck();
@@ -100,17 +97,17 @@ public class LoginFragment extends Fragment {
     }
 
     private void logincheck() {
-        mAuth.signInWithEmailAndPassword(email.getText().toString(),password.getText().toString())
+        mAuth.signInWithEmailAndPassword(binding.email.getText().toString(),binding.password.getText().toString())
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
-                            pb.setVisibility(View.INVISIBLE);
-                            Toast.makeText(getActivity(),"Login Successful by " + email.getText().toString().trim(),Toast.LENGTH_SHORT).show();
+                            binding.progresslogin.setVisibility(View.INVISIBLE);
+                            Toast.makeText(getActivity(),"Login Successful by " + binding.email.getText().toString().trim(),Toast.LENGTH_SHORT).show();
                             setFragment(dummyFragment);
                         }
                         else{
-                            pb.setVisibility(View.INVISIBLE);
+                            binding.progresslogin.setVisibility(View.INVISIBLE);
                             Toast.makeText(getActivity(),"Error in Login!",Toast.LENGTH_SHORT).show();
                         }
                     }

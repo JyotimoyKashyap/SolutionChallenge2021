@@ -17,6 +17,7 @@ import android.widget.Toast;
 import com.example.vaccineapp.ChildDetailsForm.ChildDetailsFormFragment;
 import com.example.vaccineapp.DummyFragment;
 import com.example.vaccineapp.R;
+import com.example.vaccineapp.databinding.FragmentSignupBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
@@ -32,25 +33,22 @@ public class SignupFragment extends Fragment {
     private FirebaseAuth mAuth;
     private DummyFragment dummyFragment;
 
+    private FragmentSignupBinding binding;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_signup, container, false);
+        binding = FragmentSignupBinding.inflate(inflater, container, false);
+        View view = binding.getRoot();
 
         mAuth = FirebaseAuth.getInstance();
         dummyFragment = new DummyFragment();
-        email = view.findViewById(R.id.email);
-        User = view.findViewById(R.id.username);
-        password = view.findViewById(R.id.password);
-        conpassword = view.findViewById(R.id.confirm_password);
-        signupbtn = view.findViewById(R.id.sign_up_btn);
-        progressBar = view.findViewById(R.id.progress_bar_sign_up);
 
-        signupbtn.setOnClickListener(new View.OnClickListener() {
+        binding.signUpBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                progressBar.setVisibility(View.VISIBLE);
+                binding.progressBarSignUp.setVisibility(View.VISIBLE);
                 checkdata();
             }
         });
@@ -60,40 +58,40 @@ public class SignupFragment extends Fragment {
     }
 
     private void checkdata() {
-        String Email = email.getText().toString();
-        String Password = password.getText().toString();
-        String ConPassword = conpassword.getText().toString();
-        String User_Name = User.getText().toString();
+        String Email = binding.email.getText().toString();
+        String Password = binding.password.getText().toString();
+        String ConPassword = binding.confirmPassword.getText().toString();
+        String User_Name = binding.username.getText().toString();
         if(User_Name.length()==0){
             Toast.makeText(getActivity(),"please enter your name",Toast.LENGTH_SHORT).show();
-            User.setError("");
-            progressBar.setVisibility(View.INVISIBLE);
+            binding.usernameTxtiplayout.setError("");
+            binding.progressBarSignUp.setVisibility(View.INVISIBLE);
         }
         else if(Email.length()==0){
             Toast.makeText(getActivity(),"please enter email filed",Toast.LENGTH_SHORT).show();
-            email.setError("");
-            progressBar.setVisibility(View.INVISIBLE);
+            binding.emailTxtiplayout.setError("");
+            binding.progressBarSignUp.setVisibility(View.INVISIBLE);
         }
         else if(Password.length()==0) {
             Toast.makeText(getActivity(), "please enter password field", Toast.LENGTH_SHORT).show();
-            password.setError("");
+            binding.passwordTxtiplayout.setError("");
             progressBar.setVisibility(View.INVISIBLE);
         }
         else if(ConPassword.length()==0) {
             Toast.makeText(getActivity(), "please enter password field", Toast.LENGTH_SHORT).show();
-            conpassword.setError("");
-            progressBar.setVisibility(View.INVISIBLE);
+            binding.confirmPasswordTxtiplayout.setError("");
+            binding.progressBarSignUp.setVisibility(View.INVISIBLE);
         }
         else if(Password.length()<6){
             Toast.makeText(getActivity(), "Password length must be greater than 6!", Toast.LENGTH_SHORT).show();
-            password.setError("");
+            binding.passwordTxtiplayout.setError("");
             progressBar.setVisibility(View.INVISIBLE);
         }
         else if(!Password.equals(ConPassword)){
             Toast.makeText(getActivity(), "Password and Confirm Password doen't match", Toast.LENGTH_SHORT).show();
-            password.setError("");
-            conpassword.setError("");
-            progressBar.setVisibility(View.INVISIBLE);
+            binding.passwordTxtiplayout.setError("");
+            binding.confirmPasswordTxtiplayout.setError("");
+            binding.progressBarSignUp.setVisibility(View.INVISIBLE);
         }
         else{
             Signup();
@@ -101,13 +99,13 @@ public class SignupFragment extends Fragment {
     }
 
     private void Signup() {
-        mAuth.createUserWithEmailAndPassword(email.getText().toString(),password.getText().toString())
+        mAuth.createUserWithEmailAndPassword(binding.email.getText().toString(),binding.password.getText().toString())
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
-                            progressBar.setVisibility(View.INVISIBLE);
-                            Toast.makeText(getActivity(),"Signup Successful by " + email.getText().toString().trim(),Toast.LENGTH_SHORT).show();
+                            binding.progressBarSignUp.setVisibility(View.INVISIBLE);
+                            Toast.makeText(getActivity(),"Signup Successful by " + binding.email.getText().toString().trim(),Toast.LENGTH_SHORT).show();
                             setFragment(new ChildDetailsFormFragment());
                         }
                         else{
@@ -117,7 +115,7 @@ public class SignupFragment extends Fragment {
                 }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                progressBar.setVisibility(View.INVISIBLE);
+                binding.progressBarSignUp.setVisibility(View.INVISIBLE);
                 Toast.makeText(getActivity(),""+e.toString(),Toast.LENGTH_SHORT).show();
             }
         });
@@ -129,4 +127,9 @@ public class SignupFragment extends Fragment {
         fragmentTransaction.addToBackStack(null).commit();
     }
 
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        binding = null;
+    }
 }
