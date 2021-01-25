@@ -28,12 +28,12 @@ import com.google.firebase.auth.FirebaseUser;
 public class LoginFragment extends Fragment {
 
     private EditText email,password;
-    private Button login;
+    private Button login,signup;
     private DummyFragment dummyFragment;
     private SignupFragment signupFragment;
     private ForgatPasswordFragment forgatPasswordFragment;
     private ProgressBar pb;
-    private TextView txt,ttt;
+    private TextView ttt;
 
     private FirebaseAuth mAuth;
 
@@ -48,15 +48,15 @@ public class LoginFragment extends Fragment {
         dummyFragment = new DummyFragment();
         signupFragment = new SignupFragment();
         forgatPasswordFragment = new ForgatPasswordFragment();
+        signup = view.findViewById(R.id.sign_up_btn);
 
-        txt = view.findViewById(R.id.signup_fragment);
-        ttt = view.findViewById(R.id.forgot_password);
+        ttt = view.findViewById(R.id.forgot_password_fragment);
         pb = view.findViewById(R.id.progresslogin);
         email = view.findViewById(R.id.email);
         password = view.findViewById(R.id.password);
         login = view.findViewById(R.id.Loginbtn);
 
-        txt.setOnClickListener(new View.OnClickListener() {
+        signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 setFragment(signupFragment);

@@ -124,6 +124,7 @@
         android:layout_marginRight="24dp"/>
 
     <TextView
+        android:id="@+id/forgot_password_fragment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Forgot Password?"
@@ -151,6 +152,7 @@
 
 
     <Button
+        android:id="@+id/sign_up_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Sign Up"

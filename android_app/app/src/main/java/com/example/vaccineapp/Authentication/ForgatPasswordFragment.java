@@ -35,9 +35,10 @@ public class ForgatPasswordFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_forgat_password, container, false);
 
         mAuth = FirebaseAuth.getInstance();
-        email_id= view.findViewById(R.id.forgotemail);
-        btn = view.findViewById(R.id.forgot_send);
-        pb =view.findViewById(R.id.progressforgot);
+        email_id= view.findViewById(R.id.email);
+        btn = view.findViewById(R.id.forgot_password_confirm_btn);
+        pb =view.findViewById(R.id.forgot_password_progress_bar);
+        pb.setVisibility(View.INVISIBLE);
 
         btn.setOnClickListener(new View.OnClickListener() {
             @Override

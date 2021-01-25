@@ -6,6 +6,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ChildDetailsForm.ChildDetailsFormFragment">
 
+    <ProgressBar
+        android:id="@+id/progress_bar_child_detail_fragment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mother_name_txtiplayout" />
+
     <TextView
         android:id="@+id/child_form_text"
         android:layout_width="0dp"
@@ -156,14 +165,15 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
+        android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_margin="24dp"
+        android:fontFamily="@font/poppins_light"
         android:text="Done"
         android:textAllCaps="false"
-        android:fontFamily="@font/poppins_light"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        android:layout_margin="24dp"/>
+        app:layout_constraintRight_toRightOf="parent" />
 
 
 

@@ -14,6 +14,7 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.example.vaccineapp.ChildDetailsForm.ChildDetailsFormFragment;
 import com.example.vaccineapp.DummyFragment;
 import com.example.vaccineapp.R;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -24,7 +25,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class SignupFragment extends Fragment {
 
-    private EditText email,password,conpassword;
+    private EditText email,password,conpassword,User;
     private Button signupbtn;
     private ProgressBar progressBar;
 
@@ -40,6 +41,7 @@ public class SignupFragment extends Fragment {
         mAuth = FirebaseAuth.getInstance();
         dummyFragment = new DummyFragment();
         email = view.findViewById(R.id.email);
+        User = view.findViewById(R.id.username);
         password = view.findViewById(R.id.password);
         conpassword = view.findViewById(R.id.confirm_password);
         signupbtn = view.findViewById(R.id.sign_up_btn);
@@ -61,7 +63,13 @@ public class SignupFragment extends Fragment {
         String Email = email.getText().toString();
         String Password = password.getText().toString();
         String ConPassword = conpassword.getText().toString();
-        if(Email.length()==0){
+        String User_Name = User.getText().toString();
+        if(User_Name.length()==0){
+            Toast.makeText(getActivity(),"please enter your name",Toast.LENGTH_SHORT).show();
+            User.setError("");
+            progressBar.setVisibility(View.INVISIBLE);
+        }
+        else if(Email.length()==0){
             Toast.makeText(getActivity(),"please enter email filed",Toast.LENGTH_SHORT).show();
             email.setError("");
             progressBar.setVisibility(View.INVISIBLE);
@@ -100,7 +108,7 @@ public class SignupFragment extends Fragment {
                         if(task.isSuccessful()){
                             progressBar.setVisibility(View.INVISIBLE);
                             Toast.makeText(getActivity(),"Signup Successful by " + email.getText().toString().trim(),Toast.LENGTH_SHORT).show();
-                            setFragment(dummyFragment);
+                            setFragment(new ChildDetailsFormFragment());
                         }
                         else{
 
