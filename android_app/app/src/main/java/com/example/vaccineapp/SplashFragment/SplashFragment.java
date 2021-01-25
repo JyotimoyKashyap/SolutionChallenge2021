@@ -12,18 +12,21 @@ import android.view.ViewGroup;
 
 import com.example.vaccineapp.Authentication.LoginFragment;
 import com.example.vaccineapp.R;
+import com.example.vaccineapp.databinding.FragmentSplashBinding;
 
 import java.util.HashMap;
 
 public class SplashFragment extends Fragment {
 
-
+    private FragmentSplashBinding binding;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        View view =  inflater.inflate(R.layout.fragment_splash, container, false);
+        // user of view biniding to inflate the layout
+        /**Please see the implementation and apply it else where also */
+        binding = FragmentSplashBinding.inflate(inflater, container, false);
+        View view =  binding.getRoot();
 
 
         new Handler().postDelayed(new Runnable() {
@@ -41,4 +44,13 @@ public class SplashFragment extends Fragment {
         fragmentTransaction.replace(R.id.mainframe,fragment);
         fragmentTransaction.commit();
     }
+
+    /**Do not forget to override the onDestroyView() method */
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        binding = null;
+    }
 }
+
