@@ -6,6 +6,8 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -75,6 +77,9 @@ public class LoginFragment extends Fragment {
             }
         });
 
+        binding.email.addTextChangedListener(loginTextWatcher);
+        binding.password.addTextChangedListener(loginTextWatcher);
+
         return view;
     }
 
@@ -82,11 +87,11 @@ public class LoginFragment extends Fragment {
         String E = binding.email.getText().toString();
         String P = binding.password.getText().toString();
         if(E.length()==0){
-            binding.email.setError("Required Field");
+            binding.emailTxtiplayout.setError("Required Field");
             binding.progresslogin.setVisibility(View.INVISIBLE);
         }
         else if(P.length()==0) {
-            binding.password.setError("Required Field");
+            binding.passwordTxtiplayout.setError("Required Field");
             binding.progresslogin.setVisibility(View.INVISIBLE);
         }
         else{
@@ -122,5 +127,26 @@ public class LoginFragment extends Fragment {
         fragmentTransaction.replace(R.id.mainframe,fragment);
         fragmentTransaction.addToBackStack(null).commit();
     }
+
+    private TextWatcher loginTextWatcher = new TextWatcher() {
+        @Override
+        public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+        }
+
+        @Override
+        public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            String emailInput = binding.email.getText().toString().trim();
+            String passwordInput = binding.password.getText().toString().trim();
+
+            //enabling or disabling the button if there is no any text
+            binding.Loginbtn.setEnabled(!emailInput.isEmpty() && !passwordInput.isEmpty());
+        }
+
+        @Override
+        public void afterTextChanged(Editable editable) {
+
+        }
+    };
 
 }

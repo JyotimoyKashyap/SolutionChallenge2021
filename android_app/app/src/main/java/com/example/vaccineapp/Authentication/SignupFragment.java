@@ -6,6 +6,8 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -53,6 +55,11 @@ public class SignupFragment extends Fragment {
             }
         });
 
+        binding.email.addTextChangedListener(signUpTextWatcher);
+        binding.username.addTextChangedListener(signUpTextWatcher);
+        binding.confirmPassword.addTextChangedListener(signUpTextWatcher);
+        binding.password.addTextChangedListener(signUpTextWatcher);
+
 
         return view;
     }
@@ -64,33 +71,33 @@ public class SignupFragment extends Fragment {
         String User_Name = binding.username.getText().toString();
         if(User_Name.length()==0){
             Toast.makeText(getActivity(),"please enter your name",Toast.LENGTH_SHORT).show();
-            binding.username.setError("Required Field");
+            binding.usernameTxtiplayout.setError("Required Field");
             binding.progressBarSignUp.setVisibility(View.INVISIBLE);
         }
         else if(Email.length()==0){
             Toast.makeText(getActivity(),"please enter email filed",Toast.LENGTH_SHORT).show();
-            binding.email.setError("Required Field");
+            binding.emailTxtiplayout.setError("Required Field");
             binding.progressBarSignUp.setVisibility(View.INVISIBLE);
         }
         else if(Password.length()==0) {
             Toast.makeText(getActivity(), "please enter password field", Toast.LENGTH_SHORT).show();
-            binding.password.setError("Required Field");
+            binding.passwordTxtiplayout.setError("Required Field");
             progressBar.setVisibility(View.INVISIBLE);
         }
         else if(ConPassword.length()==0) {
             Toast.makeText(getActivity(), "please enter password field", Toast.LENGTH_SHORT).show();
-            binding.confirmPassword.setError("Required Field");
+            binding.confirmPasswordTxtiplayout.setError("Required Field");
             binding.progressBarSignUp.setVisibility(View.INVISIBLE);
         }
         else if(Password.length()<6){
             Toast.makeText(getActivity(), "Password length must be greater than 6!", Toast.LENGTH_SHORT).show();
-            binding.password.setError("Required Field");
+            binding.passwordTxtiplayout.setError("Required Field");
             progressBar.setVisibility(View.INVISIBLE);
         }
         else if(!Password.equals(ConPassword)){
             Toast.makeText(getActivity(), "Password and Confirm Password doen't match", Toast.LENGTH_SHORT).show();
-            binding.password.setError("Required Field");
-            binding.confirmPasswordTxtiplayout.setError("");
+            binding.passwordTxtiplayout.setError("Required Field");
+            binding.confirmPasswordTxtiplayout.setError("Required Field");
             binding.progressBarSignUp.setVisibility(View.INVISIBLE);
         }
         else{
@@ -131,5 +138,29 @@ public class SignupFragment extends Fragment {
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
+    }
+
+    private TextWatcher signUpTextWatcher = new TextWatcher() {
+        @Override
+        public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+        }
+
+        @Override
+        public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            String usernameInput = binding.username.getText().toString().trim();
+            String emailInput = binding.email.getText().toString().trim();
+            String passwordInput = binding.password.getText().toString().trim();
+            String confirmPasswordInput = binding.confirmPassword.getText().toString().trim();
+
+            //enable button whenever there is input in all the fields
+            binding.signUpBtn.setEnabled(!usernameInput.isEmpty() && !emailInput.isEmpty() && !passwordInput.isEmpty() && !confirmPasswordInput.isEmpty());
+
+        }
+
+        @Override
+        public void afterTextChanged(Editable editable) {
+
+        }
     }
 }

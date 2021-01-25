@@ -6,6 +6,8 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -45,7 +47,7 @@ public class ForgatPasswordFragment extends Fragment {
                 }
                 else{
                     Toast.makeText(getActivity(),"Please enter Email Id",Toast.LENGTH_SHORT).show();
-                    binding.email.setError("Required Field");
+                    binding.emailTxtiplayout.setError("Required Field");
                 }
             }
         });
@@ -75,5 +77,23 @@ public class ForgatPasswordFragment extends Fragment {
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
+    }
+
+    private TextWatcher forgotPasswordTextWatcher = new TextWatcher() {
+        @Override
+        public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+        }
+
+        @Override
+        public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            String emailInput = binding.email.getText().toString().trim();
+            binding.forgotPasswordConfirmBtn.setEnabled(!emailInput.isEmpty());
+        }
+
+        @Override
+        public void afterTextChanged(Editable editable) {
+
+        }
     }
 }
