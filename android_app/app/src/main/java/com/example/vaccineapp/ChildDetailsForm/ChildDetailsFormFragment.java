@@ -10,11 +10,12 @@ import android.view.ViewGroup;
 import android.widget.ProgressBar;
 
 import com.example.vaccineapp.R;
+import com.example.vaccineapp.databinding.FragmentChildDetailsFormBinding;
 
 
 public class ChildDetailsFormFragment extends Fragment {
 
-    private ProgressBar Pb;
+    private FragmentChildDetailsFormBinding binding;
 
 
 
@@ -23,11 +24,18 @@ public class ChildDetailsFormFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_child_details_form, container, false);
+        binding = FragmentChildDetailsFormBinding.inflate(inflater, container, false);
+        View view = binding.getRoot();
 
-        Pb = view.findViewById(R.id.progress_bar_child_detail_fragment);
-        Pb.setVisibility(View.INVISIBLE);
+        binding.progressBarChildDetailFragment.setVisibility(View.INVISIBLE);
+
 
         return view;
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        binding = null;
     }
 }
