@@ -82,13 +82,11 @@ public class LoginFragment extends Fragment {
         String E = binding.email.getText().toString();
         String P = binding.password.getText().toString();
         if(E.length()==0){
-            Toast.makeText(getActivity(),"please enter email filed",Toast.LENGTH_SHORT).show();
-            binding.emailTxtiplayout.setError("");
+            binding.email.setError("Required Field");
             binding.progresslogin.setVisibility(View.INVISIBLE);
         }
         else if(P.length()==0) {
-            Toast.makeText(getActivity(), "please enter password field", Toast.LENGTH_SHORT).show();
-            binding.passwordTxtiplayout.setError("");
+            binding.password.setError("Required Field");
             binding.progresslogin.setVisibility(View.INVISIBLE);
         }
         else{

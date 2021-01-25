@@ -45,7 +45,7 @@ public class ForgatPasswordFragment extends Fragment {
                 }
                 else{
                     Toast.makeText(getActivity(),"Please enter Email Id",Toast.LENGTH_SHORT).show();
-                    binding.emailTxtiplayout.setError("");
+                    binding.email.setError("Required Field");
                 }
             }
         });
@@ -59,7 +59,7 @@ public class ForgatPasswordFragment extends Fragment {
             public void onComplete(@NonNull Task<Void> task) {
                 if(task.isSuccessful()){
                     binding.forgotPasswordProgressBar.setVisibility(View.INVISIBLE);
-                    Toast.makeText(getActivity(),"Password Reset link sended to your registered email id",Toast.LENGTH_LONG).show();
+                    Toast.makeText(getActivity(),"Password Reset link sent to your registered email ID",Toast.LENGTH_LONG).show();
                 }
             }
         }).addOnFailureListener(new OnFailureListener() {

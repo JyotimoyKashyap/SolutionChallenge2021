@@ -64,32 +64,32 @@ public class SignupFragment extends Fragment {
         String User_Name = binding.username.getText().toString();
         if(User_Name.length()==0){
             Toast.makeText(getActivity(),"please enter your name",Toast.LENGTH_SHORT).show();
-            binding.usernameTxtiplayout.setError("");
+            binding.username.setError("Required Field");
             binding.progressBarSignUp.setVisibility(View.INVISIBLE);
         }
         else if(Email.length()==0){
             Toast.makeText(getActivity(),"please enter email filed",Toast.LENGTH_SHORT).show();
-            binding.emailTxtiplayout.setError("");
+            binding.email.setError("Required Field");
             binding.progressBarSignUp.setVisibility(View.INVISIBLE);
         }
         else if(Password.length()==0) {
             Toast.makeText(getActivity(), "please enter password field", Toast.LENGTH_SHORT).show();
-            binding.passwordTxtiplayout.setError("");
+            binding.password.setError("Required Field");
             progressBar.setVisibility(View.INVISIBLE);
         }
         else if(ConPassword.length()==0) {
             Toast.makeText(getActivity(), "please enter password field", Toast.LENGTH_SHORT).show();
-            binding.confirmPasswordTxtiplayout.setError("");
+            binding.confirmPassword.setError("Required Field");
             binding.progressBarSignUp.setVisibility(View.INVISIBLE);
         }
         else if(Password.length()<6){
             Toast.makeText(getActivity(), "Password length must be greater than 6!", Toast.LENGTH_SHORT).show();
-            binding.passwordTxtiplayout.setError("");
+            binding.password.setError("Required Field");
             progressBar.setVisibility(View.INVISIBLE);
         }
         else if(!Password.equals(ConPassword)){
             Toast.makeText(getActivity(), "Password and Confirm Password doen't match", Toast.LENGTH_SHORT).show();
-            binding.passwordTxtiplayout.setError("");
+            binding.password.setError("Required Field");
             binding.confirmPasswordTxtiplayout.setError("");
             binding.progressBarSignUp.setVisibility(View.INVISIBLE);
         }
