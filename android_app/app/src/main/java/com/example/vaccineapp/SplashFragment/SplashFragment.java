@@ -25,19 +25,19 @@ public class SplashFragment extends Fragment {
         // Inflate the layout for this fragment
         View view =  inflater.inflate(R.layout.fragment_splash, container, false);
 
-        Handler mHandler = new Handler();
-        mHandler.postDelayed(new Runnable() {
+
+        new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
                 setFragment(new LoginFragment());
             }
-        },500);
+        }, 600);
 
         return view;
     }
 
     private void setFragment(Fragment fragment) {
-        FragmentTransaction fragmentTransaction = getChildFragmentManager().beginTransaction();
+        FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.mainframe,fragment);
         fragmentTransaction.commit();
     }

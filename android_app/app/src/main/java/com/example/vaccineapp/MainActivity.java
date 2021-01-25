@@ -17,7 +17,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        setFragment(new LoginFragment());
+        setFragment(new SplashFragment());
     }
 
     private void setFragment(Fragment fragment) {
