@@ -1,0 +1,106 @@
+{
+  "project_info": {
+    "project_number": "1031414865893",
+    "firebase_url": "https://tedxm-fae6e.firebaseio.com",
+    "project_id": "tedxm-fae6e",
+    "storage_bucket": "tedxm-fae6e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1031414865893:android:03d75c121021c07724590c",
+        "android_client_info": {
+          "package_name": "com.example.diary"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1031414865893-bud6uc0riemseoo6tfbqahog9eojp4vn.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.diary",
+            "certificate_hash": "0d114f9c3e6cc9bf62af2c675c8eae54ccde8a77"
+          }
+        },
+        {
+          "client_id": "1031414865893-fqv4ummfi3s67lfad4gjvsl3japoa94m.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA6uS116yG5TOzV6yboiobpYZMGN_QsZos"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1031414865893-fqv4ummfi3s67lfad4gjvsl3japoa94m.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1031414865893:android:aaa7947f98affcfd24590c",
+        "android_client_info": {
+          "package_name": "com.example.textdecorder"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1031414865893-fqv4ummfi3s67lfad4gjvsl3japoa94m.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA6uS116yG5TOzV6yboiobpYZMGN_QsZos"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1031414865893-fqv4ummfi3s67lfad4gjvsl3japoa94m.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1031414865893:android:4ab559e2ab83849424590c",
+        "android_client_info": {
+          "package_name": "com.example.vaccineapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1031414865893-fqv4ummfi3s67lfad4gjvsl3japoa94m.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA6uS116yG5TOzV6yboiobpYZMGN_QsZos"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1031414865893-fqv4ummfi3s67lfad4gjvsl3japoa94m.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
