@@ -60,7 +60,7 @@ public class LoginFragment extends Fragment {
         binding.signUpBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                setFragment(childDetailsFormFragment);
+                setFragment(signupFragment);
             }
         });
 
