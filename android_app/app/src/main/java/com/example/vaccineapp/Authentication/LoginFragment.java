@@ -18,6 +18,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.vaccineapp.ChildDetailsForm.ChildDetailsFormFragment;
 import com.example.vaccineapp.DummyFragment;
 import com.example.vaccineapp.R;
 import com.example.vaccineapp.databinding.FragmentLoginBinding;
@@ -34,6 +35,7 @@ public class LoginFragment extends Fragment {
     private DummyFragment dummyFragment;
     private SignupFragment signupFragment;
     private ForgatPasswordFragment forgatPasswordFragment;
+    private ChildDetailsFormFragment childDetailsFormFragment;
 
 
     private FirebaseAuth mAuth;
@@ -52,12 +54,13 @@ public class LoginFragment extends Fragment {
         dummyFragment = new DummyFragment();
         signupFragment = new SignupFragment();
         forgatPasswordFragment = new ForgatPasswordFragment();
+        childDetailsFormFragment = new ChildDetailsFormFragment();
 
 
         binding.signUpBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                setFragment(signupFragment);
+                setFragment(childDetailsFormFragment);
             }
         });
 

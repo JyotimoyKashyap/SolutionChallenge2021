@@ -162,5 +162,5 @@ public class SignupFragment extends Fragment {
         public void afterTextChanged(Editable editable) {
 
         }
-    }
+    };
 }

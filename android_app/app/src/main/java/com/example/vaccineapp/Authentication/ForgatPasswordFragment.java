@@ -79,7 +79,7 @@ public class ForgatPasswordFragment extends Fragment {
         binding = null;
     }
 
-    private TextWatcher forgotPasswordTextWatcher = new TextWatcher() {
+    private TextWatcher forgotPasswordTextWatcher = new TextWatcher(){
         @Override
         public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
@@ -95,5 +95,5 @@ public class ForgatPasswordFragment extends Fragment {
         public void afterTextChanged(Editable editable) {
 
         }
-    }
+    };
 }
