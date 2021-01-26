@@ -39,6 +39,7 @@ public class ChildDetailsFormFragment extends Fragment {
     private int Day=0;
     private int Month=0;
     private int Year=0;
+    private String gender = "";
 
 
 
@@ -54,17 +55,31 @@ public class ChildDetailsFormFragment extends Fragment {
         mAuth = FirebaseAuth.getInstance();
         databaseReference = FirebaseDatabase.getInstance().getReference("Baby_Data");
 
+        binding.maleSelectionBabyForm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                gender = "male";
+            }
+        });
+
+        binding.femaleSelectioinBabyForm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                gender = "female";
+            }
+        });
+
         binding.button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String Baby = binding.babyNameEdittext.getText().toString();
                 String Father_Name = binding.fatherNameEdittext.getText().toString();
                 String Mother = binding.motherNameEdittext.getText().toString();
-                if(Baby.length() == 0 || Father_Name.length() == 0 || Mother.length() == 0 || Year == 0)
+                if(Baby.length() == 0 || Father_Name.length() == 0 || Mother.length() == 0 || Year == 0 || gender.length() == 0)
                     Toast.makeText(getActivity(),"Please fill all details",Toast.LENGTH_SHORT).show();
                 else {
                     binding.progressBarChildDetailFragment.setVisibility(View.VISIBLE);
-                    savedata(Baby, Father_Name, Mother, Year, Month, Day);
+                    savedata(Baby, Father_Name, Mother, Year, Month, Day,gender);
                 }
             }
         });
@@ -103,7 +118,7 @@ public class ChildDetailsFormFragment extends Fragment {
         dialog.show();
     }
 
-    private void savedata(String baby, String father_Name, String mother, int year, int month, int day) {
+    private void savedata(String baby, String father_Name, String mother, int year, int month, int day,String Gender) {
         String User_Id = mAuth.getCurrentUser().getUid();
         databaseReference.child(User_Id).child("Baby_Name").setValue(baby);
         databaseReference.child(User_Id).child("Father_Name").setValue(father_Name);
@@ -111,6 +126,7 @@ public class ChildDetailsFormFragment extends Fragment {
         databaseReference.child(User_Id).child("Year").setValue(year);
         databaseReference.child(User_Id).child("Month").setValue(month);
         databaseReference.child(User_Id).child("Date").setValue(day);
+        databaseReference.child(User_Id).child("Gender").setValue(Gender);
         Toast.makeText(getActivity(),"Data added",Toast.LENGTH_SHORT).show();
         binding.progressBarChildDetailFragment.setVisibility(View.INVISIBLE);
         setFragment(new BottomNavFragment());

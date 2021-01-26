@@ -20,6 +20,7 @@ import android.widget.Toast;
 
 import com.example.vaccineapp.ChildDetailsForm.ChildDetailsFormFragment;
 import com.example.vaccineapp.DummyFragment;
+import com.example.vaccineapp.MainDestinations.BottomNavFragment;
 import com.example.vaccineapp.R;
 import com.example.vaccineapp.databinding.FragmentLoginBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -32,10 +33,8 @@ import com.google.firebase.auth.FirebaseUser;
 public class LoginFragment extends Fragment {
 
 
-    private DummyFragment dummyFragment;
     private SignupFragment signupFragment;
     private ForgatPasswordFragment forgatPasswordFragment;
-    private ChildDetailsFormFragment childDetailsFormFragment;
 
 
     private FirebaseAuth mAuth;
@@ -51,10 +50,8 @@ public class LoginFragment extends Fragment {
         View view = binding.getRoot();
 
         mAuth = FirebaseAuth.getInstance();
-        dummyFragment = new DummyFragment();
         signupFragment = new SignupFragment();
         forgatPasswordFragment = new ForgatPasswordFragment();
-        childDetailsFormFragment = new ChildDetailsFormFragment();
 
 
         binding.signUpBtn.setOnClickListener(new View.OnClickListener() {
@@ -110,7 +107,7 @@ public class LoginFragment extends Fragment {
                         if(task.isSuccessful()){
                             binding.progresslogin.setVisibility(View.INVISIBLE);
                             Toast.makeText(getActivity(),"Login Successful by " + binding.email.getText().toString().trim(),Toast.LENGTH_SHORT).show();
-                            setFragment(dummyFragment);
+                            setFragment(new BottomNavFragment());
                         }
                         else{
                             binding.progresslogin.setVisibility(View.INVISIBLE);

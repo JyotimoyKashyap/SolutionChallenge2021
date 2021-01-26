@@ -65,15 +65,14 @@
         android:layout_marginLeft="24dp"
         android:layout_marginRight="10dp">
 
-        <TextView
+        <EditText
             android:id="@+id/age_in_yrs_textview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
             android:text="dd/mm/yyyy"
             android:fontFamily="@font/poppins_light"
-            android:inputType="date"
-            android:textSize="18dp"
+            android:hint="date"
             android:textStyle="normal"/>
 
 
