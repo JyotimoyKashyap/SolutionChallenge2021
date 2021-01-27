@@ -54,10 +54,6 @@ public class LoginFragment extends Fragment {
         signupFragment = new SignupFragment();
         forgatPasswordFragment = new ForgatPasswordFragment();
 
-        String User_Id = mAuth.getCurrentUser().getUid();
-        if(User_Id != null){
-            setFragment(new BottomNavFragment());
-        }
 
 
         binding.signUpBtn.setOnClickListener(new View.OnClickListener() {
