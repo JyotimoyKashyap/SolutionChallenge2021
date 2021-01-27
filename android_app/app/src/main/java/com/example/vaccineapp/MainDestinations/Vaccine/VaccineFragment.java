@@ -1,4 +1,4 @@
-package com.example.vaccineapp.MainDestinations;
+package com.example.vaccineapp.MainDestinations.Vaccine;
 
 import android.os.Bundle;
 
@@ -8,7 +8,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.vaccineapp.R;
 import com.example.vaccineapp.databinding.FragmentVaccineBinding;
 
 

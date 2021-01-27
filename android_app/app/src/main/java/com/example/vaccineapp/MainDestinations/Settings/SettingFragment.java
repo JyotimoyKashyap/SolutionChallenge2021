@@ -1,4 +1,4 @@
-package com.example.vaccineapp.MainDestinations;
+package com.example.vaccineapp.MainDestinations.Settings;
 
 import android.content.Intent;
 import android.os.Bundle;

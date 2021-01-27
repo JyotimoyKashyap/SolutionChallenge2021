@@ -12,6 +12,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.vaccineapp.MainDestinations.Guide.GuideFragment;
+import com.example.vaccineapp.MainDestinations.Hospital.HospitalFragment;
+import com.example.vaccineapp.MainDestinations.Settings.SettingFragment;
+import com.example.vaccineapp.MainDestinations.Vaccine.VaccineFragment;
 import com.example.vaccineapp.R;
 import com.example.vaccineapp.databinding.FragmentBottomNavBinding;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
