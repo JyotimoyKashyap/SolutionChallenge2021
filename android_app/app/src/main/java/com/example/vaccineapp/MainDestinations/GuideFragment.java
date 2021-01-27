@@ -13,7 +13,7 @@ import com.example.vaccineapp.databinding.FragmentGuidBinding;
 import com.example.vaccineapp.databinding.FragmentHospitalBinding;
 import com.example.vaccineapp.databinding.FragmentVaccineBinding;
 
-public class GuidFragment extends Fragment {
+public class GuideFragment extends Fragment {
 
     private FragmentGuidBinding binding;
 

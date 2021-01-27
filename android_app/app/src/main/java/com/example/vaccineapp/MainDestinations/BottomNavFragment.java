@@ -3,6 +3,7 @@ package com.example.vaccineapp.MainDestinations;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -56,6 +57,9 @@ public class BottomNavFragment extends Fragment implements BottomNavigationView.
         // Inflate the layout for this fragment
         binding = FragmentBottomNavBinding.inflate(inflater, container, false);
 
+        //set up toolbar
+        ((AppCompatActivity) getActivity()).setSupportActionBar(binding.mainToolbar);
+
         //set up the bottom navigation view
         binding.bottomNavMenu.setOnNavigationItemSelectedListener(this::onNavigationItemSelected);
 
@@ -69,13 +73,13 @@ public class BottomNavFragment extends Fragment implements BottomNavigationView.
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
             case R.id.vaccine_destination:
-                    setFragment(new VaccineFragment());
+                setFragment(new VaccineFragment());
                 break;
             case R.id.hospital_destination:
                 setFragment(new HospitalFragment());
                 break;
             case R.id.guide_destination:
-                setFragment(new GuidFragment());
+                setFragment(new GuideFragment());
                 break;
             case R.id.settings_destination:
                 setFragment(new SettingFragment());
@@ -87,6 +91,6 @@ public class BottomNavFragment extends Fragment implements BottomNavigationView.
     private void setFragment(Fragment fragment) {
         FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.second_frame,fragment);
-        fragmentTransaction.addToBackStack(null).commit();
+        fragmentTransaction.commit();
     }
 }
