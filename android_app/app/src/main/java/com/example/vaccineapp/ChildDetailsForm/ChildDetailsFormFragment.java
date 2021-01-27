@@ -52,6 +52,19 @@ public class ChildDetailsFormFragment extends Fragment {
 
         binding.progressBarChildDetailFragment.setVisibility(View.INVISIBLE);
 
+        //Bundle Retrival
+        Bundle bundle = this.getArguments();
+        String data = bundle.getString("baby_name");
+        binding.babyNameEdittext.setText(data);
+        String data2 = bundle.getString("father_name");
+        binding.fatherNameEdittext.setText(data2);
+        String data3 = bundle.getString("mother_name");
+        binding.motherNameEdittext.setText(data3);
+        String data4 = bundle.getString("DOB");
+        binding.ageInYrsEdittext.setText(data4);
+        gender = bundle.getString("gender");
+
+
         mAuth = FirebaseAuth.getInstance();
         databaseReference = FirebaseDatabase.getInstance().getReference("Baby_Data");
 

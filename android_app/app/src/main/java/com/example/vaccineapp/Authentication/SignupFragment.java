@@ -28,12 +28,10 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class SignupFragment extends Fragment {
 
-    private EditText email,password,conpassword,User;
-    private Button signupbtn;
-    private ProgressBar progressBar;
-
+    private ChildDetailsFormFragment childDetailsFormFragment;
     private FirebaseAuth mAuth;
     private DummyFragment dummyFragment;
+    private ProgressBar progressBar;
 
     private FragmentSignupBinding binding;
 
@@ -46,6 +44,7 @@ public class SignupFragment extends Fragment {
 
         mAuth = FirebaseAuth.getInstance();
         dummyFragment = new DummyFragment();
+        childDetailsFormFragment = new ChildDetailsFormFragment();
 
         binding.signUpBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -113,7 +112,14 @@ public class SignupFragment extends Fragment {
                         if(task.isSuccessful()){
                             binding.progressBarSignUp.setVisibility(View.INVISIBLE);
                             Toast.makeText(getActivity(),"Signup Successful by " + binding.email.getText().toString().trim(),Toast.LENGTH_SHORT).show();
-                            setFragment(new ChildDetailsFormFragment());
+                            Bundle bundle = new Bundle();
+                            bundle.putString("baby_name","");
+                            bundle.putString("father_name","");
+                            bundle.putString("mother_name","");
+                            bundle.putString("DOB","");
+                            bundle.putString("gender","");
+                            childDetailsFormFragment.setArguments(bundle);
+                            setFragment(childDetailsFormFragment);
                         }
                         else{
 
