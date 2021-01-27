@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -57,25 +58,35 @@ public class BottomNavFragment extends Fragment implements BottomNavigationView.
 
         //set up the bottom navigation view
         binding.bottomNavMenu.setOnNavigationItemSelectedListener(this::onNavigationItemSelected);
+
+        setFragment(new VaccineFragment());
+
         return binding.getRoot();
+
     }
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
             case R.id.vaccine_destination:
-                //set the new fragment
+                    setFragment(new VaccineFragment());
                 break;
             case R.id.hospital_destination:
-                //set the new fragment
+                setFragment(new HospitalFragment());
                 break;
             case R.id.guide_destination:
-                //set the new fragment
+                setFragment(new GuidFragment());
                 break;
             case R.id.settings_destination:
-                //set the new fragment
+                setFragment(new SettingFragment());
                 break;
         }
         return true;
+    }
+
+    private void setFragment(Fragment fragment) {
+        FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.second_frame,fragment);
+        fragmentTransaction.addToBackStack(null).commit();
     }
 }

@@ -56,7 +56,7 @@ public class LoginFragment extends Fragment {
 
         String User_Id = mAuth.getCurrentUser().getUid();
         if(User_Id != null){
-            setFragment(new ChildAccountFragment());
+            setFragment(new BottomNavFragment());
         }
 
 
