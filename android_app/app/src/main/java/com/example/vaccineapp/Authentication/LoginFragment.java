@@ -18,6 +18,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.vaccineapp.ChildDetailsForm.ChildAccountFragment;
 import com.example.vaccineapp.ChildDetailsForm.ChildDetailsFormFragment;
 import com.example.vaccineapp.DummyFragment;
 import com.example.vaccineapp.MainDestinations.BottomNavFragment;
@@ -52,6 +53,7 @@ public class LoginFragment extends Fragment {
         mAuth = FirebaseAuth.getInstance();
         signupFragment = new SignupFragment();
         forgatPasswordFragment = new ForgatPasswordFragment();
+
 
 
         binding.signUpBtn.setOnClickListener(new View.OnClickListener() {
@@ -107,7 +109,7 @@ public class LoginFragment extends Fragment {
                         if(task.isSuccessful()){
                             binding.progresslogin.setVisibility(View.INVISIBLE);
                             Toast.makeText(getActivity(),"Login Successful by " + binding.email.getText().toString().trim(),Toast.LENGTH_SHORT).show();
-                            setFragment(new BottomNavFragment());
+                            setFragmentNoBackStack(new BottomNavFragment());
                         }
                         else{
                             binding.progresslogin.setVisibility(View.INVISIBLE);
@@ -126,6 +128,12 @@ public class LoginFragment extends Fragment {
         FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.mainframe,fragment);
         fragmentTransaction.addToBackStack(null).commit();
+    }
+
+    private void setFragmentNoBackStack(Fragment fragment){
+        FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.mainframe,fragment);
+        fragmentTransaction.commit();
     }
 
     private TextWatcher loginTextWatcher = new TextWatcher() {

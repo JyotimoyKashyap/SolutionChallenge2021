@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ChildDetailsForm.ChildAccountFragment">
+
+    <ProgressBar
+        android:id="@+id/progress_bar_child_account_details"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/date_of_birth_textview" />
+
+    <TextView
+        android:id="@+id/baby_name_textview"
+        android:layout_width="220dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        android:textSize="22dp"
+        android:text="baby name"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/father_name_textview"
+        android:layout_width="220dp"
+        android:layout_height="wrap_content"
+        android:text="father name"
+        android:textSize="22dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/baby_name_textview" />
+
+    <TextView
+        android:id="@+id/mother_name_textview"
+        android:layout_width="220dp"
+        android:layout_height="wrap_content"
+        android:text="mother name"
+        android:textSize="22dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/father_name_textview" />
+
+    <TextView
+        android:id="@+id/gender_textview"
+        android:layout_width="220dp"
+        android:layout_height="wrap_content"
+        android:text="gender"
+        android:textSize="22dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mother_name_textview" />
+
+    <TextView
+        android:id="@+id/date_of_birth_textview"
+        android:layout_width="220dp"
+        android:layout_height="wrap_content"
+        android:text="DOB"
+        android:textSize="22dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/gender_textview" />
+
+    <Button
+        android:id="@+id/edit_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="24dp"
+        android:fontFamily="@font/poppins_light"
+        android:text="Edit Profile"
+        android:textAllCaps="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
