@@ -1,4 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="link_text_color">#4455E6</color>
+
+    <!-- custom theme colors -->
+    <color name="green_primary">#26D156</color>
+    <color name="green_secondary">#4FF87D</color>
+    <color name="green_light">#4AF6AE</color>
+
+
 </resources>

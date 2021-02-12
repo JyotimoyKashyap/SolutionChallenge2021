@@ -170,6 +170,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="Sign up"
+        android:textColor="@color/green_secondary"
         android:fontFamily="@font/poppins_bold"
         app:layout_constraintBottom_toTopOf="@id/guideline_login2"
         app:layout_constraintLeft_toLeftOf="parent"
