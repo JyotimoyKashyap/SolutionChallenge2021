@@ -58,7 +58,10 @@ public class LoginFragment extends Fragment {
         //kept me logged in feature
         FirebaseUser user = mAuth.getCurrentUser();
         if(user != null){
-            setFragment(new BottomNavFragment());
+            if(user.isEmailVerified())
+                setFragment(new BottomNavFragment());
+            else
+                setFragment(new VarifyEmailFragment());
         }
 
         binding.signUpBtn.setOnClickListener(new View.OnClickListener() {
@@ -114,7 +117,11 @@ public class LoginFragment extends Fragment {
                         if(task.isSuccessful()){
                             binding.progresslogin.setVisibility(View.INVISIBLE);
                             Toast.makeText(getActivity(),"Login Successful by " + binding.email.getText().toString().trim(),Toast.LENGTH_SHORT).show();
-                            setFragmentNoBackStack(new BottomNavFragment());
+                            FirebaseUser user = mAuth.getCurrentUser();
+                            if(user.isEmailVerified())
+                                setFragmentNoBackStack(new BottomNavFragment());
+                            else
+                                setFragment(new VarifyEmailFragment());
                         }
                         else{
                             binding.progresslogin.setVisibility(View.INVISIBLE);

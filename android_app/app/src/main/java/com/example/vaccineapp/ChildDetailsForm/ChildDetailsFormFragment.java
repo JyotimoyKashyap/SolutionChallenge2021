@@ -17,6 +17,7 @@ import android.widget.DatePicker;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.example.vaccineapp.Authentication.LoginFragment;
 import com.example.vaccineapp.DummyFragment;
 import com.example.vaccineapp.MainDestinations.BottomNavFragment;
 import com.example.vaccineapp.R;
@@ -147,7 +148,7 @@ public class ChildDetailsFormFragment extends Fragment {
         databaseReference.child(User_Id).child("Gender").setValue(Gender);
         Toast.makeText(getActivity(),"Data added",Toast.LENGTH_SHORT).show();
         binding.progressBarChildDetailFragment.setVisibility(View.INVISIBLE);
-        setFragment(new BottomNavFragment());
+        setFragment(new LoginFragment());
     }
 
 

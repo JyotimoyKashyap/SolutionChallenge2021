@@ -90,7 +90,9 @@ public class ChildAccountFragment extends Fragment {
             public void onCancelled(@NonNull DatabaseError error) {
 
             }
+
         });
+        binding.progressBarChildAccountDetails.setVisibility(View.INVISIBLE);
     }
 
 
