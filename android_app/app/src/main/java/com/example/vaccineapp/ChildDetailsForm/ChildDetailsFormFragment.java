@@ -26,6 +26,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -63,6 +64,8 @@ public class ChildDetailsFormFragment extends Fragment {
         String data4 = bundle.getString("DOB");
         binding.ageInYrsEdittext.setText(data4);
         gender = bundle.getString("gender");
+        if(data2.length() > 0)
+            binding.button.setText("update");
 
 
         mAuth = FirebaseAuth.getInstance();
@@ -97,7 +100,7 @@ public class ChildDetailsFormFragment extends Fragment {
             }
         });
 
-        binding.buttonDate.setOnClickListener(new View.OnClickListener() {
+        binding.selectDateBtn.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View v) {
                retrieveDate();
@@ -110,7 +113,9 @@ public class ChildDetailsFormFragment extends Fragment {
                //Toast.makeText(getActivity(),""+year+"/"+month+"/"+dayOfMonth,Toast.LENGTH_SHORT).show();
                 Year = year;
                 Month = month;
+                Month++;
                 Day = dayOfMonth;
+                binding.ageInYrsEdittext.setText(Day+"/"+Month+"/"+Year);
            }
        };
 
@@ -125,11 +130,11 @@ public class ChildDetailsFormFragment extends Fragment {
         int month = calendar.get(Calendar.MONTH);
         int date = calendar.get(Calendar.DATE);
         DatePickerDialog dialog = new DatePickerDialog(
-                getActivity(), android.R.style.Theme_Holo_Dialog_MinWidth,
+                getActivity(),
                 mDateSetListener,year,month,date);
-        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT)); //for transparent background
         dialog.show();
     }
+
 
     private void savedata(String baby, String father_Name, String mother, int year, int month, int day,String Gender) {
         String User_Id = mAuth.getCurrentUser().getUid();

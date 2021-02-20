@@ -23,8 +23,6 @@ public class SplashFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // user of view biniding to inflate the layout
-        /**Please see the implementation and apply it else where also */
         binding = FragmentSplashBinding.inflate(inflater, container, false);
         View view =  binding.getRoot();
 

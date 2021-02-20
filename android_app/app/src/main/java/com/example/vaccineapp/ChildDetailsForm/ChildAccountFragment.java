@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.renderscript.ScriptGroup;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,8 +36,10 @@ public class ChildAccountFragment extends Fragment {
         binding = FragmentChildAccountBinding.inflate(inflater, container, false);
         View view = binding.getRoot();
         childDetailsFormFragment = new ChildDetailsFormFragment();
+        binding.progressBarChildAccountDetails.setVisibility(View.VISIBLE);
 
         binding.editBtn.setEnabled(false);
+        RetrieveData();
 
         binding.progressBarChildAccountDetails.setVisibility(View.VISIBLE);
             binding.editBtn.setOnClickListener(new View.OnClickListener() {
@@ -52,38 +55,44 @@ public class ChildAccountFragment extends Fragment {
                     setFragment(childDetailsFormFragment);
                 }
             });
-
-        mAuth = FirebaseAuth.getInstance();
-        databaseReference = FirebaseDatabase.getInstance().getReference("Baby_Data");
-        String User_Id = mAuth.getCurrentUser().getUid();
-        RetrieveData(User_Id);
+            
 
         return view;
     }
 
-    private void RetrieveData(String user_id) {
+    private void RetrieveData() {
+        FirebaseAuth mAuth;
+        DatabaseReference databaseReference;
+        mAuth = FirebaseAuth.getInstance();
+        databaseReference = FirebaseDatabase.getInstance().getReference("Baby_Data");
+        String user = mAuth.getCurrentUser().getUid();
+
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if(snapshot.exists()){
+                    String name = snapshot.child(user).child("Baby_Name").getValue(String.class);
+                    String mother = snapshot.child(user).child("Mother_Name").getValue(String.class);
+                    String father = snapshot.child(user).child("Father_Name").getValue(String.class);
+                    String gender = snapshot.child(user).child("Gender").getValue(String.class);
+                    String dob = String.valueOf(snapshot.child(user).child("Date").getValue(Long.class)) +"/"+ String.valueOf(snapshot.child(user).child("Month").getValue(Long.class)) +"/"+ String.valueOf(snapshot.child(user).child("Year").getValue(Long.class));
+                    binding.babyNameTextview.setText(name);
+                    binding.genderTextview.setText(gender);
+                    binding.motherNameTextview.setText(mother);
+                    binding.fatherNameTextview.setText(father);
+                    binding.dateOfBirthTextview.setText(dob);
                     binding.progressBarChildAccountDetails.setVisibility(View.INVISIBLE);
-                    binding.babyNameTextview.setText(snapshot.child(user_id).child("Baby_Name").getValue(String.class));
-                    binding.fatherNameTextview.setText(snapshot.child(user_id).child("Father_Name").getValue(String.class));
-                    binding.motherNameTextview.setText(snapshot.child(user_id).child("Mother_Name").getValue(String.class));
-                    String DOB = String.valueOf(snapshot.child(user_id).child("Year").getValue(Long.class));
-                    DOB =  String.valueOf(snapshot.child(user_id).child("Month").getValue(Long.class)) + "/" + DOB;
-                    DOB = String.valueOf(snapshot.child(user_id).child("Date").getValue(Long.class)) + "/" + DOB;
-                    binding.dateOfBirthTextview.setText(DOB);
-                    binding.genderTextview.setText(snapshot.child(user_id).child("Gender").getValue(String.class));
                     binding.editBtn.setEnabled(true);
                 }
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
+
             }
         });
     }
+
 
     private void setFragment(Fragment fragment) {
         FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();

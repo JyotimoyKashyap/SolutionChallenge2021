@@ -55,6 +55,11 @@ public class LoginFragment extends Fragment {
         forgatPasswordFragment = new ForgatPasswordFragment();
 
 
+        //kept me logged in feature
+        FirebaseUser user = mAuth.getCurrentUser();
+        if(user != null){
+            setFragment(new BottomNavFragment());
+        }
 
         binding.signUpBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -113,13 +118,12 @@ public class LoginFragment extends Fragment {
                         }
                         else{
                             binding.progresslogin.setVisibility(View.INVISIBLE);
-                            Toast.makeText(getActivity(),"Error in Login!",Toast.LENGTH_SHORT).show();
                         }
                     }
                 }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Toast.makeText(getActivity(),""+e.toString(),Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(),""+e.getMessage(),Toast.LENGTH_SHORT).show();
             }
         });
     }

@@ -37,6 +37,7 @@ public class ForgatPasswordFragment extends Fragment {
 
         mAuth = FirebaseAuth.getInstance();
         binding.forgotPasswordProgressBar.setVisibility(View.INVISIBLE);
+        binding.forgotPasswordConfirmBtn.setEnabled(true);
 
         binding.forgotPasswordConfirmBtn.setOnClickListener(new View.OnClickListener() {
             @Override
