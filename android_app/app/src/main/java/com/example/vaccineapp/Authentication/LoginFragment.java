@@ -60,8 +60,6 @@ public class LoginFragment extends Fragment {
         if(user != null){
             if(user.isEmailVerified())
                 setFragment(new BottomNavFragment());
-            else
-                setFragment(new VarifyEmailFragment());
         }
 
         binding.signUpBtn.setOnClickListener(new View.OnClickListener() {
