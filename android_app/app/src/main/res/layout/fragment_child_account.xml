@@ -55,16 +55,17 @@
                 android:id="@+id/baby_name_textview"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                app:layout_constraintEnd_toEndOf="parent"
                 android:layout_marginStart="24dp"
-                android:layout_marginEnd="24dp"
                 android:layout_marginTop="3dp"
+                android:layout_marginEnd="24dp"
                 android:fontFamily="@font/poppins_semibold"
-                app:layout_constraintTop_toBottomOf="@id/account_lottie"
+                android:text="Baby's Name"
                 android:textAlignment="center"
                 android:textSize="18dp"
-                android:text="Baby's Name"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/account_lottie" />
 
             <TextView
                 android:id="@+id/age_baby"

@@ -8,6 +8,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.renderscript.ScriptGroup;
 import android.util.Log;
@@ -18,6 +19,7 @@ import android.widget.Toast;
 
 import com.example.vaccineapp.MainActivity;
 import com.example.vaccineapp.R;
+import com.example.vaccineapp.ViewModel.SharedViewModel;
 import com.example.vaccineapp.databinding.FragmentChildAccountBinding;
 import com.example.vaccineapp.databinding.FragmentChildDetailsFormBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -38,12 +40,17 @@ public class ChildAccountFragment extends Fragment {
     private DatabaseReference databaseReference;
     private FirebaseAuth mAuth;
     private ChildDetailsFormFragment childDetailsFormFragment;
+    private String genderString = null;
+    private SharedViewModel sharedViewModel;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         binding = FragmentChildAccountBinding.inflate(inflater, container, false);
+        sharedViewModel = new ViewModelProvider(this, ViewModelProvider.AndroidViewModelFactory.
+                getInstance(getActivity().getApplication())).get(SharedViewModel.class);
+
         View view = binding.getRoot();
         childDetailsFormFragment = new ChildDetailsFormFragment();
         binding.progressBarChildAccountDetails.setVisibility(View.VISIBLE);
@@ -76,9 +83,27 @@ public class ChildAccountFragment extends Fragment {
                     setFragment(childDetailsFormFragment);
                 }
             });
-            
+
+
+         setProfileLottie();
 
         return view;
+    }
+
+    private void setProfileLottie() {
+        sharedViewModel.getGender().observe(this, data->{
+            if(data == null){
+                binding.accountLottie.setAnimation(R.raw.profile);
+            }else{
+                if(data == "female"){
+                    binding.accountLottie.setAnimation(R.raw.female_avatar);
+                }else if(data == "male"){
+                    binding.accountLottie.setAnimation(R.raw.male_avatar);
+                }
+            }
+        });
+
+
     }
 
     private void Delete() {
@@ -147,6 +172,9 @@ public class ChildAccountFragment extends Fragment {
                     String dob = String.valueOf(snapshot.child(user).child("Date").getValue(Long.class)) +"/"+ String.valueOf(snapshot.child(user).child("Month").getValue(Long.class)) +"/"+ String.valueOf(snapshot.child(user).child("Year").getValue(Long.class));
                     binding.babyNameTextview.setText(name);
                     binding.genderTextview.setText(gender);
+                    genderString = gender;
+                    sharedViewModel.setGender(gender);
+                    Log.d("Account", genderString);
                     binding.motherNameTextview.setText(mother);
                     binding.fatherNameTextview.setText(father);
                     binding.dateOfBirthTextview.setText(dob);
