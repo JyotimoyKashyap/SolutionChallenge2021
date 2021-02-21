@@ -52,6 +52,7 @@ public class ChildAccountFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         binding = FragmentChildAccountBinding.inflate(inflater, container, false);
+        setExitTransition(new MaterialSharedAxis(MaterialSharedAxis.X, false));
         sharedViewModel = new ViewModelProvider(this, ViewModelProvider.AndroidViewModelFactory.
                 getInstance(getActivity().getApplication())).get(SharedViewModel.class);
 

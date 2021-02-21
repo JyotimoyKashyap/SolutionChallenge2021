@@ -15,6 +15,8 @@ import com.example.vaccineapp.ChildDetailsForm.ChildAccountFragment;
 import com.example.vaccineapp.MainActivity;
 import com.example.vaccineapp.R;
 import com.example.vaccineapp.databinding.FragmentSettingBinding;
+import com.google.android.material.card.MaterialCardView;
+import com.google.android.material.transition.MaterialSharedAxis;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class SettingFragment extends Fragment {
@@ -54,6 +56,7 @@ public class SettingFragment extends Fragment {
     }
 
     private void setFragment(Fragment fragment) {
+        fragment.setEnterTransition(new MaterialSharedAxis(MaterialSharedAxis.X, true));
         FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.mainframe,fragment);
         fragmentTransaction.addToBackStack(null).commit();
