@@ -118,8 +118,12 @@ public class LoginFragment extends Fragment {
                             FirebaseUser user = mAuth.getCurrentUser();
                             if(user.isEmailVerified())
                                 setFragmentNoBackStack(new BottomNavFragment());
-                            else
-                                setFragment(new VarifyEmailFragment());
+                            else{
+                                //setFragment(new VarifyEmailFragment())
+                                VarifyEmailFragment emailFragment = new VarifyEmailFragment();
+                                emailFragment.show(getFragmentManager(), "Verification bottom sheet");
+                            }
+
                         }
                         else{
                             binding.progresslogin.setVisibility(View.INVISIBLE);

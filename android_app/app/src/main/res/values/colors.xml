@@ -15,4 +15,8 @@
     <color name="green_secondary">#43A047</color>
     <color name="green_light">#31DA93</color>
 
+    <!-- custom colors -->
+    <color name="global_background">#FDFDFD</color>
+    <color name="bottom_sheet_background">#FFFFFF</color>
+
 </resources>

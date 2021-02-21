@@ -7,5 +7,8 @@
     <color name="green_secondary">#4FF87D</color>
     <color name="green_light">#4AF6AE</color>
 
+    <color name="global_background">#121212</color>
+    <color name="bottom_sheet_background">#2F2F2F</color>
+
 
 </resources>

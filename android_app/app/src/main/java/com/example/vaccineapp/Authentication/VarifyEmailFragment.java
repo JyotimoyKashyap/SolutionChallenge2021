@@ -19,10 +19,11 @@ import com.example.vaccineapp.databinding.FragmentLoginBinding;
 import com.example.vaccineapp.databinding.FragmentVarifyEmailBinding;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-public class VarifyEmailFragment extends Fragment {
+public class VarifyEmailFragment extends BottomSheetDialogFragment {
 
     private FragmentVarifyEmailBinding binding;
     private FirebaseAuth mAuth;
@@ -84,6 +85,9 @@ public class VarifyEmailFragment extends Fragment {
         fragmentTransaction.commit();
     }
 
-
-
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        binding = null;
+    }
 }
