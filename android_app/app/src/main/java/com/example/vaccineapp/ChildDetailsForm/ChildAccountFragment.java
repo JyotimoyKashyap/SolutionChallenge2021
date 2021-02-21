@@ -1,5 +1,8 @@
 package com.example.vaccineapp.ChildDetailsForm;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -7,15 +10,21 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.renderscript.ScriptGroup;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.example.vaccineapp.MainActivity;
 import com.example.vaccineapp.R;
 import com.example.vaccineapp.databinding.FragmentChildAccountBinding;
 import com.example.vaccineapp.databinding.FragmentChildDetailsFormBinding;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -38,8 +47,18 @@ public class ChildAccountFragment extends Fragment {
         childDetailsFormFragment = new ChildDetailsFormFragment();
         binding.progressBarChildAccountDetails.setVisibility(View.VISIBLE);
 
+        mAuth = FirebaseAuth.getInstance();
+
         binding.editBtn.setEnabled(false);
         RetrieveData();
+
+        binding.deleteAccount.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                binding.progressBarChildAccountDetails.setVisibility(View.VISIBLE);
+                Delete();
+            }
+        });
 
         binding.progressBarChildAccountDetails.setVisibility(View.VISIBLE);
             binding.editBtn.setOnClickListener(new View.OnClickListener() {
@@ -58,6 +77,54 @@ public class ChildAccountFragment extends Fragment {
             
 
         return view;
+    }
+
+    private void Delete() {
+        AlertDialog.Builder dialog = new AlertDialog.Builder(getActivity());
+        dialog.setTitle("Are You Sure?");
+        dialog.setMessage("Deleting this account will result in completely removing your account and profile from this App");
+        dialog.setPositiveButton("Delete", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                binding.progressBarChildAccountDetails.setVisibility(View.VISIBLE);
+                String userId = mAuth.getCurrentUser().getUid();
+                DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Baby_Data").child(userId);
+                ref.removeValue();
+                FirebaseUser firebaseUser = mAuth.getCurrentUser();
+                firebaseUser.delete().addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if(task.isSuccessful()){
+                            Toast.makeText(getActivity(),"Your account has been deleted",Toast.LENGTH_SHORT).show();
+                            binding.progressBarChildAccountDetails.setVisibility(View.INVISIBLE);
+                            Log.i("delete account","successfully");
+                            Intent intent = new Intent(getActivity(), MainActivity.class);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                            startActivity(intent);
+                        }
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        binding.progressBarChildAccountDetails.setVisibility(View.INVISIBLE);
+                        mAuth.signOut();
+                        Toast.makeText(getActivity(),""+e.getMessage(),Toast.LENGTH_LONG).show();
+                        Intent intent = new Intent(getActivity(), MainActivity.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        startActivity(intent);
+                    }
+                });
+            }
+        });
+        dialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                    binding.progressBarChildAccountDetails.setVisibility(View.INVISIBLE);
+                    dialog.dismiss();
+            }
+        });
+        AlertDialog alertDialog = dialog.create();
+        alertDialog.show();
     }
 
     private void RetrieveData() {

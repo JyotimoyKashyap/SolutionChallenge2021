@@ -75,14 +75,28 @@
 
     <Button
         android:id="@+id/edit_btn"
-        android:layout_width="wrap_content"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:layout_margin="24dp"
         android:fontFamily="@font/poppins_light"
         android:text="Edit Profile"
         android:textAllCaps="false"
+        app:layout_constraintBottom_toTopOf="@+id/delete_account"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginBottom="10dp"
+        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/delete_account"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:text="Delete Account"
+        android:textAllCaps="false"
+        android:layout_marginBottom="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintRight_toRightOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="681dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
