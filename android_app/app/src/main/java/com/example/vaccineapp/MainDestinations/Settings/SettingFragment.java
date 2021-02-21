@@ -31,9 +31,9 @@ public class SettingFragment extends Fragment {
 
         mAuth = FirebaseAuth.getInstance();
 
-        binding.accountLogout.setOnClickListener(new View.OnClickListener() {
+        binding.logoutSetting.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View view) {
                 Toast.makeText(getActivity(),"Logout",Toast.LENGTH_SHORT).show();
                 if(mAuth.getCurrentUser().getUid() != null)
                     mAuth.signOut();
@@ -43,9 +43,9 @@ public class SettingFragment extends Fragment {
             }
         });
 
-        binding.babyAccount.setOnClickListener(new View.OnClickListener() {
+        binding.babyAccountSetting.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View view) {
                 setFragment(new ChildAccountFragment());
             }
         });
