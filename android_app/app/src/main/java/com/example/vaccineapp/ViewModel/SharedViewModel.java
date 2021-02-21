@@ -1,6 +1,7 @@
 package com.example.vaccineapp.ViewModel;
 
 import android.app.Application;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
@@ -14,6 +15,7 @@ public class SharedViewModel extends AndroidViewModel {
 
     public SharedViewModel(@NonNull Application application) {
         super(application);
+        gender = new MutableLiveData<>();
     }
 
     //method to get the mutable live data
@@ -24,6 +26,7 @@ public class SharedViewModel extends AndroidViewModel {
     //method to set the mutable live data
     public void setGender(String firebaseDataGender){
         gender.postValue(firebaseDataGender);
+
     }
 
 }

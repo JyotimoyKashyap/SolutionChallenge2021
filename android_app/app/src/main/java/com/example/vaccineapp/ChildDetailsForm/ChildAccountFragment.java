@@ -92,14 +92,19 @@ public class ChildAccountFragment extends Fragment {
 
     private void setProfileLottie() {
         sharedViewModel.getGender().observe(this, data->{
-            if(data == null){
-                binding.accountLottie.setAnimation(R.raw.profile);
-            }else{
-                if(data == "female"){
+            switch (data){
+                case "pending":
+                    binding.accountLottie.setAnimation(R.raw.profile);
+                    binding.accountLottie.playAnimation();
+                    break;
+                case "female":
                     binding.accountLottie.setAnimation(R.raw.female_avatar);
-                }else if(data == "male"){
+                    binding.accountLottie.playAnimation();
+                    break;
+                case "male":
                     binding.accountLottie.setAnimation(R.raw.male_avatar);
-                }
+                    binding.accountLottie.playAnimation();
+                    break;
             }
         });
 
@@ -160,6 +165,7 @@ public class ChildAccountFragment extends Fragment {
         mAuth = FirebaseAuth.getInstance();
         databaseReference = FirebaseDatabase.getInstance().getReference("Baby_Data");
         String user = mAuth.getCurrentUser().getUid();
+        sharedViewModel.setGender("pending");
 
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
