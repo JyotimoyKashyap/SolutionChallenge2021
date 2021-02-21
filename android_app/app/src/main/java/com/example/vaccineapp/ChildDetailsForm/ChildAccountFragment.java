@@ -34,6 +34,10 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.Period;
+
 public class ChildAccountFragment extends Fragment {
 
     private FragmentChildAccountBinding binding;
@@ -177,7 +181,19 @@ public class ChildAccountFragment extends Fragment {
                     String mother = snapshot.child(user).child("Mother_Name").getValue(String.class);
                     String father = snapshot.child(user).child("Father_Name").getValue(String.class);
                     String gender = snapshot.child(user).child("Gender").getValue(String.class);
-                    String dob = String.valueOf(snapshot.child(user).child("Date").getValue(Long.class)) +"/"+ String.valueOf(snapshot.child(user).child("Month").getValue(Long.class)) +"/"+ String.valueOf(snapshot.child(user).child("Year").getValue(Long.class));
+
+                    String dob = String.valueOf(snapshot.child(user).child("Date")
+                            .getValue(Long.class)) +"/"+ String.valueOf(snapshot.child(user)
+                            .child("Month").getValue(Long.class)) +"/"+ String.valueOf(snapshot.child(user)
+                            .child("Year").getValue(Long.class));
+
+                    long years = snapshot.child(user).child("Year").getValue(Long.class);
+                    long month = snapshot.child(user).child("Month").getValue(Long.class);
+                    long day = snapshot.child(user).child("Date").getValue(Long.class);
+
+                    String ageInYears = calculateAge(years, month, day);
+                    binding.ageBaby.setText(ageInYears);
+
                     binding.babyNameTextview.setText(name);
                     binding.genderTextview.setText(capitalizeFirstLetterOfWord(gender));
                     sharedViewModel.setGender(gender);
@@ -217,6 +233,27 @@ public class ChildAccountFragment extends Fragment {
         String newWord = firstLetter + remainingLetters;
 
         return newWord;
+    }
+
+    private String calculateAge(long year, long month, long day){
+        String ageInYears = null;
+
+        int intYear = (int) year;
+        int intMonth = (int) month;
+        int intDay = (int) day;
+
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            LocalDate now = LocalDate.now();
+            LocalDate birthday = LocalDate.of(intYear, intMonth, intDay);
+
+            Period age = Period.between(birthday, now);
+
+            ageInYears = String.valueOf(age.getYears());
+
+
+        }
+
+        return ageInYears + " yrs";
     }
 
 }
