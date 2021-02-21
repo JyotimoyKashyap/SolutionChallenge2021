@@ -19,5 +19,8 @@
     <color name="global_background">#F8F8F8</color>
     <color name="bottom_sheet_background">#FFFFFF</color>
     <color name="btn_background_tint">#ECFBEB</color>
+    <color name="warning_color">#EF2A2A</color>
+    <color name="btn_warning_ripple_color">#FAD8D8</color>
+    <color name="positive_btn_text_color">#4049F3</color>
 
 </resources>

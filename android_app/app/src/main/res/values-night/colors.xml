@@ -10,6 +10,9 @@
     <color name="global_background">#121212</color>
     <color name="bottom_sheet_background">#2F2F2F</color>
     <color name="btn_background_tint">#273226</color>
+    <color name="warning_color">#F89595</color>
+    <color name="btn_warning_ripple_color">#4E4444</color>
+    <color name="positive_btn_text_color">#ACB0F8</color>
 
 
 </resources>
