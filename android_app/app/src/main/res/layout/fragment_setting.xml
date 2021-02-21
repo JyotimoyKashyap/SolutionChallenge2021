@@ -7,6 +7,20 @@
     tools:context=".MainDestinations.Settings.SettingFragment">
 
     <TextView
+        android:id="@+id/settings_title_text"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="12dp"
+        android:text="Settings"
+        android:textSize="25dp"
+        android:layout_marginTop="12dp"
+        android:fontFamily="@font/poppins_bold"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <TextView
         android:id="@+id/baby_account_setting"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -17,10 +31,11 @@
         android:paddingTop="12dp"
         android:paddingBottom="12dp"
         android:drawablePadding="12dp"
+        android:layout_marginTop="5dp"
         android:drawableStart="@drawable/ic_account"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toBottomOf="@id/settings_title_text"/>
     <TextView
         android:id="@+id/logout_setting"
         android:layout_width="0dp"
@@ -36,48 +51,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/baby_account"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        app:cardCornerRadius="8dp"
-        android:layout_marginStart="12dp"
-        android:layout_marginEnd="12dp"
-        tools:layout_editor_absoluteX="12dp"
-        tools:layout_editor_absoluteY="16dp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="Baby Account"
-            android:textAlignment="center"
-            android:textSize="22dp" />
-
-    </androidx.cardview.widget.CardView>
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/account_logout"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        app:cardCornerRadius="8dp"
-        android:layout_marginStart="12dp"
-        android:layout_marginEnd="12dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/baby_account"
-        tools:layout_editor_absoluteX="12dp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="Logout"
-            android:textAlignment="center"
-            android:textSize="22dp" />
-
-    </androidx.cardview.widget.CardView>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

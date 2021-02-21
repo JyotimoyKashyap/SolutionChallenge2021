@@ -21,6 +21,7 @@ import com.example.vaccineapp.MainDestinations.Vaccine.VaccineFragment;
 import com.example.vaccineapp.R;
 import com.example.vaccineapp.databinding.FragmentBottomNavBinding;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.transition.MaterialSharedAxis;
 
 
 public class BottomNavFragment extends Fragment implements BottomNavigationView.OnNavigationItemSelectedListener{
@@ -62,6 +63,8 @@ public class BottomNavFragment extends Fragment implements BottomNavigationView.
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         binding = FragmentBottomNavBinding.inflate(inflater, container, false);
+        setExitTransition(new MaterialSharedAxis(MaterialSharedAxis.Z, false));
+        setEnterTransition(new MaterialSharedAxis(MaterialSharedAxis.Z, true));
 
         //set up toolbar
         ((AppCompatActivity) getActivity()).setSupportActionBar(binding.mainToolbar);
@@ -92,6 +95,7 @@ public class BottomNavFragment extends Fragment implements BottomNavigationView.
     }
 
     private void setFragment(Fragment fragment) {
+        fragment.setEnterTransition(new MaterialSharedAxis(MaterialSharedAxis.X, true));
         FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.second_frame,fragment);
         fragmentTransaction.commit();
@@ -106,9 +110,17 @@ public class BottomNavFragment extends Fragment implements BottomNavigationView.
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
             case R.id.menu_settings:
-                setFragment(new SettingFragment());
+                setMainFragment(new SettingFragment());
                 break;
         }
         return true;
+    }
+
+    private void setMainFragment(Fragment fragment){
+        fragment.setEnterTransition(new MaterialSharedAxis(MaterialSharedAxis.Z, true));
+        FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.mainframe, fragment);
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
     }
 }

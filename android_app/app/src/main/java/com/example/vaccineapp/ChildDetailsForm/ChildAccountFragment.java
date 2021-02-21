@@ -23,6 +23,7 @@ import com.example.vaccineapp.databinding.FragmentChildDetailsFormBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.transition.MaterialSharedAxis;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -46,6 +47,7 @@ public class ChildAccountFragment extends Fragment {
         View view = binding.getRoot();
         childDetailsFormFragment = new ChildDetailsFormFragment();
         binding.progressBarChildAccountDetails.setVisibility(View.VISIBLE);
+        setExitTransition(new MaterialSharedAxis(MaterialSharedAxis.Z, false));
 
         mAuth = FirebaseAuth.getInstance();
 
@@ -164,6 +166,7 @@ public class ChildAccountFragment extends Fragment {
 
 
     private void setFragment(Fragment fragment) {
+        fragment.setEnterTransition(new MaterialSharedAxis(MaterialSharedAxis.Z, true));
         FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.mainframe,fragment);
         fragmentTransaction.addToBackStack(null).commit();

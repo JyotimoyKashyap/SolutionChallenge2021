@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.vaccineapp.databinding.FragmentVaccineBinding;
+import com.google.android.material.transition.MaterialSharedAxis;
 
 
 public class VaccineFragment extends Fragment {
@@ -51,6 +52,7 @@ public class VaccineFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         binding = FragmentVaccineBinding.inflate(inflater, container, false);
+        setExitTransition(new MaterialSharedAxis(MaterialSharedAxis.X, false));
         return binding.getRoot();
     }
 }

@@ -27,6 +27,7 @@ import com.example.vaccineapp.databinding.FragmentLoginBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.transition.MaterialSharedAxis;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -49,6 +50,7 @@ public class LoginFragment extends Fragment {
         // Inflate the layout for this fragment
         binding = FragmentLoginBinding.inflate(inflater, container, false);
         View view = binding.getRoot();
+        setExitTransition(new MaterialSharedAxis(MaterialSharedAxis.Z, false));
 
         mAuth = FirebaseAuth.getInstance();
         signupFragment = new SignupFragment();
@@ -59,7 +61,7 @@ public class LoginFragment extends Fragment {
         FirebaseUser user = mAuth.getCurrentUser();
         if(user != null){
             if(user.isEmailVerified())
-                setFragment(new BottomNavFragment());
+                setFragmentNoBackStack(new BottomNavFragment());
         }
 
         binding.signUpBtn.setOnClickListener(new View.OnClickListener() {
@@ -138,12 +140,14 @@ public class LoginFragment extends Fragment {
     }
 
     private void setFragment(Fragment fragment) {
+        fragment.setEnterTransition(new MaterialSharedAxis(MaterialSharedAxis.Z, true));
         FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.mainframe,fragment);
         fragmentTransaction.addToBackStack(null).commit();
     }
 
     private void setFragmentNoBackStack(Fragment fragment){
+        fragment.setEnterTransition(new MaterialSharedAxis(MaterialSharedAxis.Z, true));
         FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.mainframe,fragment);
         fragmentTransaction.commit();

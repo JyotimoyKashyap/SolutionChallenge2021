@@ -14,6 +14,7 @@ import com.example.vaccineapp.Authentication.LoginFragment;
 import com.example.vaccineapp.Authentication.VarifyEmailFragment;
 import com.example.vaccineapp.R;
 import com.example.vaccineapp.databinding.FragmentSplashBinding;
+import com.google.android.material.transition.MaterialSharedAxis;
 
 import java.util.HashMap;
 
@@ -26,6 +27,7 @@ public class SplashFragment extends Fragment {
                              Bundle savedInstanceState) {
         binding = FragmentSplashBinding.inflate(inflater, container, false);
         View view =  binding.getRoot();
+        setExitTransition(new MaterialSharedAxis(MaterialSharedAxis.Z, false));
 
 
         new Handler().postDelayed(new Runnable() {
@@ -39,6 +41,7 @@ public class SplashFragment extends Fragment {
     }
 
     private void setFragment(Fragment fragment) {
+        fragment.setEnterTransition(new MaterialSharedAxis(MaterialSharedAxis.Z, true));
         FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.mainframe,fragment);
         fragmentTransaction.commit();

@@ -21,6 +21,7 @@ import com.example.vaccineapp.databinding.FragmentVarifyEmailBinding;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
+import com.google.android.material.transition.MaterialSharedAxis;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -35,6 +36,7 @@ public class VarifyEmailFragment extends BottomSheetDialogFragment {
         // Inflate the layout for this fragment
         binding = FragmentVarifyEmailBinding.inflate(inflater, container, false);
         View view = binding.getRoot();
+        setExitTransition(new MaterialSharedAxis(MaterialSharedAxis.Z, false));
         mAuth = FirebaseAuth.getInstance();
 
         binding.resendEmail.setOnClickListener(new View.OnClickListener() {

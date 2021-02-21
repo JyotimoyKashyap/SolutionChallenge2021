@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 
 import com.example.vaccineapp.R;
 import com.example.vaccineapp.databinding.FragmentGuidBinding;
+import com.google.android.material.transition.MaterialSharedAxis;
 
 
 public class GuideFragment extends Fragment {
@@ -21,6 +22,7 @@ public class GuideFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         binding = FragmentGuidBinding.inflate(inflater, container, false);
+        setExitTransition(new MaterialSharedAxis(MaterialSharedAxis.X, false));
         View view = binding.getRoot();
 
 

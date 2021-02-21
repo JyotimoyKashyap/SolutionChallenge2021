@@ -22,6 +22,7 @@ import com.example.vaccineapp.DummyFragment;
 import com.example.vaccineapp.MainDestinations.BottomNavFragment;
 import com.example.vaccineapp.R;
 import com.example.vaccineapp.databinding.FragmentChildDetailsFormBinding;
+import com.google.android.material.transition.MaterialSharedAxis;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -51,6 +52,7 @@ public class ChildDetailsFormFragment extends Fragment {
         // Inflate the layout for this fragment
         binding = FragmentChildDetailsFormBinding.inflate(inflater, container, false);
         View view = binding.getRoot();
+        setExitTransition(new MaterialSharedAxis(MaterialSharedAxis.Z, false));
 
         binding.progressBarChildDetailFragment.setVisibility(View.INVISIBLE);
 
@@ -159,6 +161,7 @@ public class ChildDetailsFormFragment extends Fragment {
     }
 
     private void setFragment(Fragment fragment) {
+        fragment.setEnterTransition(new MaterialSharedAxis(MaterialSharedAxis.Z , true));
         FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.mainframe,fragment);
         fragmentTransaction.commit();
