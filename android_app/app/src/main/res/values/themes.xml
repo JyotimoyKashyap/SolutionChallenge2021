@@ -12,10 +12,28 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
+        <item name="bottomSheetDialogTheme">@style/CustomBottomSheetDialogFragment</item>
     </style>
 
     <style name="AppBarTitleTextAppearance" parent="TextAppearance.AppCompat.Widget.ActionBar.Title">
         <item name="fontFamily">@font/poppins_bold</item>
         <item name="android:textSize">24dp</item>
     </style>
+
+
+    <!-- Custom Bottom Sheet Dialog Fragment Shape -->
+    <style name="CustomBottomSheetDialogFragment" parent="@style/ThemeOverlay.MaterialComponents.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/CustomBottomSheet</item>
+    </style>
+
+    <style name="CustomBottomSheet" parent="Widget.MaterialComponents.BottomSheet">
+        <item name="shapeAppearanceOverlay">@style/ShapeAppearanceOverlay.MaterialComponents.BottomSheet.</item>
+    </style>
+
+    <style name="ShapeAppearanceOverlay.MaterialComponents.BottomSheet." parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSizeTopRight">8dp</item>
+        <item name="cornerSizeTopLeft">8dp</item>
+    </style>
+    <!-- the shape customization ends here -->
 </resources>

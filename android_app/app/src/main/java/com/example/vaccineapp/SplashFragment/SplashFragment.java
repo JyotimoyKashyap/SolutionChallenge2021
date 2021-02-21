@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.vaccineapp.Authentication.LoginFragment;
+import com.example.vaccineapp.Authentication.VarifyEmailFragment;
 import com.example.vaccineapp.R;
 import com.example.vaccineapp.databinding.FragmentSplashBinding;
 
