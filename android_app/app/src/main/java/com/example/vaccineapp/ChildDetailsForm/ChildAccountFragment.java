@@ -98,10 +98,12 @@ public class ChildAccountFragment extends Fragment {
                     binding.accountLottie.playAnimation();
                     break;
                 case "female":
+                    binding.genderImageView.setImageResource(R.drawable.ic_female);
                     binding.accountLottie.setAnimation(R.raw.female_avatar);
                     binding.accountLottie.playAnimation();
                     break;
                 case "male":
+                    binding.genderImageView.setImageResource(R.drawable.ic_male);
                     binding.accountLottie.setAnimation(R.raw.male_avatar);
                     binding.accountLottie.playAnimation();
                     break;
@@ -177,10 +179,8 @@ public class ChildAccountFragment extends Fragment {
                     String gender = snapshot.child(user).child("Gender").getValue(String.class);
                     String dob = String.valueOf(snapshot.child(user).child("Date").getValue(Long.class)) +"/"+ String.valueOf(snapshot.child(user).child("Month").getValue(Long.class)) +"/"+ String.valueOf(snapshot.child(user).child("Year").getValue(Long.class));
                     binding.babyNameTextview.setText(name);
-                    binding.genderTextview.setText(gender);
-                    genderString = gender;
+                    binding.genderTextview.setText(capitalizeFirstLetterOfWord(gender));
                     sharedViewModel.setGender(gender);
-                    Log.d("Account", genderString);
                     binding.motherNameTextview.setText(mother);
                     binding.fatherNameTextview.setText(father);
                     binding.dateOfBirthTextview.setText(dob);
@@ -204,6 +204,19 @@ public class ChildAccountFragment extends Fragment {
         FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.mainframe,fragment);
         fragmentTransaction.addToBackStack(null).commit();
+    }
+
+    private String capitalizeFirstLetterOfWord(String word){
+        String firstLetter = word.substring(0, 1);
+        String remainingLetters = word.substring(1, word.length());
+
+        // change the first letter to uppercase
+        firstLetter = firstLetter.toUpperCase();
+
+        // join the two substrings
+        String newWord = firstLetter + remainingLetters;
+
+        return newWord;
     }
 
 }

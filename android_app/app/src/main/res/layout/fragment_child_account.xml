@@ -127,14 +127,15 @@
 
             <ImageView
                 android:id="@+id/gender_image_view"
-                android:layout_width="wrap_content"
-                android:layout_height="0dp"
+                android:layout_width="60px"
+                android:layout_height="60px"
                 android:layout_marginStart="5dp"
                 android:layout_marginEnd="12dp"
                 android:src="@drawable/ic_account"
                 app:layout_constraintTop_toTopOf="@id/gender_textview"
                 app:layout_constraintBottom_toBottomOf="@id/gender_textview"
-                app:layout_constraintStart_toEndOf="@id/guideline_account" />
+                app:layout_constraintStart_toEndOf="@id/guideline_account"
+                app:tint="@color/icon_tint" />
 
 
 
