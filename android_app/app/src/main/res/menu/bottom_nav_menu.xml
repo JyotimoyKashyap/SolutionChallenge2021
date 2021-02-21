@@ -16,10 +16,6 @@
         android:icon="@drawable/ic_heartbeat"
         android:title="Guide"/>
 
-    <item
-        android:id="@+id/settings_destination"
-        android:icon="@drawable/ic_settings"
-        android:title="Settings"/>
 
 
 </menu>

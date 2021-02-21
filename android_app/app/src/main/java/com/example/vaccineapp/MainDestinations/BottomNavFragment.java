@@ -8,6 +8,8 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,7 +23,7 @@ import com.example.vaccineapp.databinding.FragmentBottomNavBinding;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 
-public class BottomNavFragment extends Fragment implements BottomNavigationView.OnNavigationItemSelectedListener {
+public class BottomNavFragment extends Fragment implements BottomNavigationView.OnNavigationItemSelectedListener{
 
 
     private static final String ARG_PARAM1 = "param1";
@@ -66,7 +68,7 @@ public class BottomNavFragment extends Fragment implements BottomNavigationView.
 
         //set up the bottom navigation view
         binding.bottomNavMenu.setOnNavigationItemSelectedListener(this::onNavigationItemSelected);
-
+        setHasOptionsMenu(true);
         setFragment(new VaccineFragment());
 
         return binding.getRoot();
@@ -85,9 +87,6 @@ public class BottomNavFragment extends Fragment implements BottomNavigationView.
             case R.id.guide_destination:
                 setFragment(new GuideFragment());
                 break;
-            case R.id.settings_destination:
-                setFragment(new SettingFragment());
-                break;
         }
         return true;
     }
@@ -96,5 +95,20 @@ public class BottomNavFragment extends Fragment implements BottomNavigationView.
         FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.second_frame,fragment);
         fragmentTransaction.commit();
+    }
+
+    @Override
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        inflater.inflate(R.menu.top_bar_menu, menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.menu_settings:
+                setFragment(new SettingFragment());
+                break;
+        }
+        return true;
     }
 }

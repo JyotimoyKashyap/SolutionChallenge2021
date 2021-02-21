@@ -31,12 +31,9 @@ public class SplashFragment extends Fragment {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                //setFragment(new LoginFragment());
+                setFragment(new LoginFragment());
             }
         }, 600);
-
-        VarifyEmailFragment varifyEmailFragment = new VarifyEmailFragment();
-        varifyEmailFragment.show(getFragmentManager(), "tet");
 
         return view;
     }
