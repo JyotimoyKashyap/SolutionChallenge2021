@@ -18,5 +18,6 @@
     <!-- custom colors -->
     <color name="global_background">#FDFDFD</color>
     <color name="bottom_sheet_background">#FFFFFF</color>
+    <color name="btn_background_tint">#ECFBEB</color>
 
 </resources>
