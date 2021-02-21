@@ -13,6 +13,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:title="Nirog"
         app:menu="@menu/top_bar_menu"
+        android:background="@color/global_background"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:titleTextAppearance="@style/AppBarTitleTextAppearance"/>
