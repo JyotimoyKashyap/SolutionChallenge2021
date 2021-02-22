@@ -1,4 +1,4 @@
-package com.example.vaccineapp.data.api;
+package com.example.vaccineapp.data.Api;
 
 import android.content.Context;
 

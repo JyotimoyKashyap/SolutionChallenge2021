@@ -1,4 +1,4 @@
-package com.example.vaccineapp.data.api;
+package com.example.vaccineapp.data.Api;
 
 import com.example.vaccineapp.data.Model.CovidTracker.CovidResponse;
 import com.example.vaccineapp.data.model.ResponseDocDetails;
