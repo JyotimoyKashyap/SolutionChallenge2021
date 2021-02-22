@@ -9,9 +9,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.vaccineapp.R;
-import com.example.vaccineapp.data.Api.ApiService;
-import com.example.vaccineapp.data.Model.CovidResponse;
+import com.example.vaccineapp.data.api.ApiService;
+import com.example.vaccineapp.data.model.CovidResponse;
 import com.example.vaccineapp.databinding.FragmentGuidBinding;
 import com.google.android.material.transition.MaterialSharedAxis;
 

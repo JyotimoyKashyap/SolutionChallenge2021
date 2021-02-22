@@ -3,19 +3,19 @@ package com.example.vaccineapp.data.model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class ResponseDoctor {
+public class ResponseVaccine {
 
     @SerializedName("status")
     @Expose
     private String status;
 
-    @SerializedName("doctor")
+    @SerializedName("vaccine")
     @Expose
-    private DoctorDetails details;
+    private VaccineDetails Details;
 
-    public ResponseDoctor(String status, DoctorDetails details) {
+    public ResponseVaccine(String status, VaccineDetails vaccineDetails) {
         this.status = status;
-        this.details = details;
+        this.Details = vaccineDetails;
     }
 
     public String getStatus() {
@@ -26,11 +26,11 @@ public class ResponseDoctor {
         this.status = status;
     }
 
-    public DoctorDetails getDetails() {
-        return details;
+    public VaccineDetails getVacDetails() {
+        return Details;
     }
 
-    public void setDetails(DoctorDetails details) {
-        this.details = details;
+    public void setVacDetails(VaccineDetails vaccineDetails) {
+        this.Details = vaccineDetails;
     }
 }
