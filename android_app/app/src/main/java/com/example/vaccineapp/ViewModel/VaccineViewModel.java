@@ -47,8 +47,10 @@ public class VaccineViewModel extends AndroidViewModel {
             public void onResponse(Call<ResponseVaccine> call, Response<ResponseVaccine> response) {
                 if(response.code()<300){
                     vaccineRes.postValue(response.body());
+                    Log.d("vaccines", String.valueOf(response.code())+" : success");
                 }else if(response.code()>400){
                     vaccineRes.postValue(null);
+                    Log.d("vaccines", String.valueOf(response.code())+" : fail");
                 }
             }
             @Override
