@@ -3,11 +3,14 @@ package com.example.vaccineapp.MainDestinations.Vaccine;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
+import com.example.vaccineapp.ViewModel.VaccineViewModel;
 import com.example.vaccineapp.databinding.FragmentVaccineBinding;
 import com.google.android.material.transition.MaterialSharedAxis;
 
@@ -23,6 +26,8 @@ public class VaccineFragment extends Fragment {
     private String mParam2;
 
     private FragmentVaccineBinding binding;
+    private VaccineViewModel vaccineViewModel;
+    private VaccineListAdapter adapter;
 
     public VaccineFragment() {
         // Required empty public constructor
@@ -45,6 +50,9 @@ public class VaccineFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
+        vaccineViewModel = new ViewModelProvider(this,ViewModelProvider.AndroidViewModelFactory.
+                getInstance(getActivity().getApplication())).get(VaccineViewModel.class);
     }
 
     @Override
@@ -53,6 +61,17 @@ public class VaccineFragment extends Fragment {
         // Inflate the layout for this fragment
         binding = FragmentVaccineBinding.inflate(inflater, container, false);
         setExitTransition(new MaterialSharedAxis(MaterialSharedAxis.X, false));
+
+        vaccineViewModel.getAllVaccines();
+        vaccineViewModel.getAllVaccinesResponse().observe(this,data->{
+            if(data != null){
+                adapter = new VaccineListAdapter(data.getVaccineDetails(), getContext());
+                binding.upcomingVaccinesRecyclerView.setAdapter(adapter);
+            }else{
+                Toast.makeText(getContext(), "There is some error", Toast.LENGTH_SHORT).show();
+            }
+        });
+
         return binding.getRoot();
     }
 }
