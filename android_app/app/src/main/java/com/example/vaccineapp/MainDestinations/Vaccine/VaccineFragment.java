@@ -3,6 +3,7 @@ package com.example.vaccineapp.MainDestinations.Vaccine;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.view.LayoutInflater;
@@ -10,12 +11,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.example.vaccineapp.R;
 import com.example.vaccineapp.ViewModel.VaccineViewModel;
 import com.example.vaccineapp.databinding.FragmentVaccineBinding;
+import com.google.android.material.transition.MaterialElevationScale;
 import com.google.android.material.transition.MaterialSharedAxis;
 
 
-public class VaccineFragment extends Fragment {
+public class VaccineFragment extends Fragment implements VaccineListAdapter.OnVaccineCardClick{
 
 
     private static final String ARG_PARAM1 = "param1";
@@ -65,7 +68,7 @@ public class VaccineFragment extends Fragment {
         vaccineViewModel.getAllVaccines();
         vaccineViewModel.getAllVaccinesResponse().observe(this,data->{
             if(data != null){
-                adapter = new VaccineListAdapter(data.getVaccineDetails(), getContext());
+                adapter = new VaccineListAdapter(data.getVaccineDetails(), getContext(),this::onClickListener);
                 binding.upcomingVaccinesRecyclerView.setAdapter(adapter);
             }else{
                 Toast.makeText(getContext(), "There is some error", Toast.LENGTH_SHORT).show();
@@ -73,5 +76,24 @@ public class VaccineFragment extends Fragment {
         });
 
         return binding.getRoot();
+    }
+
+    @Override
+    public void onClickListener(int position, String vaccineId,
+                                String vaccineName, String whenToGive,
+                                String dose, String route, String site, String description) {
+
+
+
+        VaccineDetailsFragment vaccineDetailsFragment = VaccineDetailsFragment.newInstance(vaccineName, vaccineId,
+                whenToGive, position, dose, route, site, description);
+
+        vaccineDetailsFragment.setEnterTransition(new MaterialElevationScale(true));
+
+        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+        transaction.replace(R.id.fragment_container, vaccineDetailsFragment);
+        transaction.addToBackStack(null);
+        transaction.commit();
+
     }
 }

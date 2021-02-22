@@ -25,5 +25,7 @@
     <color name="vaccine_bg_tintt">#F8FFFC</color>
     <color name="icon_tint">#191919</color>
     <color name="danger_color_text">#E1D71A</color>
+    <color name="pink_color">#FF4081</color>
+
 
 </resources>

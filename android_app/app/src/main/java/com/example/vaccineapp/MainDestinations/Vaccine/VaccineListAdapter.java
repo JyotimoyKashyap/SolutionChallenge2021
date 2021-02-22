@@ -19,11 +19,13 @@ public class VaccineListAdapter extends RecyclerView.Adapter<VaccineListAdapter.
 
     List<VaccineDetails> vaccineRowItem;
     Context context;
+    OnVaccineCardClick onVaccineCardClick;
 
 
-    public VaccineListAdapter(List<VaccineDetails> vaccineRowItem, Context context) {
+    public VaccineListAdapter(List<VaccineDetails> vaccineRowItem, Context context,OnVaccineCardClick onVaccineCardClick) {
         this.vaccineRowItem = vaccineRowItem;
         this.context = context;
+        this.onVaccineCardClick = onVaccineCardClick;
 
     }
 
@@ -39,6 +41,24 @@ public class VaccineListAdapter extends RecyclerView.Adapter<VaccineListAdapter.
         VaccineDetails currentItem = vaccineRowItem.get(position);
         holder.vaccineName.setText(currentItem.getName());
         holder.whenToGive.setText(currentItem.getWhenToGive());
+
+        //handling card click events
+        holder.vaccineCard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //sending data to vaccine fragment for fragment
+                onVaccineCardClick.onClickListener(
+                        position,
+                        currentItem.get_id(),
+                        currentItem.getName(),
+                        currentItem.getWhenToGive(),
+                        currentItem.getDose(),
+                        currentItem.getRoute(),
+                        currentItem.getSite(),
+                        currentItem.getDescription()
+                );
+            }
+        });
     }
 
     @Override
@@ -57,6 +77,18 @@ public class VaccineListAdapter extends RecyclerView.Adapter<VaccineListAdapter.
             vaccineName = itemView.findViewById(R.id.vaccine_name);
             whenToGive = itemView.findViewById(R.id.when_to_get);
         }
+    }
+
+    public interface OnVaccineCardClick{
+        public void onClickListener(
+                int position,
+                String vaccineId,
+                String vaccineName,
+                String whenToGive,
+                String dose,
+                String route,
+                String site,
+                String description);
     }
 
 
