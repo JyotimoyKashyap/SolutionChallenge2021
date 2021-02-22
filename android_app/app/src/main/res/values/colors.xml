@@ -23,5 +23,6 @@
     <color name="btn_warning_ripple_color">#FAD8D8</color>
     <color name="positive_btn_text_color">#4049F3</color>
     <color name="icon_tint">#191919</color>
+    <color name="danger_color_text">#E1D71A</color>
 
 </resources>
