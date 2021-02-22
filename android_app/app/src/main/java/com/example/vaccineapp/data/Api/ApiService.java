@@ -1,6 +1,6 @@
 package com.example.vaccineapp.data.api;
 
-import com.example.vaccineapp.data.model.CovidResponse;
+import com.example.vaccineapp.data.Model.CovidTracker.CovidResponse;
 import com.example.vaccineapp.data.model.ResponseDocDetails;
 import com.example.vaccineapp.data.model.ResponseDoctor;
 import com.example.vaccineapp.data.model.ResponseHosDetails;
