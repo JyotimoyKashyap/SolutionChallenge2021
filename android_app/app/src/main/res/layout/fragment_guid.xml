@@ -27,14 +27,76 @@
                 android:layout_marginTop="8dp"
                 app:cardCornerRadius="18dp"
                 app:cardElevation="0dp"
+                app:cardBackgroundColor="@color/bottom_sheet_background"
                 android:layout_marginBottom="20dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent">
+
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    android:backgroundTint="@color/bottom_sheet_background">
+
+                    <com.airbnb.lottie.LottieAnimationView
+                        android:id="@+id/bacteria_lottie_1"
+                        android:layout_width="90dp"
+                        android:layout_height="90dp"
+                        android:layout_marginEnd="48dp"
+                        android:layout_marginBottom="20dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:lottie_autoPlay="true"
+                        app:lottie_loop="true"
+                        app:lottie_rawRes="@raw/bacteria" />
+
+                    <com.airbnb.lottie.LottieAnimationView
+                        android:id="@+id/bacteria_lottie_2"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        app:lottie_loop="true"
+                        app:lottie_autoPlay="true"
+                        app:lottie_rawRes="@raw/corona"
+                        android:layout_marginBottom="60dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"/>
+
+                    <com.airbnb.lottie.LottieAnimationView
+                        android:id="@+id/virus_1"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        app:lottie_loop="true"
+                        app:lottie_autoPlay="true"
+                        app:lottie_rawRes="@raw/virus"
+                        android:layout_marginBottom="20dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"/>
+                    <com.airbnb.lottie.LottieAnimationView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        app:lottie_loop="true"
+                        app:lottie_autoPlay="true"
+                        app:lottie_rawRes="@raw/bacteria"
+                        android:layout_marginBottom="30dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/virus_1"/>
+
+                    <com.airbnb.lottie.LottieAnimationView
+                        android:id="@+id/covid_lottie"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        app:lottie_loop="true"
+                        app:lottie_autoPlay="true"
+                        app:lottie_rawRes="@raw/virus"
+                        android:layout_marginStart="5dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/covid_tracker"
+                        app:layout_constraintBottom_toBottomOf="@id/covid_tracker"/>
+
+
+
+
 
                     <TextView
                         android:id="@+id/covid_tracker"
@@ -44,7 +106,7 @@
                         android:fontFamily="@font/poppins_bold"
                         android:textSize="22dp"
                         android:layout_marginTop="14dp"
-                        android:layout_marginStart="12dp"
+                        android:layout_marginStart="55dp"
                         android:layout_marginEnd="12dp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"/>
