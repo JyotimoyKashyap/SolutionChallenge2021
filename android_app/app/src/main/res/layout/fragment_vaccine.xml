@@ -138,7 +138,9 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:padding="8dp"/>
+        android:padding="8dp"
+        tools:listitem="@layout/vaccine_row_items"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
 
 
 
