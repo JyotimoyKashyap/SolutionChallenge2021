@@ -24,5 +24,9 @@
     <color name="positive_btn_text_color">#4049F3</color>
     <color name="icon_tint">#191919</color>
     <color name="danger_color_text">#E1D71A</color>
+    <color name="normal_card_background">#F0F5FA</color>
+    <color name="warning_card_background">#FFFCEB</color>
+    <color name="danger_card_background">#FFE7E8</color>
+    <color name="healthy_card_background">#DBFFD0</color>
 
 </resources>
