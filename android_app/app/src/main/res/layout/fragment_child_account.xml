@@ -31,6 +31,7 @@
         android:layout_height="wrap_content"
         app:cardCornerRadius="18dp"
         app:cardElevation="0dp"
+        app:cardBackgroundColor="@color/bottom_sheet_background"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/account_help_text"
@@ -39,7 +40,8 @@
         android:layout_marginEnd="24dp">
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:backgroundTint="@color/bottom_sheet_background">
 
             <com.airbnb.lottie.LottieAnimationView
                 android:id="@+id/account_lottie"
@@ -155,12 +157,14 @@
         android:layout_marginStart="24dp"
         android:layout_marginEnd="24dp"
         android:layout_marginTop="20dp"
+        app:cardBackgroundColor="@color/bottom_sheet_background"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/baby_card">
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:backgroundTint="@color/bottom_sheet_background">
 
             <TextView
                 android:id="@+id/parent_info_help_text"
@@ -274,7 +278,7 @@
         android:text="Edit Profile"
         style="?attr/materialButtonOutlinedStyle"
         android:textColor="@color/positive_btn_text_color"
-        android:foregroundTint="@color/btn_background_tint"
+        android:backgroundTint="@color/btn_background_tint"
         app:strokeWidth="0dp"
         android:textAllCaps="false"
         android:layout_marginTop="12dp"
