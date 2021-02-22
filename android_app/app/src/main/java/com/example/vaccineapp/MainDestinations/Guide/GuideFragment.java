@@ -47,6 +47,17 @@ public class GuideFragment extends Fragment {
             public void onResponse(Call<CovidResponse> call, Response<CovidResponse> response) {
                 if(response.code() < 300){
                     Log.d("Guide", "success");
+                    binding.guideCovidCountry.setText(response.body().getCountry());
+                    binding.newCasesCovid.setText(response.body().getNewCases());
+                    binding.activeCasesCovid.setText(response.body().getActiveCases());
+                    binding.totalRecoveredCovid.setText(response.body().getTotalRecovered());
+                    if(response.body().getNewDeaths() == null){
+                        binding.newDeathCases.setText("-");
+                    }else{
+                        binding.newDeathCases.setText(response.body().getNewDeaths());
+                    }
+
+                    binding.totalCasesCovid.setText(response.body().getTotalCases());
                 }else{
                     Log.d("Guide", "Bad Request");
                 }
