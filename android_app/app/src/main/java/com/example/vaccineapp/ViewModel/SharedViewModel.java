@@ -10,6 +10,8 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import java.text.DecimalFormat;
+
 public class SharedViewModel extends AndroidViewModel {
 
     //method to monitor the string of gender to change lottie animation
@@ -33,22 +35,35 @@ public class SharedViewModel extends AndroidViewModel {
 
     //function for animating the text in counting manner
     public void startCountAnimation(TextView textView, String maxCount){
-        int max = 0;
-        if(maxCount.substring(0,1) != "+"){
-            max = Integer.valueOf(maxCount.substring(1, maxCount.length()));
+        Log.d("Guide" , maxCount + " : this is total recovered");
+        String count = "";
+        for(char k : maxCount.toCharArray()){
+            if((int) k > 47 && (int) k < 58){
+                count = count + k;
+            }
         }
-        else if(maxCount == null) {
+        Log.d("Guide" , count + " : this is total recovered without commas");
+        long max = 0;
+        if(count.substring(0,1) != "+"){
+            max = Long.valueOf(count.substring(1, count.length()));
+        }
+        else if(count == null) {
             max = 0;
         }else{
-            max = Integer.valueOf(maxCount);
+            max = Long.valueOf(count);
         }
 
-        ValueAnimator animator = ValueAnimator.ofInt(0, max);
+        DecimalFormat decimalFormat = new DecimalFormat("#.##");
+        decimalFormat.setGroupingSize(3);
+        decimalFormat.setGroupingUsed(true);
+
+        ValueAnimator animator = ValueAnimator.ofInt(0, (int) max);
         animator.setDuration(3000);
         animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public void onAnimationUpdate(ValueAnimator valueAnimator) {
-                textView.setText(valueAnimator.getAnimatedValue().toString());
+                //textView.setText(valueAnimator.getAnimatedValue().toString());
+                textView.setText(decimalFormat.format(valueAnimator.getAnimatedValue()).toString());
             }
         });
 

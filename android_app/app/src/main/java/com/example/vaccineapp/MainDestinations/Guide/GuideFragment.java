@@ -57,13 +57,15 @@ public class GuideFragment extends Fragment {
                     binding.activeCasesCovid.setText(response.body().getActiveCases());
                     binding.totalRecoveredCovid.setText(response.body().getTotalRecovered());
                     //viewModel.startCountAnimation(binding.totalRecoveredCovid, response.body().getTotalRecovered());
-                    if(response.body().getNewDeaths() == null){
+                    if(response.body().getNewDeaths() == ""){
                         binding.newDeathCases.setText("-");
+                        Log.d("Guide", response.body().getNewDeaths() + " : This is null");
                     }else{
                         binding.newDeathCases.setText(response.body().getNewDeaths());
+                        Log.d("Guide", response.body().getNewDeaths() + " : This is blank");
                     }
-                    //viewModel.startCountAnimation(binding.totalCasesCovid, response.body().getTotalCases());
-                    binding.totalCasesCovid.setText(response.body().getTotalCases());
+                    viewModel.startCountAnimation(binding.totalCasesCovid, response.body().getTotalCases());
+                    //binding.totalCasesCovid.setText(response.body().getTotalCases());
                 }else{
                     Log.d("Guide", "Bad Request");
                 }
