@@ -53,19 +53,11 @@ public class GuideFragment extends Fragment {
                 if(response.code() < 300){
                     Log.d("Guide", "success");
                     binding.guideCovidCountry.setText(response.body().getCountry());
-                    binding.newCasesCovid.setText(response.body().getNewCases());
-                    binding.activeCasesCovid.setText(response.body().getActiveCases());
-                    binding.totalRecoveredCovid.setText(response.body().getTotalRecovered());
-                    //viewModel.startCountAnimation(binding.totalRecoveredCovid, response.body().getTotalRecovered());
-                    if(response.body().getNewDeaths() == ""){
-                        binding.newDeathCases.setText("-");
-                        Log.d("Guide", response.body().getNewDeaths() + " : This is null");
-                    }else{
-                        binding.newDeathCases.setText(response.body().getNewDeaths());
-                        Log.d("Guide", response.body().getNewDeaths() + " : This is blank");
-                    }
+                    viewModel.startCountAnimation(binding.activeCasesCovid, response.body().getActiveCases());
+                    viewModel.startCountAnimation(binding.totalRecoveredCovid, response.body().getTotalRecovered());
+                    viewModel.startCountAnimation(binding.newDeathCases, response.body().getNewDeaths());
                     viewModel.startCountAnimation(binding.totalCasesCovid, response.body().getTotalCases());
-                    //binding.totalCasesCovid.setText(response.body().getTotalCases());
+                    viewModel.startCountAnimation(binding.newCasesCovid, response.body().getNewCases());
                 }else{
                     Log.d("Guide", "Bad Request");
                 }

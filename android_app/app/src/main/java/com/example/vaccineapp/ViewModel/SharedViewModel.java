@@ -37,37 +37,54 @@ public class SharedViewModel extends AndroidViewModel {
     public void startCountAnimation(TextView textView, String maxCount){
         Log.d("Guide" , maxCount + " : this is total recovered");
         String count = "";
-        for(char k : maxCount.toCharArray()){
-            if((int) k > 47 && (int) k < 58){
-                count = count + k;
-            }
-        }
-        Log.d("Guide" , count + " : this is total recovered without commas");
         long max = 0;
-        if(count.substring(0,1) != "+"){
-            max = Long.valueOf(count.substring(1, count.length()));
-        }
-        else if(count == null) {
-            max = 0;
-        }else{
-            max = Long.valueOf(count);
-        }
+        String plus = "";
 
-        DecimalFormat decimalFormat = new DecimalFormat("#.##");
-        decimalFormat.setGroupingSize(3);
-        decimalFormat.setGroupingUsed(true);
 
-        ValueAnimator animator = ValueAnimator.ofInt(0, (int) max);
-        animator.setDuration(3000);
-        animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            @Override
-            public void onAnimationUpdate(ValueAnimator valueAnimator) {
-                //textView.setText(valueAnimator.getAnimatedValue().toString());
-                textView.setText(decimalFormat.format(valueAnimator.getAnimatedValue()).toString());
+
+        if(maxCount.length() != 0){
+            if(maxCount.charAt(0) == '+') plus = plus + "+";
+            Log.d("Guide" , plus + "+ : Custom Input");
+
+            for(char k : maxCount.toCharArray()){
+                if((int) k > 47 && (int) k < 58){
+                    count = count + k;
+                }
             }
-        });
+            Log.d("Guide" , count + " : this is total recovered without commas");
+            if(count != null){
+                max = Long.valueOf(count);
+            }
+            else max = 0;
 
-        animator.start();
+
+            DecimalFormat decimalFormat = new DecimalFormat("#.##");
+            decimalFormat.setGroupingSize(3);
+            decimalFormat.setGroupingUsed(true);
+
+            ValueAnimator animator = ValueAnimator.ofInt(0, (int) max);
+            animator.setDuration(3000);
+            String finalPlus = plus;
+            animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                @Override
+                public void onAnimationUpdate(ValueAnimator valueAnimator) {
+                    if(finalPlus.length() != 0){
+                        textView.setText("+" + decimalFormat.format(valueAnimator.getAnimatedValue()));
+                    }else{
+                        textView.setText(decimalFormat.format(valueAnimator.getAnimatedValue()));
+                    }
+
+                }
+            });
+
+            animator.start();
+
+        }else{
+            textView.setText("-");
+        }
+
+
+
     }
 
 }
