@@ -24,7 +24,6 @@
                 android:layout_height="90dp"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="16dp"
-                android:tint="@color/pink_color"
                 android:layout_marginStart="12dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
