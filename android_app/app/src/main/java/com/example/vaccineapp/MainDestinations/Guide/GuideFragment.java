@@ -3,12 +3,14 @@ package com.example.vaccineapp.MainDestinations.Guide;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.vaccineapp.ViewModel.SharedViewModel;
 import com.example.vaccineapp.data.Api.ApiService;
 import com.example.vaccineapp.data.Model.CovidTracker.CovidResponse;
 import com.example.vaccineapp.databinding.FragmentGuidBinding;
@@ -24,6 +26,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class GuideFragment extends Fragment {
 
     private FragmentGuidBinding binding;
+    private SharedViewModel viewModel;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -31,6 +34,8 @@ public class GuideFragment extends Fragment {
         // Inflate the layout for this fragment
         binding = FragmentGuidBinding.inflate(inflater, container, false);
         setExitTransition(new MaterialSharedAxis(MaterialSharedAxis.X, false));
+        viewModel = new ViewModelProvider(this,
+                ViewModelProvider.AndroidViewModelFactory.getInstance(getActivity().getApplication())).get(SharedViewModel.class);
         View view = binding.getRoot();
 
         //setting retrofit for getting response from other api
@@ -51,12 +56,13 @@ public class GuideFragment extends Fragment {
                     binding.newCasesCovid.setText(response.body().getNewCases());
                     binding.activeCasesCovid.setText(response.body().getActiveCases());
                     binding.totalRecoveredCovid.setText(response.body().getTotalRecovered());
+                    //viewModel.startCountAnimation(binding.totalRecoveredCovid, response.body().getTotalRecovered());
                     if(response.body().getNewDeaths() == null){
                         binding.newDeathCases.setText("-");
                     }else{
                         binding.newDeathCases.setText(response.body().getNewDeaths());
                     }
-
+                    //viewModel.startCountAnimation(binding.totalCasesCovid, response.body().getTotalCases());
                     binding.totalCasesCovid.setText(response.body().getTotalCases());
                 }else{
                     Log.d("Guide", "Bad Request");
