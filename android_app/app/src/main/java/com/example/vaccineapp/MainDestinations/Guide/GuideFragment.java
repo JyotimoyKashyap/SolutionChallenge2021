@@ -58,6 +58,7 @@ public class GuideFragment extends Fragment {
                     viewModel.startCountAnimation(binding.newDeathCases, response.body().getNewDeaths());
                     viewModel.startCountAnimation(binding.totalCasesCovid, response.body().getTotalCases());
                     viewModel.startCountAnimation(binding.newCasesCovid, response.body().getNewCases());
+                    binding.lastUpdate.setText("Last Updated : " + response.body().getLastUpdate());
                 }else{
                     Log.d("Guide", "Bad Request");
                 }

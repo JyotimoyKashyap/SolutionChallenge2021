@@ -29,13 +29,17 @@ public class CovidResponse {
     @Expose
     private String totalRecovered;
 
-    public CovidResponse(String activeCases, String country, String newCases, String newDeaths, String totalCases, String totalRecovered) {
+    @SerializedName("Last Update")
+    private String lastUpdate;
+
+    public CovidResponse(String activeCases, String country, String newCases, String newDeaths, String totalCases, String totalRecovered, String lastUpdate) {
         this.activeCases = activeCases;
         this.country = country;
         this.newCases = newCases;
         this.newDeaths = newDeaths;
         this.totalCases = totalCases;
         this.totalRecovered = totalRecovered;
+        this.lastUpdate = lastUpdate;
     }
 
     public String getActiveCases() {
@@ -60,5 +64,9 @@ public class CovidResponse {
 
     public String getTotalRecovered() {
         return totalRecovered;
+    }
+
+    public String getLastUpdate(){
+        return lastUpdate;
     }
 }
