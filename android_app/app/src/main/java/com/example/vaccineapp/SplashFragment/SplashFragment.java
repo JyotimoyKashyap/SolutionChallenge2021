@@ -45,7 +45,7 @@ public class SplashFragment extends Fragment {
     private void setFragment(Fragment fragment) {
         fragment.setEnterTransition(new MaterialSharedAxis(MaterialSharedAxis.Z, true));
         FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.mainframe,fragment);
+        fragmentTransaction.replace(R.id.fragment_container,fragment);
         fragmentTransaction.commit();
     }
 

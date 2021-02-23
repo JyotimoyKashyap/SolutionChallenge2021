@@ -83,7 +83,7 @@ public class VarifyEmailFragment extends BottomSheetDialogFragment {
 
     private void setFragment(Fragment fragment) {
         FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.mainframe,fragment);
+        fragmentTransaction.replace(R.id.fragment_container,fragment);
         fragmentTransaction.commit();
     }
 

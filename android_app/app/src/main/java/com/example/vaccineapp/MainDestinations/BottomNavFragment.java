@@ -119,7 +119,7 @@ public class BottomNavFragment extends Fragment implements BottomNavigationView.
     private void setMainFragment(Fragment fragment){
         fragment.setEnterTransition(new MaterialSharedAxis(MaterialSharedAxis.Z, true));
         FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.mainframe, fragment);
+        fragmentTransaction.replace(R.id.fragment_container, fragment);
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
     }
