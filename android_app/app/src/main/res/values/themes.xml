@@ -34,6 +34,14 @@
         <item name="cornerSize">50%</item>
     </style>
 
+
+
+    <style name="ExpandedAppBarTitleTextAppearance" parent="TextAppearance.Design.CollapsingToolbar.Expanded">
+        <item name="fontFamily">@font/poppins_bold</item>
+        <item name="android:textSize">32dp</item>
+    </style>
+
+
     <style name="ShapeAppearanceOverlay.MaterialComponents.BottomSheet." parent="">
         <item name="cornerFamily">rounded</item>
         <item name="cornerSizeTopRight">8dp</item>

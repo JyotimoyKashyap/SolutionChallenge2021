@@ -106,12 +106,24 @@ public class VaccineDetailsFragment extends Fragment {
         binding.dose.setText(mDose);
 
 
+        binding.confirmBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                SendDataToServer();
+            }
+        });
+
+
 
         return binding.getRoot();
     }
 
 
 
+    public void SendDataToServer()
+    {
+
+    }
 
     @Override
     public void onDestroyView() {

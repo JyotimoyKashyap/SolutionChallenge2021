@@ -1,16 +1,22 @@
-package com.example.vaccineapp.data.Api;
+package com.example.vaccineapp.data.api;
 
 import com.example.vaccineapp.data.Model.CovidTracker.CovidResponse;
+import com.example.vaccineapp.data.model.ResponseBabyDetails;
 import com.example.vaccineapp.data.model.ResponseDocDetails;
 import com.example.vaccineapp.data.model.ResponseDoctor;
 import com.example.vaccineapp.data.model.ResponseHosDetails;
 import com.example.vaccineapp.data.model.ResponseHospital;
+import com.example.vaccineapp.data.model.ResponseVacTaken;
 import com.example.vaccineapp.data.model.ResponseVaccine;
 import com.example.vaccineapp.data.model.ResponseVaccineDetails;
+import com.example.vaccineapp.data.model.Vaccine;
+import com.example.vaccineapp.data.model.VaccinesTaken;
 
 import retrofit2.Call;
+import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.Headers;
+import retrofit2.http.POST;
 import retrofit2.http.Path;
 
 public interface ApiService {
@@ -37,4 +43,16 @@ public interface ApiService {
 
     @GET("api/vaccine")
     Call<ResponseVaccineDetails> GetAllVaccines();
+
+    @GET("api/vaccine/hospitalwise/all")
+    Call<ResponseVacTaken> GetAllVaccinesHosWise();
+
+
+    @POST("api/user/baby/taken/vaccine")
+    Call<ResponseBabyDetails> AddVaccinesTaken(@Body VaccinesTaken vaccinesTaken);
+
+    @POST("api/user/baby/remove/vaccine")
+    Call<ResponseBabyDetails> RemoveVaccine(@Body VaccinesTaken vaccinesTaken);
+
+
 }

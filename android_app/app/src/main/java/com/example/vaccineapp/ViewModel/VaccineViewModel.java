@@ -7,9 +7,12 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.MutableLiveData;
 
-import com.example.vaccineapp.data.Api.ApiHelper;
+import com.example.vaccineapp.data.api.ApiHelper;
+import com.example.vaccineapp.data.model.ResponseBabyDetails;
+import com.example.vaccineapp.data.model.ResponseVacTaken;
 import com.example.vaccineapp.data.model.ResponseVaccine;
 import com.example.vaccineapp.data.model.ResponseVaccineDetails;
+import com.example.vaccineapp.data.model.VaccinesTaken;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -21,12 +24,16 @@ public class VaccineViewModel extends AndroidViewModel {
     private ApiHelper apiHelper;
     private MutableLiveData<ResponseVaccine> vaccineRes;
     private MutableLiveData<ResponseVaccineDetails> vaccineDetails;
+    private MutableLiveData<ResponseVacTaken> vacTaken;
+    private MutableLiveData<ResponseBabyDetails> babyVaccinesResponse;
 
     public VaccineViewModel(@NonNull Application application) {
         super(application);
         apiHelper = new ApiHelper(application);
         vaccineRes = new MutableLiveData<ResponseVaccine>();
         vaccineDetails = new MutableLiveData<ResponseVaccineDetails>();
+        vacTaken = new MutableLiveData<ResponseVacTaken>();
+        babyVaccinesResponse = new MutableLiveData<ResponseBabyDetails>();
 
     }
 
@@ -38,6 +45,14 @@ public class VaccineViewModel extends AndroidViewModel {
     public MutableLiveData<ResponseVaccineDetails> getAllVaccinesResponse()
     {
         return vaccineDetails;
+    }
+
+    public MutableLiveData<ResponseVacTaken> getVacTakenRes() {
+        return vacTaken;
+    }
+
+    public MutableLiveData<ResponseBabyDetails> getBabyVaccinesResponse() {
+        return babyVaccinesResponse;
     }
 
     public void getVaccine(String id)
@@ -74,6 +89,63 @@ public class VaccineViewModel extends AndroidViewModel {
             @Override
             public void onFailure(Call<ResponseVaccineDetails> call, Throwable t) {
                 vaccineDetails.postValue(null);
+            }
+        });
+    }
+
+    public void getVaccinesHosWise()
+    {
+        apiHelper.GetAllVaccinesHosWise().enqueue(new Callback<ResponseVacTaken>() {
+            @Override
+            public void onResponse(Call<ResponseVacTaken> call, Response<ResponseVacTaken> response) {
+                if(response.code()<300){
+                    vacTaken.postValue(response.body());
+                }else if(response.code()>400){
+                    vacTaken.postValue(null);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseVacTaken> call, Throwable t) {
+                vacTaken.postValue(null);
+            }
+        });
+    }
+
+    public void AddVaccines(VaccinesTaken vaccinesTaken)
+    {
+        apiHelper.AddVaccinesTaken(vaccinesTaken).enqueue(new Callback<ResponseBabyDetails>() {
+            @Override
+            public void onResponse(Call<ResponseBabyDetails> call, Response<ResponseBabyDetails> response) {
+                if (response.code() < 300) {
+                    babyVaccinesResponse.postValue(response.body());
+                } else if (response.code() > 400) {
+                    babyVaccinesResponse.postValue(null);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBabyDetails> call, Throwable t) {
+                babyVaccinesResponse.postValue(null);
+            }
+        });
+    }
+
+    public void RemoveVaccines(VaccinesTaken vaccinesTaken)
+    {
+        apiHelper.RemoveVaccine(vaccinesTaken).enqueue(new Callback<ResponseBabyDetails>() {
+            @Override
+            public void onResponse(Call<ResponseBabyDetails> call, Response<ResponseBabyDetails> response) {
+                if(response.code()<300){
+                    babyVaccinesResponse.postValue(response.body());
+                }else if(response.code()>400){
+                    babyVaccinesResponse.postValue(null);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBabyDetails> call, Throwable t) {
+                babyVaccinesResponse.postValue(null);
             }
         });
     }

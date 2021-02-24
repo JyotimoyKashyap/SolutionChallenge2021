@@ -1,19 +1,23 @@
-package com.example.vaccineapp.data.Api;
+package com.example.vaccineapp.data.api;
 
 import android.content.Context;
 
 import com.example.vaccineapp.data.Model.CovidTracker.CovidResponse;
+
+import com.example.vaccineapp.data.model.ResponseBabyDetails;
 import com.example.vaccineapp.data.model.ResponseDocDetails;
 import com.example.vaccineapp.data.model.ResponseDoctor;
 import com.example.vaccineapp.data.model.ResponseHosDetails;
 import com.example.vaccineapp.data.model.ResponseHospital;
+import com.example.vaccineapp.data.model.ResponseVacTaken;
 import com.example.vaccineapp.data.model.ResponseVaccine;
 import com.example.vaccineapp.data.model.ResponseVaccineDetails;
+import com.example.vaccineapp.data.model.VaccinesTaken;
 import com.example.vaccineapp.retrofit.RetrofitProvider;
 
 import retrofit2.Call;
 
-public class ApiHelper implements ApiService{
+public class ApiHelper implements ApiService {
 
     private static ApiHelper instance;
     private ApiService api;
@@ -65,5 +69,20 @@ public class ApiHelper implements ApiService{
     @Override
     public Call<ResponseVaccineDetails> GetAllVaccines() {
         return api.GetAllVaccines();
+    }
+
+    @Override
+    public Call<ResponseVacTaken> GetAllVaccinesHosWise() {
+        return api.GetAllVaccinesHosWise();
+    }
+
+    @Override
+    public Call<ResponseBabyDetails> AddVaccinesTaken(VaccinesTaken vaccinesTaken) {
+        return api.AddVaccinesTaken(vaccinesTaken);
+    }
+
+    @Override
+    public Call<ResponseBabyDetails> RemoveVaccine(VaccinesTaken vaccinesTaken) {
+        return api.RemoveVaccine(vaccinesTaken);
     }
 }
