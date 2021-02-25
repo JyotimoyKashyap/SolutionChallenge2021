@@ -2,6 +2,7 @@ package com.example.vaccineapp.MainDestinations.Vaccine;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
@@ -16,10 +17,21 @@ import com.example.vaccineapp.ViewModel.VaccineViewModel;
 import com.example.vaccineapp.databinding.FragmentVaccineBinding;
 import com.google.android.material.transition.MaterialElevationScale;
 import com.google.android.material.transition.MaterialSharedAxis;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.time.LocalDate;
+import java.time.Period;
 
 
 public class VaccineFragment extends Fragment implements VaccineListAdapter.OnVaccineCardClick{
 
+    FirebaseAuth mAuth;
+    DatabaseReference databaseReference;
 
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
@@ -65,6 +77,11 @@ public class VaccineFragment extends Fragment implements VaccineListAdapter.OnVa
         binding = FragmentVaccineBinding.inflate(inflater, container, false);
         setExitTransition(new MaterialSharedAxis(MaterialSharedAxis.X, false));
 
+        mAuth = FirebaseAuth.getInstance();
+        databaseReference = FirebaseDatabase.getInstance().getReference("Baby_Data");
+
+        Load();
+
         vaccineViewModel.getAllVaccines();
         vaccineViewModel.getAllVaccinesResponse().observe(this,data->{
             if(data != null){
@@ -76,6 +93,39 @@ public class VaccineFragment extends Fragment implements VaccineListAdapter.OnVa
         });
 
         return binding.getRoot();
+    }
+
+    private void Load() {
+
+        String user = mAuth.getCurrentUser().getUid();
+
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.exists()){
+                    String name = snapshot.child(user).child("Baby_Name").getValue(String.class);
+                    String mother = snapshot.child(user).child("Mother_Name").getValue(String.class);
+                    String father = snapshot.child(user).child("Father_Name").getValue(String.class);
+
+                    long years = snapshot.child(user).child("Year").getValue(Long.class);
+                    long month = snapshot.child(user).child("Month").getValue(Long.class);
+                    long day = snapshot.child(user).child("Date").getValue(Long.class);
+
+                    String ageInYears = calculateAge(years, month, day);
+
+                    binding.babyNameTv.setText(name);
+                    binding.babyMotherTv.setText(mother);
+                    binding.babyFatherTv.setText(father);
+                    binding.babyYearTv.setText(ageInYears);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+
+        });
     }
 
     @Override
@@ -96,4 +146,26 @@ public class VaccineFragment extends Fragment implements VaccineListAdapter.OnVa
         transaction.commit();
 
     }
+
+    private String calculateAge(long year, long month, long day){
+        String ageInYears = null;
+
+        int intYear = (int) year;
+        int intMonth = (int) month;
+        int intDay = (int) day;
+
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            LocalDate now = LocalDate.now();
+            LocalDate birthday = LocalDate.of(intYear, intMonth, intDay);
+
+            Period age = Period.between(birthday, now);
+
+            ageInYears = String.valueOf(age.getYears());
+
+
+        }
+
+        return ageInYears + " yrs";
+    }
+
 }

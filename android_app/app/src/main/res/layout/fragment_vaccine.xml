@@ -47,7 +47,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins_light"
-                android:text="X years"
+                android:text="Age"
                 android:textSize="18dp"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="5dp"

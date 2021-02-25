@@ -182,6 +182,7 @@ public class ChildAccountFragment extends Fragment {
                     String mother = snapshot.child(user).child("Mother_Name").getValue(String.class);
                     String father = snapshot.child(user).child("Father_Name").getValue(String.class);
                     String gender = snapshot.child(user).child("Gender").getValue(String.class);
+                    String emailId = mAuth.getCurrentUser().getEmail();
 
                     String dob = String.valueOf(snapshot.child(user).child("Date")
                             .getValue(Long.class)) +"/"+ String.valueOf(snapshot.child(user)
@@ -195,6 +196,7 @@ public class ChildAccountFragment extends Fragment {
                     String ageInYears = calculateAge(years, month, day);
                     binding.ageBaby.setText(ageInYears);
 
+                    binding.registeredEmail.setText(emailId);
                     binding.babyNameTextview.setText(name);
                     binding.genderTextview.setText(capitalizeFirstLetterOfWord(gender));
                     sharedViewModel.setGender(gender);
@@ -254,7 +256,7 @@ public class ChildAccountFragment extends Fragment {
 
         }
 
-        return ageInYears + " yrs";
+        return ageInYears + " years";
     }
 
 }
