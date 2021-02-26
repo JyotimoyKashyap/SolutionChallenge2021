@@ -12,7 +12,7 @@ import android.view.ViewGroup;
 
 import com.example.vaccineapp.ViewModel.SharedViewModel;
 import com.example.vaccineapp.data.api.ApiService;
-import com.example.vaccineapp.data.Model.CovidTracker.CovidResponse;
+import com.example.vaccineapp.data.model.CovidTracker.CovidResponse;
 import com.example.vaccineapp.databinding.FragmentGuidBinding;
 import com.google.android.material.transition.MaterialSharedAxis;
 

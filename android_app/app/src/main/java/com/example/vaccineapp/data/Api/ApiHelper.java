@@ -2,7 +2,7 @@ package com.example.vaccineapp.data.api;
 
 import android.content.Context;
 
-import com.example.vaccineapp.data.Model.CovidTracker.CovidResponse;
+import com.example.vaccineapp.data.model.CovidTracker.CovidResponse;
 
 import com.example.vaccineapp.data.model.ResponseBabyDetails;
 import com.example.vaccineapp.data.model.ResponseDocDetails;

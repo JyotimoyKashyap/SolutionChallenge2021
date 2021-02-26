@@ -1,4 +1,4 @@
-package com.example.vaccineapp.data.Model.CovidTracker;
+package com.example.vaccineapp.data.model.CovidTracker;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

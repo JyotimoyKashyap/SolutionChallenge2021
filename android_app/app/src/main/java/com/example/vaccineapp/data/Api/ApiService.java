@@ -1,6 +1,6 @@
 package com.example.vaccineapp.data.api;
 
-import com.example.vaccineapp.data.Model.CovidTracker.CovidResponse;
+import com.example.vaccineapp.data.model.CovidTracker.CovidResponse;
 import com.example.vaccineapp.data.model.ResponseBabyDetails;
 import com.example.vaccineapp.data.model.ResponseDocDetails;
 import com.example.vaccineapp.data.model.ResponseDoctor;
@@ -9,7 +9,6 @@ import com.example.vaccineapp.data.model.ResponseHospital;
 import com.example.vaccineapp.data.model.ResponseVacTaken;
 import com.example.vaccineapp.data.model.ResponseVaccine;
 import com.example.vaccineapp.data.model.ResponseVaccineDetails;
-import com.example.vaccineapp.data.model.Vaccine;
 import com.example.vaccineapp.data.model.VaccinesTaken;
 
 import retrofit2.Call;
