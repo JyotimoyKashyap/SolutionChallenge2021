@@ -10,7 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.vaccineapp.R;
-import com.example.vaccineapp.data.model.Vaccine;
+import com.example.vaccineapp.data.Model.Vaccine;
 
 import java.util.List;
 

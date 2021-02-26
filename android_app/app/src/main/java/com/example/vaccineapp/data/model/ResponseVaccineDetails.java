@@ -13,9 +13,9 @@ public class ResponseVaccineDetails {
 
     @SerializedName("vaccines")
     @Expose
-    private List<com.example.vaccineapp.data.model.VaccineDetails> vaccineDetails;
+    private List<VaccineDetails> vaccineDetails;
 
-    public ResponseVaccineDetails(String status, List<com.example.vaccineapp.data.model.VaccineDetails> vaccineDetails) {
+    public ResponseVaccineDetails(String status, List<VaccineDetails> vaccineDetails) {
         this.status = status;
         this.vaccineDetails = vaccineDetails;
     }
@@ -28,11 +28,11 @@ public class ResponseVaccineDetails {
         this.status = status;
     }
 
-    public List<com.example.vaccineapp.data.model.VaccineDetails> getVaccineDetails() {
+    public List<VaccineDetails> getVaccineDetails() {
         return vaccineDetails;
     }
 
-    public void setVaccineDetails(List<com.example.vaccineapp.data.model.VaccineDetails> vaccineDetails) {
+    public void setVaccineDetails(List<VaccineDetails> vaccineDetails) {
         this.vaccineDetails = vaccineDetails;
     }
 }

@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.vaccineapp.R;
-import com.example.vaccineapp.data.model.HospitalDetails;
+import com.example.vaccineapp.data.Model.HospitalDetails;
 import com.google.android.material.card.MaterialCardView;
 import com.google.android.material.textview.MaterialTextView;
 

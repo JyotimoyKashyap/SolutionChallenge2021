@@ -8,11 +8,7 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.vaccineapp.data.api.ApiHelper;
-import com.example.vaccineapp.data.model.ResponseBabyDetails;
-import com.example.vaccineapp.data.model.ResponseVacTaken;
-import com.example.vaccineapp.data.model.ResponseVaccine;
-import com.example.vaccineapp.data.model.ResponseVaccineDetails;
-import com.example.vaccineapp.data.model.VaccinesTaken;
+import com.example.vaccineapp.data.Model.*;
 
 import retrofit2.Call;
 import retrofit2.Callback;

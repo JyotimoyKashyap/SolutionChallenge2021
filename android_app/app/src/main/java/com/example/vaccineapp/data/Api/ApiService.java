@@ -1,15 +1,8 @@
-package com.example.vaccineapp.data.api;
+package com.example.vaccineapp.data.Api;
 
-import com.example.vaccineapp.data.model.CovidTracker.CovidResponse;
-import com.example.vaccineapp.data.model.ResponseBabyDetails;
-import com.example.vaccineapp.data.model.ResponseDocDetails;
-import com.example.vaccineapp.data.model.ResponseDoctor;
-import com.example.vaccineapp.data.model.ResponseHosDetails;
-import com.example.vaccineapp.data.model.ResponseHospital;
-import com.example.vaccineapp.data.model.ResponseVacTaken;
-import com.example.vaccineapp.data.model.ResponseVaccine;
-import com.example.vaccineapp.data.model.ResponseVaccineDetails;
-import com.example.vaccineapp.data.model.VaccinesTaken;
+
+import com.example.vaccineapp.data.Model.*;
+import com.example.vaccineapp.data.Model.CovidTracker.CovidResponse;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
