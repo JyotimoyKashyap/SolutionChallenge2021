@@ -15,288 +15,399 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" >
+            android:layout_height="match_parent"
+            android:background="@color/global_background">
 
-
-            <com.google.android.material.imageview.ShapeableImageView
-                android:id="@+id/vaccine_image"
-                android:layout_width="90dp"
-                android:layout_height="90dp"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="16dp"
-                android:layout_marginStart="12dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:shapeAppearanceOverlay="@style/circular"
-                app:srcCompat="@drawable/ic_launcher_foreground" />
-
-            <TextView
-                android:id="@+id/vaccine_name_detailed"
-                android:layout_width="0dp"
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/vaccine_details_guideline1"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                android:fontFamily="@font/poppins_medium"
-                android:text="Name"
-                android:textSize="30sp"
-                android:layout_marginStart="8dp"
-                android:layout_marginEnd="8dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/vaccine_image"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.5"/>
 
-            <TextView
-                android:id="@+id/short_name"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginBottom="28dp"
-                android:fontFamily="@font/poppins_light"
-                android:text="Hepatitis B"
-                android:textSize="16sp"
-                android:layout_marginTop="5dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/vaccine_image"
-                app:layout_constraintTop_toBottomOf="@+id/vaccine_name_detailed" />
-
-            <View
-                android:id="@+id/divider"
-                android:layout_width="0dp"
-                android:layout_height="1dp"
-                android:layout_marginStart="18dp"
-                android:layout_marginTop="18dp"
-                android:layout_marginEnd="18dp"
-                android:layout_marginBottom="12dp"
-                android:background="?android:attr/listDivider"
-                android:padding="4dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/short_name" />
-
-            <TextView
-                android:id="@+id/when_to_give_help"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                android:fontFamily="@font/poppins_medium"
-                android:text="When To Give"
-                android:textSize="20sp"
-                android:layout_marginEnd="12dp"
-                android:layout_marginStart="12dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/confirm_btn" />
-
-            <TextView
-                android:id="@+id/when_to_give_it"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="12dp"
-                android:layout_marginEnd="12dp"
-                android:layout_marginBottom="16dp"
-                android:fontFamily="@font/poppins_light"
-                android:layout_marginTop="5dp"
-                android:text="It should be given within 24 hours of birth"
-                android:textSize="15sp"
-                app:layout_constraintBottom_toTopOf="@+id/divider1"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/when_to_give_help" />
-
-            <View
-                android:id="@+id/divider1"
-                android:layout_width="0dp"
-                android:layout_height="1dp"
-                android:layout_marginTop="16dp"
-                android:background="?android:attr/listDivider"
-                android:padding="4dp"
-                android:layout_marginStart="12dp"
-                android:layout_marginEnd="12dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/when_to_give_it" />
-
-            <TextView
-                android:id="@+id/dose_help"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                android:fontFamily="@font/poppins_medium"
-                android:text="Dose"
-                android:textSize="20sp"
-                android:layout_marginStart="12dp"
-                android:layout_marginEnd="12dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintEnd_toStartOf="@id/dose"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/divider1" />
-
-            <TextView
-                android:id="@+id/dose"
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/vaccine_name_cardview"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:fontFamily="@font/poppins_light"
-                android:text="0.05 ml"
-                android:textSize="15sp"
-                android:layout_marginEnd="12dp"
-                app:layout_constraintBottom_toBottomOf="@id/dose_help"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/divider1" />
-
-            <View
-                android:id="@+id/divider2"
-                android:layout_width="0dp"
-                android:layout_height="1dp"
-                android:layout_marginTop="16dp"
-                android:background="?android:attr/listDivider"
-                android:padding="4dp"
                 android:layout_marginStart="12dp"
                 android:layout_marginEnd="12dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.454"
+                android:clickable="true"
+                app:cardElevation="0dp"
+                app:cardCornerRadius="18dp"
+                app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/dose_help" />
+                app:layout_constraintEnd_toEndOf="parent">
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
 
-            <TextView
-                android:id="@+id/route_vaccine"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                android:fontFamily="@font/poppins_medium"
-                android:text="Route"
-                android:textSize="20sp"
-                android:layout_marginStart="12dp"
-                android:layout_marginEnd="12dp"
-                app:layout_constraintEnd_toStartOf="@id/route"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/divider2" />
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:id="@+id/vaccine_image"
+                        android:layout_width="55dp"
+                        android:layout_height="55dp"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginStart="12dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:shapeAppearanceOverlay="@style/circular"
+                        app:srcCompat="@drawable/ic_launcher_foreground" />
 
-            <TextView
-                android:id="@+id/route"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="22dp"
-                android:fontFamily="@font/poppins_light"
-                android:text="Intramuscular"
-                android:textSize="15sp"
-                android:layout_marginEnd="12dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/divider2" />
+                    <TextView
+                        android:id="@+id/vaccine_name_detailed"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="24dp"
+                        android:fontFamily="@font/poppins_medium"
+                        android:text="Name"
+                        android:textSize="28sp"
+                        android:layout_marginStart="12dp"
+                        android:layout_marginEnd="12dp"
+                        app:layout_constraintBottom_toBottomOf="@id/vaccine_image"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/vaccine_image"
+                        app:layout_constraintTop_toTopOf="@id/vaccine_image"
+                        app:layout_constraintVertical_bias="1.0" />
 
-            <View
-                android:id="@+id/divider3"
-                android:layout_width="0dp"
-                android:layout_height="1dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginStart="12dp"
-                android:layout_marginEnd="12dp"
-                android:layout_marginBottom="13dp"
-                android:background="?android:attr/listDivider"
-                android:padding="4dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.454"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/route" />
+                    <TextView
+                        android:id="@+id/short_name"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:layout_marginEnd="12dp"
+                        android:layout_marginBottom="28dp"
+                        android:fontFamily="@font/poppins_light"
+                        android:text="Hepatitis B"
+                        android:textSize="16dp"
+                        android:layout_marginTop="5dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/vaccine_name_detailed" />
 
-            <TextView
-                android:id="@+id/site_help"
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/when_to_give_card"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                android:fontFamily="@font/poppins_medium"
-                android:text="Site"
-                android:textSize="20sp"
+                android:clickable="true"
+                app:cardElevation="0dp"
+                app:cardCornerRadius="18dp"
                 android:layout_marginStart="12dp"
                 android:layout_marginEnd="12dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.055"
+                android:layout_marginTop="20dp"
+                app:layout_constraintTop_toBottomOf="@id/vaccine_name_cardview"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/divider3" />
+                app:layout_constraintEnd_toEndOf="parent">
 
-            <TextView
-                android:id="@+id/site"
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/when_to_give_help"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:fontFamily="@font/poppins_medium"
+                        android:text="When To Give"
+                        android:textSize="20sp"
+                        android:layout_marginEnd="12dp"
+                        android:layout_marginStart="12dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/when_to_give_it"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:layout_marginEnd="12dp"
+                        android:layout_marginBottom="16dp"
+                        android:fontFamily="@font/poppins_light"
+                        android:layout_marginTop="5dp"
+                        android:text="It should be given within 24 hours of birth"
+                        android:textSize="15dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/when_to_give_help" />
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/dose_cardview"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:cardElevation="0dp"
+                app:cardCornerRadius="18dp"
+                android:layout_marginStart="12dp"
+                android:layout_marginEnd="6dp"
+                android:layout_marginTop="20dp"
+                app:layout_constraintBottom_toBottomOf="@id/route_card_view"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/vaccine_details_guideline1"
+                app:layout_constraintTop_toBottomOf="@id/when_to_give_card">
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/dose_help"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:fontFamily="@font/poppins_medium"
+                        android:text="Dose"
+                        android:textSize="20sp"
+                        android:layout_marginStart="12dp"
+                        android:layout_marginEnd="12dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"/>
+
+                    <TextView
+                        android:id="@+id/dose"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:fontFamily="@font/poppins_light"
+                        android:text="0.05 ml"
+                        android:textSize="15dp"
+                        android:layout_marginEnd="12dp"
+                        android:layout_marginStart="12dp"
+                        android:layout_marginBottom="20dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/dose_help"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"/>
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/route_card_view"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="12dp"
+                app:cardElevation="0dp"
+                app:cardCornerRadius="18dp"
+                android:layout_marginStart="6dp"
                 android:layout_marginEnd="12dp"
-                android:layout_marginTop="5dp"
-                android:fontFamily="@font/poppins_light"
-                android:text="It should be given within 24 hours of birth"
-                android:textSize="15sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/site_help" />
+                android:layout_marginTop="20dp"
+                app:layout_constraintTop_toBottomOf="@id/when_to_give_card"
+                app:layout_constraintStart_toEndOf="@id/vaccine_details_guideline1"
+                app:layout_constraintEnd_toEndOf="parent">
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
 
-            <View
-                android:id="@+id/divider4"
-                android:layout_width="0dp"
-                android:layout_height="1dp"
-                android:layout_marginStart="12dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="12dp"
-                android:layout_marginBottom="12dp"
-                android:background="?android:attr/listDivider"
-                android:padding="4dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/site" />
+                    <TextView
+                        android:id="@+id/route_vaccine"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:fontFamily="@font/poppins_medium"
+                        android:text="Route"
+                        android:textSize="20sp"
+                        android:layout_marginStart="12dp"
+                        android:layout_marginEnd="12dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"/>
 
-            <TextView
-                android:id="@+id/description_help"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                android:layout_marginStart="12dp"
-                android:layout_marginEnd="12dp"
-                android:fontFamily="@font/poppins_medium"
-                android:text="Description"
-                android:textSize="20sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/divider4" />
+                    <TextView
+                        android:id="@+id/route"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="22dp"
+                        android:fontFamily="@font/poppins_light"
+                        android:text="Intramuscular"
+                        android:textSize="15sp"
+                        android:layout_marginBottom="20dp"
+                        android:layout_marginEnd="12dp"
+                        android:layout_marginStart="12dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/route_vaccine"
+                        app:layout_constraintEnd_toEndOf="parent"/>
 
-            <TextView
-                android:id="@+id/description"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="12dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="12dp"
-                android:layout_marginBottom="14dp"
-                android:fontFamily="@font/poppins_light"
-                android:maxLines="10"
-                android:text="Hepatitis B is a vaccine-preventable liver infection caused by the hepatitis B virus (HBV). Hepatitis B is spread when blood, semen, or other body fluids from a person infected with the virus enters the body of someone who is not infected."
-                android:textSize="15sp"
-                app:layout_constraintBottom_toBottomOf="@+id/constraintLayout"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/description_help" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <TextView
-                android:id="@+id/confirm_vaccine"
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/site_card_view"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="Have your baby taken this vaccine ?"
-                app:layout_constraintTop_toBottomOf="@id/divider"
-                android:textSize="20sp"
-                android:fontFamily="@font/poppins_medium"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:cardElevation="0dp"
+                app:cardCornerRadius="18dp"
                 android:layout_marginStart="12dp"
                 android:layout_marginEnd="12dp"
-                android:layout_marginTop="10dp"/>
+                android:layout_marginTop="20dp"
+                app:layout_constraintTop_toBottomOf="@id/route_card_view"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
 
-            <Button
-                android:id="@+id/confirm_btn"
-                android:layout_width="wrap_content"
+                    <TextView
+                        android:id="@+id/site_help"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:fontFamily="@font/poppins_medium"
+                        android:text="Site"
+                        android:textSize="20dp"
+                        android:layout_marginStart="12dp"
+                        android:layout_marginEnd="12dp"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"/>
+
+                    <TextView
+                        android:id="@+id/site"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:layout_marginEnd="12dp"
+                        android:layout_marginTop="5dp"
+                        android:fontFamily="@font/poppins_light"
+                        android:text="It should be given within 24 hours of birth"
+                        android:textSize="15dp"
+                        android:layout_marginBottom="20dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/site_help" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/description_card_view"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="Yes"
-                android:fontFamily="@font/poppins_medium"
-                android:textAllCaps="false"
+                app:cardElevation="0dp"
+                app:cardCornerRadius="18dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="12dp"
                 android:layout_marginEnd="12dp"
-                app:layout_constraintTop_toBottomOf="@id/confirm_vaccine"
-                app:layout_constraintEnd_toEndOf="parent"/>
+                app:layout_constraintTop_toBottomOf="@id/site_card_view"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/description_help"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:layout_marginStart="12dp"
+                        android:layout_marginEnd="12dp"
+                        android:fontFamily="@font/poppins_medium"
+                        android:text="Description"
+                        android:textSize="20dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"/>
+
+                    <TextView
+                        android:id="@+id/description"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginEnd="12dp"
+                        android:layout_marginBottom="14dp"
+                        android:fontFamily="@font/poppins_light"
+                        android:maxLines="10"
+                        android:text="Hepatitis B is a vaccine-preventable liver infection caused by the hepatitis B virus (HBV). Hepatitis B is spread when blood, semen, or other body fluids from a person infected with the virus enters the body of someone who is not infected."
+                        android:textSize="15sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/description_help"/>
+
+
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:cardElevation="0dp"
+                app:cardCornerRadius="18dp"
+                android:layout_marginStart="12dp"
+                android:layout_marginEnd="12dp"
+                android:layout_marginTop="20dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/description_card_view">
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/confirm_vaccine"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="Have your baby taken this vaccine ?"
+                        android:textSize="20dp"
+                        android:fontFamily="@font/poppins_medium"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        android:layout_marginStart="12dp"
+                        android:layout_marginEnd="12dp"
+                        android:layout_marginTop="15dp"/>
+
+                    <Button
+                        android:id="@+id/confirm_btn"
+                        android:layout_width="0dp"
+                        android:layout_height="55dp"
+                        android:text="Yes"
+                        android:fontFamily="@font/poppins_medium"
+                        android:textAllCaps="false"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginEnd="12dp"
+                        android:layout_marginStart="12dp"
+                        android:layout_marginTop="8dp"
+                        style="?attr/materialButtonOutlinedStyle"
+                        app:strokeWidth="0dp"
+                        android:textColor="@color/positive_btn_text_color"
+                        android:backgroundTint="@color/btn_background_tint"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/confirm_vaccine"
+                        app:layout_constraintEnd_toEndOf="parent"/>
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+
+
+
+
+
+
+
+
+
 
 
 
