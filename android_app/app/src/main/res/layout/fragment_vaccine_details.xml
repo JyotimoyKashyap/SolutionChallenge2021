@@ -109,6 +109,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
 
+
                     <ImageView
                         android:id="@+id/when_to_give_icon"
                         android:layout_width="30dp"
@@ -172,6 +173,15 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
+
+                    <com.airbnb.lottie.LottieAnimationView
+                        android:layout_width="match_parent"
+                        android:layout_height="150dp"
+                        app:lottie_rawRes="@raw/card_background_anim"
+                        app:lottie_autoPlay="true"
+                        android:alpha="0.2"
+                        app:lottie_loop="true"
+                        tools:ignore="MissingConstraints" />
 
                     <ImageView
                         android:id="@+id/dose_icon"
