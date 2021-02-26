@@ -20,6 +20,7 @@ import com.example.vaccineapp.ViewModel.VaccineViewModel;
 import com.example.vaccineapp.databinding.FragmentHospitalDetailsBinding;
 import com.google.android.material.transition.MaterialContainerTransform;
 import com.google.android.material.transition.MaterialElevationScale;
+import com.google.android.material.transition.MaterialSharedAxis;
 
 
 public class HospitalDetailsFragment extends Fragment {
@@ -93,7 +94,8 @@ public class HospitalDetailsFragment extends Fragment {
         // Inflate the layout for this fragment
         binding = FragmentHospitalDetailsBinding.inflate(inflater, container, false);
 
-        setEnterTransition(new MaterialElevationScale(true));
+        setEnterTransition(new MaterialSharedAxis(MaterialSharedAxis.Y, true));
+        setExitTransition(new MaterialSharedAxis(MaterialSharedAxis.Y, false));
         setReenterTransition(new MaterialContainerTransform());
         //custom font for collapsing toolbar layout
         Typeface typeface = ResourcesCompat.getFont(getContext(), R.font.poppins_bold);

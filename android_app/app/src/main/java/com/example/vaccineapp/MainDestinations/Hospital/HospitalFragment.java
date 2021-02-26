@@ -71,7 +71,7 @@ public class HospitalFragment extends Fragment implements HospitalListAdapter.On
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         binding = FragmentHospitalBinding.inflate(inflater, container, false);
-        setExitTransition(new MaterialSharedAxis(MaterialSharedAxis.X, false));
+        setExitTransition(new MaterialSharedAxis(MaterialSharedAxis.Y, false));
         View view = binding.getRoot();
 
 
@@ -96,7 +96,7 @@ public class HospitalFragment extends Fragment implements HospitalListAdapter.On
                 address,
                 contact, id, position);
 
-        hospitalDetailsFragment.setEnterTransition(new MaterialElevationScale(true));
+        hospitalDetailsFragment.setEnterTransition(new MaterialSharedAxis(MaterialSharedAxis.Y, true));
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
         transaction.replace(R.id.fragment_container, hospitalDetailsFragment);
         transaction.addToBackStack(null);

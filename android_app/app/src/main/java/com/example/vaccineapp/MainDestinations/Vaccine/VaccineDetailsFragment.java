@@ -13,6 +13,7 @@ import android.widget.Toast;
 import com.example.vaccineapp.R;
 import com.example.vaccineapp.ViewModel.VaccineViewModel;
 import com.example.vaccineapp.databinding.FragmentVaccineDetailsBinding;
+import com.google.android.material.transition.MaterialSharedAxis;
 
 
 public class VaccineDetailsFragment extends Fragment {
@@ -94,6 +95,7 @@ public class VaccineDetailsFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         binding = FragmentVaccineDetailsBinding.inflate(inflater, container, false);
+        setExitTransition(new MaterialSharedAxis(MaterialSharedAxis.Y, false));
 
 
 

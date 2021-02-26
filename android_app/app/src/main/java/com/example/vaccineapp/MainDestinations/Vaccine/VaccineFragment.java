@@ -75,7 +75,7 @@ public class VaccineFragment extends Fragment implements VaccineListAdapter.OnVa
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         binding = FragmentVaccineBinding.inflate(inflater, container, false);
-        setExitTransition(new MaterialSharedAxis(MaterialSharedAxis.X, false));
+        setExitTransition(new MaterialSharedAxis(MaterialSharedAxis.Y, false));
 
         mAuth = FirebaseAuth.getInstance();
         databaseReference = FirebaseDatabase.getInstance().getReference("Baby_Data");
@@ -138,7 +138,7 @@ public class VaccineFragment extends Fragment implements VaccineListAdapter.OnVa
         VaccineDetailsFragment vaccineDetailsFragment = VaccineDetailsFragment.newInstance(vaccineName, vaccineId,
                 whenToGive, position, dose, route, site, description);
 
-        vaccineDetailsFragment.setEnterTransition(new MaterialElevationScale(true));
+        vaccineDetailsFragment.setEnterTransition(new MaterialSharedAxis(MaterialSharedAxis.Y, true));
 
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
         transaction.replace(R.id.fragment_container, vaccineDetailsFragment);
