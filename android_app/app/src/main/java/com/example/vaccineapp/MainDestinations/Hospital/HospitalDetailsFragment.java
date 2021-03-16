@@ -104,7 +104,8 @@ public class HospitalDetailsFragment extends Fragment {
 
         //setting the views
         binding.collapsingToolbar.setTitle(mHospitalName);
-        binding.addtionalInfo.setText("Phone: " + mContact + "\n" + "Address: " + mAddress);
+        binding.phoneNumberTextView.setText(mContact);
+        binding.addressTextView.setText(mAddress);
 
         //getting the data of particular hospital through id
         hospitalViewModel.getHospital(mId);
