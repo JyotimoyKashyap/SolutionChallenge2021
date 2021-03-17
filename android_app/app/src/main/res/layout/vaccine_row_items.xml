@@ -3,17 +3,18 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:background="@color/global_background">
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/materialCardView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="4dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="4dp"
-        android:backgroundTint="@color/vaccine_bg_tintt"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginBottom="5dp"
+        android:backgroundTint="@color/bottom_sheet_background"
         android:clickable="true"
         android:focusable="true"
         app:cardCornerRadius="12dp"
@@ -28,43 +29,13 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <com.google.android.material.card.MaterialCardView
-                android:layout_width="58dp"
-                android:layout_height="58dp"
-                android:background="@android:color/transparent"
-                app:cardCornerRadius="30dp"
-                app:cardElevation="0dp"
-                app:layout_constraintTop_toTopOf="@id/vaccine_icon"
-                app:layout_constraintBottom_toBottomOf="@id/vaccine_icon"
-                app:layout_constraintStart_toStartOf="@id/vaccine_icon"
-                app:layout_constraintEnd_toEndOf="@id/vaccine_icon"
-                app:strokeWidth="1dp"
-                app:strokeColor="@color/green_primary"/>
-
-
-            <ImageView
-                android:id="@+id/vaccine_icon"
-                android:layout_width="46dp"
-                android:layout_height="45dp"
-                android:layout_marginStart="18dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="0dp"
-                android:layout_marginBottom="10dp"
-                android:padding="4dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/vaccine_name"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/ic_syringe"
-                app:tint="@color/green_secondary" />
 
             <TextView
                 android:id="@+id/vaccine_name"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:layout_marginStart="10dp"
+                android:layout_marginTop="14dp"
+                android:layout_marginStart="12dp"
                 android:layout_marginEnd="12dp"
                 android:layout_marginBottom="3dp"
                 android:fontFamily="@font/poppins_bold"
@@ -72,7 +43,7 @@
                 android:textSize="20dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.296"
-                app:layout_constraintStart_toEndOf="@id/vaccine_icon"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
@@ -80,14 +51,15 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="14dp"
-                android:layout_marginStart="10dp"
+                android:layout_marginStart="12dp"
                 android:layout_marginEnd="12dp"
                 android:layout_marginTop="4dp"
                 android:text="When To Give"
+                android:fontFamily="@font/poppins_light"
                 android:textSize="13sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/vaccine_icon"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/vaccine_name" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
