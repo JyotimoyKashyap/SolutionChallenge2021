@@ -80,53 +80,48 @@ public class VaccineFragment extends Fragment implements VaccineListAdapter.OnVa
         mAuth = FirebaseAuth.getInstance();
         databaseReference = FirebaseDatabase.getInstance().getReference("Baby_Data");
 
-        Load();
 
         vaccineViewModel.getAllVaccines();
         vaccineViewModel.getAllVaccinesResponse().observe(this,data->{
             if(data != null){
                 adapter = new VaccineListAdapter(data.getVaccineDetails(), getContext(),this::onClickListener);
-                binding.upcomingVaccinesRecyclerView.setAdapter(adapter);
+                //binding.upcomingVaccinesRecyclerView.setAdapter(adapter);
             }else{
                 Toast.makeText(getContext(), "There is some error", Toast.LENGTH_SHORT).show();
             }
         });
 
+
         return binding.getRoot();
     }
 
-    private void Load() {
-
-        String user = mAuth.getCurrentUser().getUid();
-
-        databaseReference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if(snapshot.exists()){
-                    String name = snapshot.child(user).child("Baby_Name").getValue(String.class);
-                    String mother = snapshot.child(user).child("Mother_Name").getValue(String.class);
-                    String father = snapshot.child(user).child("Father_Name").getValue(String.class);
-
-                    long years = snapshot.child(user).child("Year").getValue(Long.class);
-                    long month = snapshot.child(user).child("Month").getValue(Long.class);
-                    long day = snapshot.child(user).child("Date").getValue(Long.class);
-
-                    String ageInYears = calculateAge(years, month, day);
-
-                    binding.babyNameTv.setText(name);
-                    binding.babyMotherTv.setText(mother);
-                    binding.babyFatherTv.setText(father);
-                    binding.babyYearTv.setText(ageInYears);
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-
-        });
-    }
+//    private void Load() {
+//
+//        String user = mAuth.getCurrentUser().getUid();
+//
+//        databaseReference.addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                if(snapshot.exists()){
+//                    String name = snapshot.child(user).child("Baby_Name").getValue(String.class);
+//                    String mother = snapshot.child(user).child("Mother_Name").getValue(String.class);
+//                    String father = snapshot.child(user).child("Father_Name").getValue(String.class);
+//
+//                    long years = snapshot.child(user).child("Year").getValue(Long.class);
+//                    long month = snapshot.child(user).child("Month").getValue(Long.class);
+//                    long day = snapshot.child(user).child("Date").getValue(Long.class);
+//
+//                    String ageInYears = calculateAge(years, month, day);
+//                }
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError error) {
+//
+//            }
+//
+//        });
+//    }
 
     @Override
     public void onClickListener(int position, String vaccineId,
