@@ -1,9 +1,12 @@
 package com.example.vaccineapp.data.Model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class VaccineDetails {
+public class VaccineDetails implements Parcelable {
 
     @SerializedName("_id")
     @Expose
@@ -150,4 +153,52 @@ public class VaccineDetails {
     public void set__v(int __v) {
         this.__v = __v;
     }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeString(_id);
+        parcel.writeString(name);
+        parcel.writeString(whenToGive);
+        parcel.writeString(dose);
+        parcel.writeString(route);
+        parcel.writeString(site);
+        parcel.writeString(description);
+        parcel.writeString(smallDescription);
+        parcel.writeString(createdAt);
+        parcel.writeString(updatedAt);
+        parcel.writeInt(__v);
+
+    }
+
+    public VaccineDetails(Parcel in){
+        _id = in.readString();
+        name = in.readString();
+        whenToGive = in.readString();
+        dose = in.readString();
+        route = in.readString();
+        site = in.readString();
+        description = in.readString();
+        smallDescription = in.readString();
+        createdAt = in.readString();
+        updatedAt = in.readString();
+        __v = in.readInt();
+    }
+
+    public static final Parcelable.Creator<VaccineDetails> CREATOR = new Parcelable.Creator<VaccineDetails>(){
+
+        @Override
+        public VaccineDetails createFromParcel(Parcel parcel) {
+            return new VaccineDetails(parcel);
+        }
+
+        @Override
+        public VaccineDetails[] newArray(int i) {
+            return new VaccineDetails[0];
+        }
+    };
 }

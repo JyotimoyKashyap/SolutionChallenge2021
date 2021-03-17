@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -80,12 +81,15 @@ public class VaccineFragment extends Fragment implements VaccineListAdapter.OnVa
         mAuth = FirebaseAuth.getInstance();
         databaseReference = FirebaseDatabase.getInstance().getReference("Baby_Data");
 
+        // layout manager
+        binding.upcomingVaccinesRecyclerView.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
+
 
         vaccineViewModel.getAllVaccines();
         vaccineViewModel.getAllVaccinesResponse().observe(this,data->{
             if(data != null){
                 adapter = new VaccineListAdapter(data.getVaccineDetails(), getContext(),this::onClickListener);
-                //binding.upcomingVaccinesRecyclerView.setAdapter(adapter);
+                binding.upcomingVaccinesRecyclerView.setAdapter(adapter);
             }else{
                 Toast.makeText(getContext(), "There is some error", Toast.LENGTH_SHORT).show();
             }
