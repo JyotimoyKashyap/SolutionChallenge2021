@@ -32,24 +32,15 @@ const createSendToken = async (user, statusCode, req, res) => {
 // Function to sign up
 exports.signup = async (req, res) => {
   try {
-    const user = await User.findOne({ email: req.body.email });
-    if (user) {
-      return res.status(400).json({
-        status: 'fail',
-        message: 'Email already registered!',
-      });
-    }
     const newUser = await User.create({
-      name: req.body.name,
-      phone: req.body.phone,
       email: req.body.email,
-      address: req.body.address,
+      uid: req.body.uid,
     });
-    newUser.password = await bcrypt.hash(req.body.password, 12);
-    await newUser.save();
-    createSendToken(newUser, 201, req, res);
+    res.status(201).json({
+      status: 'success',
+      user: newUser,
+    });
   } catch (err) {
-    console.log(err);
     res.status(400).json({
       status: 'fail',
       message: err,
@@ -80,7 +71,7 @@ exports.login = async (req, res) => {
 // Function to get single user info
 exports.getUser = async (req, res) => {
   try {
-    const user = await User.findById(req.params.userId);
+    const user = await User.findById(req.params.uid);
     res.status(200).json({
       status: 'success',
       user,
@@ -96,14 +87,10 @@ exports.getUser = async (req, res) => {
 // Function to edit user information
 exports.editUser = async (req, res) => {
   try {
-    const updatedUser = await User.findByIdAndUpdate(
-      req.params.userId,
-      req.body,
-      {
-        new: true,
-        runValidators: true,
-      }
-    );
+    const updatedUser = await User.findByIdAndUpdate(req.params.uid, req.body, {
+      new: true,
+      runValidators: true,
+    });
     res.status(200).json({
       status: 'success',
       user: updatedUser,
