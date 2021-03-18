@@ -124,14 +124,14 @@ public class SignupFragment extends Fragment {
         vaccineViewModel.SignUp(ss);
         vaccineViewModel.getSignUpResponse().observe(this,data->{
             if(data!=null){
-                Log.i("ApiCall", "successFull");
+                Log.e("ApiCall", "successFull");
                 String status = data.getStatus();
-                Toast.makeText(getActivity(),""+status,Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getActivity(),""+status,Toast.LENGTH_SHORT).show();
             }
             else{
-                Log.i("ApiCall", "Failure");
+                Log.e("ApiCall", "Failure");
                 String status = data.getStatus();
-                Toast.makeText(getActivity(),""+status,Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getActivity(),""+status,Toast.LENGTH_SHORT).show();
             }
         });
     }

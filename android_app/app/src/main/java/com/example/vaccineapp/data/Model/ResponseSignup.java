@@ -5,12 +5,17 @@ import com.google.gson.annotations.SerializedName;
 
 public class ResponseSignup {
 
+    @SerializedName("status")
+    @Expose
     private String status;
-    private User user;
 
-    public ResponseSignup(String status, User user) {
+    @SerializedName("user")
+    @Expose
+    private UserDetails userDetails;
+
+    public ResponseSignup(String status, UserDetails userDetails) {
         this.status = status;
-        this.user = user;
+        this.userDetails = userDetails;
     }
 
     public String getStatus() {
@@ -21,11 +26,11 @@ public class ResponseSignup {
         this.status = status;
     }
 
-    public User getUser() {
-        return user;
+    public UserDetails getUser() {
+        return userDetails;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUser(UserDetails userDetails) {
+        this.userDetails = userDetails;
     }
 }
