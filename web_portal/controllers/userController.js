@@ -71,7 +71,7 @@ exports.login = async (req, res) => {
 // Function to get single user info
 exports.getUser = async (req, res) => {
   try {
-    const user = await User.findById(req.params.userId);
+    const user = await User.findById(req.params.uid);
     res.status(200).json({
       status: 'success',
       user,
@@ -87,14 +87,10 @@ exports.getUser = async (req, res) => {
 // Function to edit user information
 exports.editUser = async (req, res) => {
   try {
-    const updatedUser = await User.findByIdAndUpdate(
-      req.params.userId,
-      req.body,
-      {
-        new: true,
-        runValidators: true,
-      }
-    );
+    const updatedUser = await User.findByIdAndUpdate(req.params.uid, req.body, {
+      new: true,
+      runValidators: true,
+    });
     res.status(200).json({
       status: 'success',
       user: updatedUser,
