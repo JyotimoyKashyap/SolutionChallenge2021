@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.example.vaccineapp.MainDestinations.Hospital.Doctor.DoctorDetailFragment;
 import com.example.vaccineapp.R;
 import com.example.vaccineapp.ViewModel.VaccineViewModel;
 import com.example.vaccineapp.databinding.FragmentVaccineBinding;
