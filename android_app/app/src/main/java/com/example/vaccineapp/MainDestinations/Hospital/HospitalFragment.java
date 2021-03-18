@@ -5,6 +5,7 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import android.transition.Transition;
 import android.transition.TransitionInflater;

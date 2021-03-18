@@ -86,12 +86,24 @@
                         android:layout_height="match_parent"
                         android:backgroundTint="@color/bottom_sheet_background">
 
+                        <TextView
+                            android:id="@+id/contact_tv"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:text="Contact"
+                            android:textSize="19dp"
+                            android:fontFamily="@font/poppins_semibold"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            android:layout_marginStart="14dp"
+                            android:layout_marginTop="10dp"/>
+
                         <ImageView
                             android:id="@+id/call_icon"
                             android:layout_width="25dp"
                             android:layout_height="25dp"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/contact_tv"
                             android:layout_marginStart="12dp"
                             android:layout_marginTop="12dp"
                             android:src="@drawable/ic_call"/>
@@ -104,7 +116,7 @@
                             android:text="Phone Number"
                             android:textSize="16dp"
                             app:layout_constraintStart_toEndOf="@id/call_icon"
-                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/contact_tv"
                             android:layout_marginTop="12dp"
                             android:layout_marginStart="10dp"/>
 
@@ -155,10 +167,22 @@
                         android:layout_height="match_parent">
 
                         <TextView
+                            android:id="@+id/about_tv"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:text="About"
+                            android:textSize="19dp"
+                            android:layout_marginStart="14dp"
+                            android:layout_marginTop="10dp"
+                            android:fontFamily="@font/poppins_semibold"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"/>
+
+                        <TextView
                             android:id="@+id/description"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="10dp"
+                            android:layout_marginTop="5dp"
                             android:layout_marginBottom="10dp"
                             android:fontFamily="@font/poppins_light"
                             android:text="This section will contain address of the hospital and detailed contact info also"
@@ -166,7 +190,7 @@
                             android:layout_marginEnd="12dp"
                             android:textSize="16dp"
                             app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/about_tv"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"/>
 

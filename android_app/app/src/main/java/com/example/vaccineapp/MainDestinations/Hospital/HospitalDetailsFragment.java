@@ -6,6 +6,7 @@ import android.os.Bundle;
 import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -137,6 +138,8 @@ public class HospitalDetailsFragment extends Fragment {
                 Toast.makeText(getContext(), "No data found", Toast.LENGTH_SHORT).show();
             }
         });
+
+        binding.vaccineList.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
 
        vaccineViewModel.getVaccinesHosWise();
         vaccineViewModel.getVacTakenRes().observe(this,data->{
