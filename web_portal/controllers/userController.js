@@ -32,24 +32,11 @@ const createSendToken = async (user, statusCode, req, res) => {
 // Function to sign up
 exports.signup = async (req, res) => {
   try {
-    const user = await User.findOne({ email: req.body.email });
-    if (user) {
-      return res.status(400).json({
-        status: 'fail',
-        message: 'Email already registered!',
-      });
-    }
     const newUser = await User.create({
-      name: req.body.name,
-      phone: req.body.phone,
       email: req.body.email,
-      address: req.body.address,
+      uid: req.body.uid,
     });
-    newUser.password = await bcrypt.hash(req.body.password, 12);
-    await newUser.save();
-    createSendToken(newUser, 201, req, res);
   } catch (err) {
-    console.log(err);
     res.status(400).json({
       status: 'fail',
       message: err,

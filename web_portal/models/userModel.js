@@ -5,7 +5,7 @@ const validator = require('validator');
 const userSchema = new mongoose.Schema({
   name: {
     type: String,
-    required: [true, 'Please tell us your name!'],
+    // required: [true, 'Please tell us your name!'],
     trim: true,
     maxlength: [30, 'Your name must have less or equal then 30 characters'],
     minlength: [10, 'Your name must have more or equal then 2 characters'],
@@ -17,9 +17,12 @@ const userSchema = new mongoose.Schema({
     lowercase: true,
     validate: [validator.isEmail, 'Please provide a valid email'],
   },
+  uid: {
+    type: String,
+  },
   phone: {
     type: String,
-    required: [true, 'Please tell us your phone number!'],
+    // required: [true, 'Please tell us your phone number!'],
   },
   password: {
     type: String,

@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
-// configure dotenv for storeing environment variables
-dotenv.config({ path: './config.env' });
+dotenv.config({ path: './.env' });
 
 const app = require('./app');
 
@@ -12,7 +11,6 @@ if (process.env.NODE_ENV === 'development') {
   DB = process.env.MONGODB_CLOUD_URI;
 }
 
-DB = process.env.MONGODB_CLOUD_URI;
 
 // mongo db connection using mongoose
 mongoose
@@ -22,7 +20,7 @@ mongoose
     useUnifiedTopology: true,
     useFindAndModify: false,
   })
-  .then((con) => {
+  .then(() => {
     console.log('DB connection successful');
   })
   .catch((err) => {
