@@ -11,7 +11,7 @@ public class User {
 
     @SerializedName("name")
     @Expose
-    private String Name;
+    private String name;
 
     @SerializedName("phone")
     @Expose
@@ -35,7 +35,7 @@ public class User {
 
     public User(String id, String name, String phone, String email, String address, String _v, String token) {
         this.id = id;
-        Name = name;
+        this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
@@ -52,11 +52,11 @@ public class User {
     }
 
     public String getName() {
-        return Name;
+        return name;
     }
 
     public void setName(String name) {
-        Name = name;
+        name = name;
     }
 
     public String getPhone() {
