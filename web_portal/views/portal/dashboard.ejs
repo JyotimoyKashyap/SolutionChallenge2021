@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" type="image/jpg" href="/img/favicon.png"/>
+    <link rel="stylesheet" href="/css/dashboard.css">
+    <title>Nirog | Dashboard</title>
+</head>
+<body>
+    <nav class="nav">
+        <img src="/img/logo.png" width="70px" alt="">
+        <h1>NIROG</h2>
+    </nav>
+    <main class="main">
+        <div class="main__div1">
+            <a class="main-left-option first-opt" href="#">Hospitals</a>
+            <a class="main-left-option" href="/hospital/update/contact/<%= hospital._id %>">Edit Contact Info</a>
+            <a class="main-left-option" href="/hospital/update/bio/<%= hospital._id %>">Edit Bio</a>
+            <a class="main-left-option" href="/hospital/add/doctor/<%= hospital._id %>">Add Doctor</a>
+            <a class="main-left-option" href="/hospital/add/vaccine/<%= hospital._id %>">Add Vaccine</a>
+            <a class="main-left-option" href="/auth/signout">Log out</a>
+
+        </div>
+        <div class="main__div2">
+            <p class="main__div2-heading">Hospital Details</p>
+            <img class="main-img" src="/img/amc.jpeg" alt="">
+            <br/>
+            <div class="hospital_large">
+                <h1><%= hospital.name %></h1>
+                <h3><%=hospital.address %></h3>
+                <br/>
+                <p class="hospital_desc"> <%=hospital.description %></p>
+                <br/>
+                <br/>
+                <div class="hospital_large-phone">
+                    <img src="/img/call.png" alt=""> 
+                    <p> &nbsp; &nbsp;<%=hospital.phone %></p>
+                </div>
+                <br/>
+                <div class="hospital_large-phone">
+                    <img src="/img/mail.png" alt=""> 
+                    <p> &nbsp; &nbsp; <%=hospital.email %></p>
+                </div>
+            </div>  
+            <br/>
+            <div class="doctors">
+                <h1>Dcotor's List</h1>
+                <div class="border-bottom"></div>
+
+                <br/>
+                <br/>
+                <div class="lists">
+                <% for(let i=0; i < doctors.length; i++) { %>
+                    <div class="doctors-card">
+                        <img width="70px" src="/img/profile-user.png" alt="">
+                        <h3><%= doctors[i].name %></h2>
+                        <h5><%= doctors[i].specialization %></h3>
+                    </div>
+                 <% } %>
+                </div>
+            </div>  
+            <br/>
+            <div class="hospital_large">
+                <h1>Vaccine List</h1>
+                <div class="border-bottom"></div>
+                <br/>
+                <% for(let i=0; i < vaccines.length; i++) { %>
+                    <div class="vaccine-single">
+                        <img src="/img/vaccine.png" height="50px" alt="">
+                        <div>
+                            <p class="vaccine-single-name">&nbsp; &nbsp;<%= vaccines[i].name %></p>
+                            <p class="vaccine-single-when-to-give">&nbsp; &nbsp; &nbsp;<%= vaccines[i].whenToGive %></p>
+                        </div>
+                    </div>
+                <br/>
+                 <% } %>
+            </div>  
+        </div>
+   
+    </main>
+</body>
+</html>
