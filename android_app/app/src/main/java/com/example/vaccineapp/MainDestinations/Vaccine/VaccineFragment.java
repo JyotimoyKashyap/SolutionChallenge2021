@@ -82,7 +82,7 @@ public class VaccineFragment extends Fragment implements VaccineListAdapter.OnVa
         databaseReference = FirebaseDatabase.getInstance().getReference("Baby_Data");
 
         // layout manager
-        binding.upcomingVaccinesRecyclerView.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
+        //binding.upcomingVaccinesRecyclerView.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
 
 
         vaccineViewModel.getAllVaccines();
