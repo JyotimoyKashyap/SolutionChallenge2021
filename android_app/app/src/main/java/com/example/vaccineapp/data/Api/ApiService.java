@@ -46,5 +46,7 @@ public interface ApiService {
     @POST("api/user/baby/remove/vaccine")
     Call<ResponseBabyDetails> RemoveVaccine(@Body VaccinesTaken vaccinesTaken);
 
+    @POST("api/user/signup")
+    Call<ResponseSignup> AddUser(@Body Signup signup);
 
 }

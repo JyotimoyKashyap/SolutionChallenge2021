@@ -78,4 +78,9 @@ public class ApiHelper implements ApiService {
     public Call<ResponseBabyDetails> RemoveVaccine(VaccinesTaken vaccinesTaken) {
         return api.RemoveVaccine(vaccinesTaken);
     }
+
+    @Override
+    public Call<ResponseSignup> AddUser(Signup signup){
+        return api.AddUser(signup);
+    }
 }

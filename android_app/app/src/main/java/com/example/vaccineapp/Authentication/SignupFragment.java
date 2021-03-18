@@ -105,8 +105,13 @@ public class SignupFragment extends Fragment {
             binding.progressBarSignUp.setVisibility(View.INVISIBLE);
         }
         else{
+            SendingDataToServer();
             Signup();
         }
+    }
+
+    private void SendingDataToServer() {
+
     }
 
     private void Signup() {
