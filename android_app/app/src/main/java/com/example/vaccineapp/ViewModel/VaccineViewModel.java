@@ -73,7 +73,7 @@ public class VaccineViewModel extends AndroidViewModel {
 
             @Override
             public void onFailure(Call<ResponseSignup> call, Throwable t) {
-
+                SignUpResponse.postValue(null);
             }
         });
     }
