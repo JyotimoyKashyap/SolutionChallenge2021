@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,8 +17,11 @@ import android.widget.Toast;
 
 import com.example.vaccineapp.R;
 import com.example.vaccineapp.ViewModel.VaccineViewModel;
+import com.example.vaccineapp.data.Model.VaccineDetails;
 import com.example.vaccineapp.databinding.FragmentVaccineListBinding;
 import com.google.android.material.transition.MaterialSharedAxis;
+
+import java.util.List;
 
 
 public class VaccineListFragment extends Fragment implements VaccineListAdapter.OnVaccineCardClick {
@@ -32,7 +36,7 @@ public class VaccineListFragment extends Fragment implements VaccineListAdapter.
 
     private VaccineListAdapter adapter;
     private VaccineViewModel vaccineViewModel;
-
+    private List<VaccineDetails> vaccineDetailsList;
 
 
     private FragmentVaccineListBinding binding;
@@ -58,6 +62,11 @@ public class VaccineListFragment extends Fragment implements VaccineListAdapter.
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
+        // init the view model
+        vaccineViewModel = new ViewModelProvider(this,ViewModelProvider.AndroidViewModelFactory.
+                getInstance(getActivity().getApplication())).get(VaccineViewModel.class);
+
     }
 
     @Override
@@ -74,6 +83,23 @@ public class VaccineListFragment extends Fragment implements VaccineListAdapter.
         });
 
         binding.vaccineListRv.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
+        adapter = new VaccineListAdapter(vaccineDetailsList, getContext(),this::onClickListener);
+        binding.vaccineListRv.setAdapter(adapter);
+
+        // get all vaccines
+        vaccineViewModel.getAllVaccines();
+        vaccineViewModel.getAllVaccinesResponse().observe(this,data->{
+            if(data != null){
+                Log.d("myvaccine" , "Working");
+                adapter.setData(data.getVaccineDetails());
+            }else{
+                Toast.makeText(getContext(), "There is some error", Toast.LENGTH_SHORT).show();
+            }
+
+            adapter.notifyDataSetChanged();
+        });
+
+
         return binding.getRoot();
     }
 
@@ -83,29 +109,8 @@ public class VaccineListFragment extends Fragment implements VaccineListAdapter.
         binding = null;
     }
 
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-
-        // init the view model
-        vaccineViewModel = new ViewModelProvider(this,ViewModelProvider.AndroidViewModelFactory.
-                getInstance(getActivity().getApplication())).get(VaccineViewModel.class);
-
-        // get all vaccines
-        vaccineViewModel.getAllVaccines();
-        vaccineViewModel.getAllVaccinesResponse().observe(this,data->{
-            if(data != null){
-                adapter = new VaccineListAdapter(data.getVaccineDetails(), getContext(),this::onClickListener);
-                binding.vaccineListRv.setAdapter(adapter);
-            }else{
-                Toast.makeText(getContext(), "There is some error", Toast.LENGTH_SHORT).show();
-            }
-        });
 
 
-
-
-    }
 
     @Override
     public void onClickListener(int position, String vaccineId, String vaccineName, String whenToGive, String dose, String route, String site, String description) {
@@ -125,12 +130,13 @@ public class VaccineListFragment extends Fragment implements VaccineListAdapter.
         vaccineViewModel.getAllVaccines();
         vaccineViewModel.getAllVaccinesResponse().observe(this,data->{
             if(data != null){
+                Log.d("VACCINE" , "refresh");
                 binding.refreshVaccineList.setRefreshing(false);
-                adapter = new VaccineListAdapter(data.getVaccineDetails(), getContext(),this::onClickListener);
-                binding.vaccineListRv.setAdapter(adapter);
+                adapter.setData(data.getVaccineDetails());
             }else{
                 Toast.makeText(getContext(), "There is some error", Toast.LENGTH_SHORT).show();
             }
+            adapter.notifyDataSetChanged();
         });
     }
 }

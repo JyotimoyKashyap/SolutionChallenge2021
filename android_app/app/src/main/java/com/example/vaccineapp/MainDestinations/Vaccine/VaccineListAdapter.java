@@ -1,6 +1,7 @@
 package com.example.vaccineapp.MainDestinations.Vaccine;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -39,6 +40,7 @@ public class VaccineListAdapter extends RecyclerView.Adapter<VaccineListAdapter.
     @Override
     public void onBindViewHolder(@NonNull VaccineViewHolder holder, int position) {
         VaccineDetails currentItem = vaccineRowItem.get(position);
+        Log.d("myvaccine", "from Adapter" + currentItem.getName());
         holder.vaccineName.setText(currentItem.getName());
         holder.whenToGive.setText(currentItem.getWhenToGive());
 
@@ -63,7 +65,8 @@ public class VaccineListAdapter extends RecyclerView.Adapter<VaccineListAdapter.
 
     @Override
     public int getItemCount() {
-        return vaccineRowItem.size();
+        if(vaccineRowItem == null) return 0;
+        else return vaccineRowItem.size();
     }
 
     public class VaccineViewHolder extends RecyclerView.ViewHolder
@@ -77,6 +80,11 @@ public class VaccineListAdapter extends RecyclerView.Adapter<VaccineListAdapter.
             vaccineName = itemView.findViewById(R.id.vaccine_name);
             whenToGive = itemView.findViewById(R.id.when_to_get);
         }
+    }
+
+    public void setData(List<VaccineDetails> vaccineRowItem){
+        this.vaccineRowItem = vaccineRowItem;
+        notifyDataSetChanged();
     }
 
     public interface OnVaccineCardClick{
