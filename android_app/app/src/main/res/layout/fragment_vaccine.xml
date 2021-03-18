@@ -23,6 +23,132 @@
         android:layout_marginEnd="12dp"
         android:textSize="19dp"/>
 
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/vaccine_fragment_guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5"/>
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="5dp"
+        android:clickable="true"
+        app:cardElevation="0dp"
+        app:cardCornerRadius="18dp"
+        android:backgroundTint="@color/bottom_sheet_background"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/vaccine_fragment_guideline"
+        app:layout_constraintTop_toBottomOf="@id/recycler_view_heading_tv">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <ImageView
+                android:id="@+id/vaccine_image_1"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_marginTop="10dp"
+                android:src="@drawable/vaccine_bottle_png"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+            <TextView
+                android:id="@+id/vaccine_sample_1_name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="BCG"
+                android:fontFamily="@font/poppins_semibold"
+                android:textSize="19dp"
+                app:layout_constraintTop_toBottomOf="@id/vaccine_image_1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:textAlignment="center"/>
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="At birth or as early as possible till one year of age"
+                android:fontFamily="@font/poppins_light"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginStart="12dp"
+                android:layout_marginEnd="12dp"
+                app:layout_constraintTop_toBottomOf="@id/vaccine_sample_1_name"
+                android:textAlignment="center"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginBottom="20dp"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="5dp"
+        android:clickable="true"
+        app:cardCornerRadius="18dp"
+        app:cardElevation="0dp"
+        android:backgroundTint="@color/bottom_sheet_background"
+        app:layout_constraintStart_toEndOf="@id/vaccine_fragment_guideline"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/recycler_view_heading_tv">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <ImageView
+                android:id="@+id/vaccine_image_2"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_marginTop="10dp"
+                android:src="@drawable/vaccine_bottle_png"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+            <TextView
+                android:id="@+id/vaccine_sample_2_name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Hepatitis B"
+                android:fontFamily="@font/poppins_semibold"
+                android:textSize="19dp"
+                app:layout_constraintTop_toBottomOf="@id/vaccine_image_2"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:textAlignment="center"/>
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="At birth or as early as possible within 24 hours."
+                android:fontFamily="@font/poppins_light"
+                android:layout_marginStart="12dp"
+                android:layout_marginEnd="12dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/vaccine_sample_2_name"
+                android:textAlignment="center"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginBottom="20dp"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/see_all_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="See all"
+        android:textAllCaps="false"
+        style="@style/Widget.MaterialComponents.Button.TextButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/recycler_view_heading_tv"
+        app:layout_constraintBottom_toBottomOf="@id/recycler_view_heading_tv"/>
+
+
 
 
     <androidx.recyclerview.widget.RecyclerView
@@ -34,6 +160,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         android:padding="8dp"
+        android:visibility="invisible"
         android:orientation="vertical"
         tools:listitem="@layout/vaccine_row_items"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>

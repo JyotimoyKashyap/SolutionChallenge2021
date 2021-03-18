@@ -89,9 +89,23 @@ public class VaccineFragment extends Fragment implements VaccineListAdapter.OnVa
         vaccineViewModel.getAllVaccinesResponse().observe(this,data->{
             if(data != null){
                 adapter = new VaccineListAdapter(data.getVaccineDetails(), getContext(),this::onClickListener);
-                binding.upcomingVaccinesRecyclerView.setAdapter(adapter);
+                //binding.upcomingVaccinesRecyclerView.setAdapter(adapter);
             }else{
                 Toast.makeText(getContext(), "There is some error", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        binding.seeAllBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                VaccineListFragment vaccineListFragment = new VaccineListFragment();
+
+                vaccineListFragment.setEnterTransition(new MaterialSharedAxis(MaterialSharedAxis.X, true));
+
+                FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                transaction.replace(R.id.fragment_container, vaccineListFragment);
+                transaction.addToBackStack(null);
+                transaction.commit();
             }
         });
 

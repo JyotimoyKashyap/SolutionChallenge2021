@@ -20,6 +20,11 @@
         <item name="android:textSize">24dp</item>
     </style>
 
+    <style name="VaccineListTitleTextAppearance" parent="TextAppearance.AppCompat.Widget.ActionBar.Title">
+        <item name="fontFamily">@font/poppins_bold</item>
+        <item name="android:textSize">20dp</item>
+    </style>
+
     <style name="CollapsedTitleTextAppearance" parent="TextAppearance.AppCompat.Widget.ActionBar.Title">
         <item name="fontFamily">@font/poppins_bold</item>
         <item name="android:textSize">24dp</item>
