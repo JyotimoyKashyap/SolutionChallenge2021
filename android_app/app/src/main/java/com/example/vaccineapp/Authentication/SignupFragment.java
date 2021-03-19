@@ -119,6 +119,8 @@ public class SignupFragment extends Fragment {
     private void SendingDataToServer() {
         String id = mAuth.getCurrentUser().getUid();
         String em = mAuth.getCurrentUser().getEmail();
+        Log.e("email",em);
+        Log.e("uid",id);
         Toast.makeText(getActivity(),""+id+" & "+em,Toast.LENGTH_SHORT).show();
         Signup ss = new Signup(id,em);
         vaccineViewModel.SignUp(ss);
