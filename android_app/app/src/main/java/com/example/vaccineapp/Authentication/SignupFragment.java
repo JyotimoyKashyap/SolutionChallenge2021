@@ -5,6 +5,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -20,6 +21,8 @@ import android.widget.Toast;
 import com.example.vaccineapp.ChildDetailsForm.ChildDetailsFormFragment;
 import com.example.vaccineapp.DummyFragment;
 import com.example.vaccineapp.R;
+import com.example.vaccineapp.ViewModel.VaccineViewModel;
+import com.example.vaccineapp.data.Model.Signup;
 import com.example.vaccineapp.databinding.FragmentSignupBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -37,6 +40,7 @@ public class SignupFragment extends Fragment {
     private DummyFragment dummyFragment;
     private ProgressBar progressBar;
 
+    private VaccineViewModel vaccineViewModel;
     private FragmentSignupBinding binding;
 
     @Override
@@ -46,6 +50,9 @@ public class SignupFragment extends Fragment {
         binding = FragmentSignupBinding.inflate(inflater, container, false);
         View view = binding.getRoot();
         setExitTransition(new MaterialSharedAxis(MaterialSharedAxis.Z, false));
+
+        vaccineViewModel = new ViewModelProvider(this,ViewModelProvider.AndroidViewModelFactory.
+                getInstance(getActivity().getApplication())).get(VaccineViewModel.class);
 
         mAuth = FirebaseAuth.getInstance();
         dummyFragment = new DummyFragment();
@@ -105,13 +112,28 @@ public class SignupFragment extends Fragment {
             binding.progressBarSignUp.setVisibility(View.INVISIBLE);
         }
         else{
-            SendingDataToServer();
             Signup();
         }
     }
 
     private void SendingDataToServer() {
-
+        String id = mAuth.getCurrentUser().getUid();
+        String em = mAuth.getCurrentUser().getEmail();
+        Toast.makeText(getActivity(),""+id+" & "+em,Toast.LENGTH_SHORT).show();
+        Signup ss = new Signup(id,em);
+        vaccineViewModel.SignUp(ss);
+        vaccineViewModel.getSignUpResponse().observe(this,data->{
+            if(data!=null){
+                Log.i("ApiCall", "successFull");
+                String status = data.getStatus();
+                Toast.makeText(getActivity(),""+status,Toast.LENGTH_SHORT).show();
+            }
+            else{
+                Log.i("ApiCall", "Failure");
+                String status = data.getStatus();
+                Toast.makeText(getActivity(),""+status,Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     private void Signup() {
@@ -121,6 +143,7 @@ public class SignupFragment extends Fragment {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
                             FirebaseUser user = mAuth.getCurrentUser();
+                            SendingDataToServer();
                             user.sendEmailVerification().addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override
                                 public void onSuccess(Void aVoid) {
