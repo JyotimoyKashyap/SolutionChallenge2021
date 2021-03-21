@@ -83,4 +83,11 @@ public class ApiHelper implements ApiService {
     public Call<ResponseSignup> AddUser(Signup signup){
         return api.AddUser(signup);
     }
+
+    @Override
+    public Call<ResponseBabyDetails> GetBabyDetails(String parentId) {
+        return  api.GetBabyDetails(parentId);
+    }
+
+
 }

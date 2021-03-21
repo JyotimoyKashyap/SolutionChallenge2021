@@ -24,6 +24,7 @@ public class VaccineViewModel extends AndroidViewModel {
     private MutableLiveData<ResponseBabyDetails> babyVaccinesResponse;
     private MutableLiveData<ResponseSignup> SignUpResponse;
 
+
     public VaccineViewModel(@NonNull Application application) {
         super(application);
         apiHelper = new ApiHelper(application);
@@ -32,6 +33,7 @@ public class VaccineViewModel extends AndroidViewModel {
         vacTaken = new MutableLiveData<ResponseVacTaken>();
         babyVaccinesResponse = new MutableLiveData<ResponseBabyDetails>();
         SignUpResponse = new MutableLiveData<ResponseSignup>();
+
 
     }
 
@@ -157,6 +159,25 @@ public class VaccineViewModel extends AndroidViewModel {
     public void RemoveVaccines(VaccinesTaken vaccinesTaken)
     {
         apiHelper.RemoveVaccine(vaccinesTaken).enqueue(new Callback<ResponseBabyDetails>() {
+            @Override
+            public void onResponse(Call<ResponseBabyDetails> call, Response<ResponseBabyDetails> response) {
+                if(response.code()<300){
+                    babyVaccinesResponse.postValue(response.body());
+                }else if(response.code()>400){
+                    babyVaccinesResponse.postValue(null);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBabyDetails> call, Throwable t) {
+                babyVaccinesResponse.postValue(null);
+            }
+        });
+    }
+
+    public void GetVacTakenList(String parentId)
+    {
+        apiHelper.GetBabyDetails(parentId).enqueue(new Callback<ResponseBabyDetails>() {
             @Override
             public void onResponse(Call<ResponseBabyDetails> call, Response<ResponseBabyDetails> response) {
                 if(response.code()<300){

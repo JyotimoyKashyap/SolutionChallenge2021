@@ -5,6 +5,7 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,7 @@ import android.widget.Toast;
 
 import com.example.vaccineapp.R;
 import com.example.vaccineapp.ViewModel.VaccineViewModel;
+import com.example.vaccineapp.data.Model.VaccinesTaken;
 import com.example.vaccineapp.databinding.FragmentVaccineDetailsBinding;
 import com.google.android.material.transition.MaterialSharedAxis;
 
@@ -40,6 +42,7 @@ public class VaccineDetailsFragment extends Fragment {
     private String mRoute;
     private String mSite;
     private String mDescription;
+    private String babyId;
     private int mPosition;
 
     public VaccineDetailsFragment() {
@@ -124,7 +127,18 @@ public class VaccineDetailsFragment extends Fragment {
 
     public void SendDataToServer()
     {
-
+        VaccinesTaken vaccinesTaken = new VaccinesTaken(babyId,mVaccineId);
+        viewModel.AddVaccines(vaccinesTaken);
+        viewModel.getVacTakenRes().observe(getViewLifecycleOwner(),data->{
+           if(data!=null)
+           {
+             Log.e("ApiCall","Successfull");
+           }
+           else
+           {
+               Log.e("ApiCall","failure");
+           }
+        });
     }
 
     @Override
