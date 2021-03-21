@@ -9,6 +9,7 @@ public class Signup {
     @Expose
     private String uid;
 
+
     @SerializedName("email")
     @Expose
     private String email;

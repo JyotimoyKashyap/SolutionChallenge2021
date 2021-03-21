@@ -9,24 +9,38 @@ public class UserDetails {
     @Expose
     private String id;
 
+    @SerializedName("name")
+    @Expose
+    private String name;
+
+    @SerializedName("phone")
+    @Expose
+    private String phone;
+
     @SerializedName("email")
     @Expose
     private String email;
 
-    @SerializedName("uid")
+    @SerializedName("address")
     @Expose
-    private String uid;
+    private String address;
 
-    @SerializedName("_v")
+    @SerializedName("__v")
     @Expose
     private Integer _v;
 
+    @SerializedName("token")
+    @Expose
+    private String token;
 
-    public UserDetails(String id, String email,String uid, Integer _v) {
+    public UserDetails(String id, String name, String phone, String email, String address, Integer _v, String token) {
         this.id = id;
+        this.name = name;
+        this.phone = phone;
         this.email = email;
+        this.address = address;
         this._v = _v;
-        this.uid = uid;
+        this.token = token;
     }
 
     public String getId() {
@@ -37,12 +51,36 @@ public class UserDetails {
         this.id = id;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        name = name;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
     public String getEmail() {
         return email;
     }
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public Integer get_v() {
@@ -53,11 +91,11 @@ public class UserDetails {
         this._v = _v;
     }
 
-    public String getUid() {
-        return uid;
+    public String getToken() {
+        return token;
     }
 
-    public void setUid(String uid) {
-        this.uid = uid;
+    public void setToken(String token) {
+        this.token = token;
     }
 }
