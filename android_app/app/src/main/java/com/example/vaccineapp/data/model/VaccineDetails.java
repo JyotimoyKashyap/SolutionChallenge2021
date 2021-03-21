@@ -52,7 +52,10 @@ public class VaccineDetails implements Parcelable {
     @Expose
     private int __v;
 
-    public VaccineDetails(String _id, String name, String whenToGive, String dose, String route, String site, String description, String smallDescription, String createdAt, String updatedAt, int __v) {
+    public VaccineDetails(String _id, String name,
+                          String whenToGive, String dose,
+                          String route, String site,
+                          String description, String smallDescription, String createdAt, String updatedAt, int __v) {
         this._id = _id;
         this.name = name;
         this.whenToGive = whenToGive;

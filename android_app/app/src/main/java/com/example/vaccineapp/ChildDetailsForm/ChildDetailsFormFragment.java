@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -163,8 +164,19 @@ public class ChildDetailsFormFragment extends Fragment {
     }
 
     private void SendDataToServer(String baby, String father_name, String mother, int year, int month, int day, String gender) {
-        RegisterBaby Rb = new RegisterBaby(baby,String.valueOf(day),String.valueOf(month),String.valueOf(year),"00",mother,father_name);
+        RegisterBaby Rb = new RegisterBaby(baby,String.valueOf(day),String.valueOf(month),
+                String.valueOf(year),"00",mother,father_name);
         babyViewModel.RegisterBaby(mAuth.getCurrentUser().getUid(),Rb);
+        Log.e("outside function","yayy");
+        babyViewModel.getResponse().observe(this,data->{
+            if(data!=null)
+            {
+                Log.e("inside function","yayy");
+            }
+            else {
+                Log.e("inside","didnt work");
+            }
+        });
     }
 
 

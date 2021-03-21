@@ -24,7 +24,7 @@ public class VaccineViewModel extends AndroidViewModel {
     private MutableLiveData<ResponseVaccine> vaccineRes;
     private MutableLiveData<ResponseVaccineDetails> vaccineDetails;
     private MutableLiveData<ResponseVacTaken> vacTaken;
-    private MutableLiveData<ResponseBabyDetails> babyVaccinesResponse;
+    private MutableLiveData<ResponseBabyDetails> babyResponse;
     private MutableLiveData<ResponseSignup> SignUpResponse;
 
 
@@ -34,8 +34,9 @@ public class VaccineViewModel extends AndroidViewModel {
         vaccineRes = new MutableLiveData<ResponseVaccine>();
         vaccineDetails = new MutableLiveData<ResponseVaccineDetails>();
         vacTaken = new MutableLiveData<ResponseVacTaken>();
-        babyVaccinesResponse = new MutableLiveData<ResponseBabyDetails>();
         SignUpResponse = new MutableLiveData<ResponseSignup>();
+        babyResponse = new MutableLiveData<ResponseBabyDetails>();
+
 
 
     }
@@ -56,13 +57,15 @@ public class VaccineViewModel extends AndroidViewModel {
         return vacTaken;
     }
 
-    public MutableLiveData<ResponseBabyDetails> getBabyVaccinesResponse() {
-        return babyVaccinesResponse;
-    }
 
     public MutableLiveData<ResponseSignup> getSignUpResponse()
     {
         return SignUpResponse;
+    }
+
+    public MutableLiveData<ResponseBabyDetails> getBabyResponse()
+    {
+        return babyResponse;
     }
 
 
@@ -158,15 +161,15 @@ public class VaccineViewModel extends AndroidViewModel {
             @Override
             public void onResponse(Call<ResponseBabyDetails> call, Response<ResponseBabyDetails> response) {
                 if (response.code() < 300) {
-                    babyVaccinesResponse.postValue(response.body());
+                    babyResponse.postValue(response.body());
                 } else if (response.code() > 400) {
-                    babyVaccinesResponse.postValue(null);
+                    babyResponse.postValue(null);
                 }
             }
 
             @Override
             public void onFailure(Call<ResponseBabyDetails> call, Throwable t) {
-                babyVaccinesResponse.postValue(null);
+                babyResponse.postValue(null);
             }
         });
     }
@@ -177,35 +180,17 @@ public class VaccineViewModel extends AndroidViewModel {
             @Override
             public void onResponse(Call<ResponseBabyDetails> call, Response<ResponseBabyDetails> response) {
                 if(response.code()<300){
-                    babyVaccinesResponse.postValue(response.body());
+                    babyResponse.postValue(response.body());
                 }else if(response.code()>400){
-                    babyVaccinesResponse.postValue(null);
+                    babyResponse.postValue(null);
                 }
             }
 
             @Override
             public void onFailure(Call<ResponseBabyDetails> call, Throwable t) {
-                babyVaccinesResponse.postValue(null);
+                babyResponse.postValue(null);
             }
         });
     }
 
-    public void GetVacTakenList(String parentId)
-    {
-        apiHelper.GetBabyDetails(parentId).enqueue(new Callback<ResponseBabyDetails>() {
-            @Override
-            public void onResponse(Call<ResponseBabyDetails> call, Response<ResponseBabyDetails> response) {
-                if(response.code()<300){
-                    babyVaccinesResponse.postValue(response.body());
-                }else if(response.code()>400){
-                    babyVaccinesResponse.postValue(null);
-                }
-            }
-
-            @Override
-            public void onFailure(Call<ResponseBabyDetails> call, Throwable t) {
-                babyVaccinesResponse.postValue(null);
-            }
-        });
-    }
 }
