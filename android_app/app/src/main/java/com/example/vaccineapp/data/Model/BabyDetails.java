@@ -34,13 +34,9 @@ public class BabyDetails {
     @SerializedName("__v")
     private Integer __v;
 
-    @SerializedName("vaccinesTaken")
-    @Expose
-    private List<VaccineDetails> vaccineDetails;
 
     public BabyDetails(String _id, String name, String age, String parent,
-                       String motherName, String fatherName, Integer __v,
-                       List<VaccineDetails> vaccineDetails) {
+                       String motherName, String fatherName, Integer __v) {
         this._id = _id;
         this.name = name;
         this.age = age;
@@ -48,7 +44,6 @@ public class BabyDetails {
         this.motherName = motherName;
         this.fatherName = fatherName;
         this.__v = __v;
-        this.vaccineDetails = vaccineDetails;
     }
 
 
@@ -108,11 +103,5 @@ public class BabyDetails {
         this.__v = __v;
     }
 
-    public List<VaccineDetails> getVaccineDetails() {
-        return vaccineDetails;
     }
 
-    public void setVaccineDetails(List<VaccineDetails> vaccineDetails) {
-        this.vaccineDetails = vaccineDetails;
-    }
-}
