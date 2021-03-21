@@ -70,6 +70,7 @@ public class VaccineViewModel extends AndroidViewModel {
             public void onResponse(Call<ResponseSignup> call, Response<ResponseSignup> response) {
                 if(response.code()<300){
                     SignUpResponse.postValue(response.body());
+                    String mm = response.body().getUser().getId();
                     Log.d("sign up", String.valueOf(response.code())+" : success");
                 }else if(response.code()>400){
                     SignUpResponse.postValue(null);

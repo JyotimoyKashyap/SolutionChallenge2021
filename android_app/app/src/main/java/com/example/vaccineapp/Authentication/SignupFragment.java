@@ -43,6 +43,7 @@ public class SignupFragment extends Fragment {
     private VaccineViewModel vaccineViewModel;
     private FragmentSignupBinding binding;
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -51,8 +52,6 @@ public class SignupFragment extends Fragment {
         View view = binding.getRoot();
         setExitTransition(new MaterialSharedAxis(MaterialSharedAxis.Z, false));
 
-        vaccineViewModel = new ViewModelProvider(this,ViewModelProvider.AndroidViewModelFactory.
-                getInstance(getActivity().getApplication())).get(VaccineViewModel.class);
 
         mAuth = FirebaseAuth.getInstance();
         dummyFragment = new DummyFragment();
@@ -117,11 +116,12 @@ public class SignupFragment extends Fragment {
     }
 
     private void SendingDataToServer() {
+        vaccineViewModel = new ViewModelProvider(this,ViewModelProvider.AndroidViewModelFactory.
+                getInstance(getActivity().getApplication())).get(VaccineViewModel.class);
         String id = mAuth.getCurrentUser().getUid();
         String em = mAuth.getCurrentUser().getEmail();
         Log.e("email",em);
         Log.e("uid",id);
-        Toast.makeText(getActivity(),""+id+" & "+em,Toast.LENGTH_SHORT).show();
         Signup ss = new Signup(id,em);
         vaccineViewModel.SignUp(ss);
         vaccineViewModel.getSignUpResponse().observe(getViewLifecycleOwner(),data->{

@@ -17,7 +17,7 @@ public class UserDetails {
     @Expose
     private String uid;
 
-    @SerializedName("_v")
+    @SerializedName("__v")
     @Expose
     private Integer _v;
 
