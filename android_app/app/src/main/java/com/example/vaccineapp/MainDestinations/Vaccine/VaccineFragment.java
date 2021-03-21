@@ -8,6 +8,7 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -95,6 +96,8 @@ public class VaccineFragment extends Fragment implements VaccineListAdapter.OnVa
                 Toast.makeText(getContext(), "There is some error", Toast.LENGTH_SHORT).show();
             }
         });
+
+
 
         binding.seeAllBtn.setOnClickListener(new View.OnClickListener() {
             @Override

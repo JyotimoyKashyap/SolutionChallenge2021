@@ -89,5 +89,10 @@ public class ApiHelper implements ApiService {
         return  api.GetBabyDetails(parentId);
     }
 
+    @Override
+    public Call<ResponseBabyDetails> registerBaby(String userId, RegisterBaby registerBaby) {
+        return  api.registerBaby(userId,registerBaby);
+    }
+
 
 }
