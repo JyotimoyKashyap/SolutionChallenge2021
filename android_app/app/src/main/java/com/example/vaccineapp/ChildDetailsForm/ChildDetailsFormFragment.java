@@ -163,7 +163,8 @@ public class ChildDetailsFormFragment extends Fragment {
     }
 
     private void SendDataToServer(String baby, String father_name, String mother, int year, int month, int day, String gender) {
-
+        RegisterBaby Rb = new RegisterBaby(baby,String.valueOf(day),String.valueOf(month),String.valueOf(year),"00",mother,father_name);
+        babyViewModel.RegisterBaby(mAuth.getCurrentUser().getUid(),Rb);
     }
 
 
