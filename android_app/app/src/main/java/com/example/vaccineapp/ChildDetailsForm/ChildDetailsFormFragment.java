@@ -22,7 +22,9 @@ import com.example.vaccineapp.Authentication.LoginFragment;
 import com.example.vaccineapp.DummyFragment;
 import com.example.vaccineapp.MainDestinations.BottomNavFragment;
 import com.example.vaccineapp.R;
+import com.example.vaccineapp.ViewModel.BabyViewModel;
 import com.example.vaccineapp.ViewModel.VaccineViewModel;
+import com.example.vaccineapp.data.Model.RegisterBaby;
 import com.example.vaccineapp.databinding.FragmentChildDetailsFormBinding;
 import com.google.android.material.transition.MaterialSharedAxis;
 import com.google.firebase.auth.FirebaseAuth;
@@ -46,7 +48,7 @@ public class ChildDetailsFormFragment extends Fragment {
     private int Year=0;
     private String gender = "";
 
-    private VaccineViewModel vaccineViewModel;
+    private BabyViewModel babyViewModel;
 
 
     @Override
@@ -59,8 +61,8 @@ public class ChildDetailsFormFragment extends Fragment {
 
         binding.progressBarChildDetailFragment.setVisibility(View.INVISIBLE);
 
-        vaccineViewModel = new ViewModelProvider(this,ViewModelProvider.AndroidViewModelFactory.
-                getInstance(getActivity().getApplication())).get(VaccineViewModel.class);
+        babyViewModel = new ViewModelProvider(this,ViewModelProvider.AndroidViewModelFactory.
+                getInstance(getActivity().getApplication())).get(BabyViewModel.class);
 
         //Bundle Retrival
         Bundle bundle = this.getArguments();
@@ -155,8 +157,14 @@ public class ChildDetailsFormFragment extends Fragment {
         databaseReference.child(User_Id).child("Date").setValue(day);
         databaseReference.child(User_Id).child("Gender").setValue(Gender);
         Toast.makeText(getActivity(),"Data added",Toast.LENGTH_SHORT).show();
+        SendDataToServer(baby,father_Name,mother,year,month,day,Gender);
         binding.progressBarChildDetailFragment.setVisibility(View.INVISIBLE);
         setFragment(new LoginFragment());
+    }
+
+    private void SendDataToServer(String baby, String father_name, String mother, int year, int month, int day, String gender) {
+        RegisterBaby Rb = new RegisterBaby(baby,String.valueOf(day),String.valueOf(month),String.valueOf(year),"00",mother,father_name);
+        babyViewModel.RegisterBaby(mAuth.getCurrentUser().getUid(),Rb);
     }
 
 

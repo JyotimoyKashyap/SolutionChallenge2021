@@ -9,6 +9,9 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.example.vaccineapp.data.Api.ApiHelper;
 import com.example.vaccineapp.data.Model.*;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -71,6 +74,13 @@ public class VaccineViewModel extends AndroidViewModel {
                 if(response.code()<300){
                     SignUpResponse.postValue(response.body());
                     String mm = response.body().getUser().getId();
+                    //Parent id to firebase
+                    FirebaseAuth mAuth;
+                    mAuth = FirebaseAuth.getInstance();
+                    String user = mAuth.getCurrentUser().getUid();
+                    DatabaseReference databaseReference;
+                    databaseReference = FirebaseDatabase.getInstance().getReference("Baby_Data");
+                    databaseReference.child(user).child("Parent_Id").setValue(mm);
                     Log.d("sign up", String.valueOf(response.code())+" : success");
                 }else if(response.code()>400){
                     SignUpResponse.postValue(null);
