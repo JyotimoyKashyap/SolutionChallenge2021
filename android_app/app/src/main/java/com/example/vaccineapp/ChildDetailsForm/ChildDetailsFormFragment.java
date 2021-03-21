@@ -9,6 +9,7 @@ import android.os.Bundle;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,6 +22,7 @@ import com.example.vaccineapp.Authentication.LoginFragment;
 import com.example.vaccineapp.DummyFragment;
 import com.example.vaccineapp.MainDestinations.BottomNavFragment;
 import com.example.vaccineapp.R;
+import com.example.vaccineapp.ViewModel.VaccineViewModel;
 import com.example.vaccineapp.databinding.FragmentChildDetailsFormBinding;
 import com.google.android.material.transition.MaterialSharedAxis;
 import com.google.firebase.auth.FirebaseAuth;
@@ -44,6 +46,7 @@ public class ChildDetailsFormFragment extends Fragment {
     private int Year=0;
     private String gender = "";
 
+    private VaccineViewModel vaccineViewModel;
 
 
     @Override
@@ -55,6 +58,9 @@ public class ChildDetailsFormFragment extends Fragment {
         setExitTransition(new MaterialSharedAxis(MaterialSharedAxis.Z, false));
 
         binding.progressBarChildDetailFragment.setVisibility(View.INVISIBLE);
+
+        vaccineViewModel = new ViewModelProvider(this,ViewModelProvider.AndroidViewModelFactory.
+                getInstance(getActivity().getApplication())).get(VaccineViewModel.class);
 
         //Bundle Retrival
         Bundle bundle = this.getArguments();

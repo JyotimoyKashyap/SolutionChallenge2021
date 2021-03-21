@@ -20,6 +20,7 @@ import android.widget.Toast;
 import com.example.vaccineapp.MainActivity;
 import com.example.vaccineapp.R;
 import com.example.vaccineapp.ViewModel.SharedViewModel;
+import com.example.vaccineapp.ViewModel.VaccineViewModel;
 import com.example.vaccineapp.databinding.FragmentChildAccountBinding;
 import com.example.vaccineapp.databinding.FragmentChildDetailsFormBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -46,6 +47,8 @@ public class ChildAccountFragment extends Fragment {
     private ChildDetailsFormFragment childDetailsFormFragment;
     private String genderString = null;
     private SharedViewModel sharedViewModel;
+    String DOB = "///";
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -197,7 +200,7 @@ public class ChildAccountFragment extends Fragment {
                         int day = snapshot.child("Date").getValue(Integer.class);
                         String ageInYears = calculateAge(years, month, day);
                         binding.ageBaby.setText(ageInYears);
-
+                        DOB = day +"/" + month + "/" + years;
                     }
                     binding.registeredEmail.setText(emailId);
                     binding.babyNameTextview.setText(name);
@@ -205,7 +208,7 @@ public class ChildAccountFragment extends Fragment {
                     sharedViewModel.setGender(gender);
                     binding.motherNameTextview.setText(mother);
                     binding.fatherNameTextview.setText(father);
-                    binding.dateOfBirthTextview.setText(dob);
+                    binding.dateOfBirthTextview.setText(DOB);
                     binding.progressBarChildAccountDetails.setVisibility(View.INVISIBLE);
                     binding.editBtn.setEnabled(true);
                 }
