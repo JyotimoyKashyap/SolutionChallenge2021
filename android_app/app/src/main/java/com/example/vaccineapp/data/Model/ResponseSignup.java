@@ -5,7 +5,12 @@ import com.google.gson.annotations.SerializedName;
 
 public class ResponseSignup {
 
+    @SerializedName("status")
+    @Expose
     private String status;
+
+    @SerializedName("user")
+    @Expose
     private UserDetails user;
 
     public ResponseSignup(String status, UserDetails user) {

@@ -124,16 +124,14 @@ public class SignupFragment extends Fragment {
         Toast.makeText(getActivity(),""+id+" & "+em,Toast.LENGTH_SHORT).show();
         Signup ss = new Signup(id,em);
         vaccineViewModel.SignUp(ss);
-        vaccineViewModel.getSignUpResponse().observe(this,data->{
-            if(data!=null){
-                Log.e("ApiCall", "successFull");
-                String status = data.getStatus();
-                //Toast.makeText(getActivity(),""+status,Toast.LENGTH_SHORT).show();
+        vaccineViewModel.getSignUpResponse().observe(getViewLifecycleOwner(),data->{
+            if(data!=null)
+            {
+                Log.e("apicall","successs");
             }
-            else{
-                Log.e("ApiCall", "Failure");
-                String status = data.getStatus();
-                //Toast.makeText(getActivity(),""+status,Toast.LENGTH_SHORT).show();
+            else
+            {
+                Log.e("apicall","fail");
             }
         });
     }

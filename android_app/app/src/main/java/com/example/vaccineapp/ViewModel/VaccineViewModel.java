@@ -7,7 +7,7 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.MutableLiveData;
 
-import com.example.vaccineapp.data.api.ApiHelper;
+import com.example.vaccineapp.data.Api.ApiHelper;
 import com.example.vaccineapp.data.Model.*;
 
 import retrofit2.Call;
@@ -37,10 +37,7 @@ public class VaccineViewModel extends AndroidViewModel {
 
     }
 
-    public MutableLiveData<ResponseSignup> getSignUpResponse()
-    {
-        return SignUpResponse;
-    }
+
 
     public MutableLiveData<ResponseVaccine> getVaccineRes()
     {
@@ -60,6 +57,11 @@ public class VaccineViewModel extends AndroidViewModel {
         return babyVaccinesResponse;
     }
 
+    public MutableLiveData<ResponseSignup> getSignUpResponse()
+    {
+        return SignUpResponse;
+    }
+
 
     public void SignUp(Signup signup)
     {
@@ -68,8 +70,10 @@ public class VaccineViewModel extends AndroidViewModel {
             public void onResponse(Call<ResponseSignup> call, Response<ResponseSignup> response) {
                 if(response.code()<300){
                     SignUpResponse.postValue(response.body());
+                    Log.d("sign up", String.valueOf(response.code())+" : success");
                 }else if(response.code()>400){
                     SignUpResponse.postValue(null);
+                    Log.d("sign ups", String.valueOf(response.code())+" : failure");
                 }
             }
 
