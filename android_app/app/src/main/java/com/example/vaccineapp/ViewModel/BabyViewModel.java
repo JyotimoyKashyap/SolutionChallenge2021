@@ -1,6 +1,7 @@
 package com.example.vaccineapp.ViewModel;
 
 import android.app.Application;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
@@ -44,8 +45,12 @@ public class BabyViewModel extends AndroidViewModel {
             public void onResponse(Call<ResponseBabyDetails> call, Response<ResponseBabyDetails> response) {
                 if (response.code() < 300) {
                     babyDetailsResponse.postValue(response.body());
+                    String babyid = response.body().getBabyDetails().get_id();
+                    Log.d("register baby", String.valueOf(response.code())+" : success");
+                    Log.d("babyid",babyid);
                 } else if (response.code() > 400) {
                     babyDetailsResponse.postValue(null);
+                    Log.d("register baby", String.valueOf(response.code())+" : success");
                 }
             }
 

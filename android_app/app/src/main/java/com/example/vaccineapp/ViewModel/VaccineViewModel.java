@@ -155,42 +155,5 @@ public class VaccineViewModel extends AndroidViewModel {
         });
     }
 
-    public void AddVaccines(VaccinesTaken vaccinesTaken)
-    {
-        apiHelper.AddVaccinesTaken(vaccinesTaken).enqueue(new Callback<ResponseBabyDetails>() {
-            @Override
-            public void onResponse(Call<ResponseBabyDetails> call, Response<ResponseBabyDetails> response) {
-                if (response.code() < 300) {
-                    babyResponse.postValue(response.body());
-                } else if (response.code() > 400) {
-                    babyResponse.postValue(null);
-                }
-            }
-
-            @Override
-            public void onFailure(Call<ResponseBabyDetails> call, Throwable t) {
-                babyResponse.postValue(null);
-            }
-        });
-    }
-
-    public void RemoveVaccines(VaccinesTaken vaccinesTaken)
-    {
-        apiHelper.RemoveVaccine(vaccinesTaken).enqueue(new Callback<ResponseBabyDetails>() {
-            @Override
-            public void onResponse(Call<ResponseBabyDetails> call, Response<ResponseBabyDetails> response) {
-                if(response.code()<300){
-                    babyResponse.postValue(response.body());
-                }else if(response.code()>400){
-                    babyResponse.postValue(null);
-                }
-            }
-
-            @Override
-            public void onFailure(Call<ResponseBabyDetails> call, Throwable t) {
-                babyResponse.postValue(null);
-            }
-        });
-    }
 
 }
