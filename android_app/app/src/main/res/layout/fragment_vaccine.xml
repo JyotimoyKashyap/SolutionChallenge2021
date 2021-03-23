@@ -148,12 +148,14 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@id/recycler_view_heading_tv"
         app:layout_constraintBottom_toBottomOf="@id/recycler_view_heading_tv"/>
+
+
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/appointment_heading"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:fontFamily="@font/poppins_semibold"
-        android:text="Appointments"
+        android:text="History"
         android:textSize="19dp"
         android:layout_marginEnd="12dp"
         android:layout_marginStart="30dp"
@@ -163,35 +165,18 @@
         android:layout_marginTop="20dp"/>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/appointment_rv"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:visibility="invisible"
-        app:layout_constraintTop_toBottomOf="@id/appointment_heading"
-        app:layout_constraintStart_toStartOf="parent"
+        android:id="@+id/history_rv"
+        android:layout_width="457dp"
+        android:layout_height="317dp"
+        android:orientation="vertical"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"/>
-
-    <com.google.android.material.card.MaterialCardView
-        android:layout_width="0dp"
-        android:layout_height="100dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/appointment_heading"
-        app:cardCornerRadius="18dp"
-        app:cardElevation="0dp"
-        android:backgroundTint="@color/bottom_sheet_background"
-        android:layout_marginStart="12dp"
-        android:layout_marginEnd="12dp"
-        android:layout_marginTop="15dp">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="No recent appointments"
-            android:layout_gravity="center"
-            android:fontFamily="@font/poppins_light"/>
+        tools:listitem="@layout/vaccine_row_items" />
 
-    </com.google.android.material.card.MaterialCardView>
+
 
 
 

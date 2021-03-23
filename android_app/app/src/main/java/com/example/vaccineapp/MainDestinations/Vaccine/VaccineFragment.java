@@ -14,8 +14,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.example.vaccineapp.AppPreferences.Preferences;
 import com.example.vaccineapp.MainDestinations.Hospital.Doctor.DoctorDetailFragment;
 import com.example.vaccineapp.R;
+import com.example.vaccineapp.ViewModel.BabyViewModel;
 import com.example.vaccineapp.ViewModel.VaccineViewModel;
 import com.example.vaccineapp.databinding.FragmentVaccineBinding;
 import com.google.android.material.transition.MaterialElevationScale;
@@ -42,10 +44,14 @@ public class VaccineFragment extends Fragment implements VaccineListAdapter.OnVa
 
     private String mParam1;
     private String mParam2;
+    private String vacID;
 
     private FragmentVaccineBinding binding;
     private VaccineViewModel vaccineViewModel;
     private VaccineListAdapter adapter;
+    private HistoryListAdapter historyListAdapter;
+    private BabyViewModel babyViewModel;
+    private Preferences preferences;
 
     public VaccineFragment() {
         // Required empty public constructor
@@ -71,6 +77,9 @@ public class VaccineFragment extends Fragment implements VaccineListAdapter.OnVa
 
         vaccineViewModel = new ViewModelProvider(this,ViewModelProvider.AndroidViewModelFactory.
                 getInstance(getActivity().getApplication())).get(VaccineViewModel.class);
+
+        babyViewModel = new ViewModelProvider(this,ViewModelProvider.AndroidViewModelFactory.
+                getInstance(getActivity().getApplication())).get(BabyViewModel.class);
     }
 
     @Override
@@ -83,16 +92,30 @@ public class VaccineFragment extends Fragment implements VaccineListAdapter.OnVa
         mAuth = FirebaseAuth.getInstance();
         databaseReference = FirebaseDatabase.getInstance().getReference("Baby_Data");
 
-        // layout manager
-        //binding.upcomingVaccinesRecyclerView.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
+        preferences = Preferences.getInstance(getContext());
+
 
 
         vaccineViewModel.getAllVaccines();
         vaccineViewModel.getAllVaccinesResponse().observe(this,data->{
             if(data != null){
                 adapter = new VaccineListAdapter(data.getVaccineDetails(), getContext(),this::onClickListener);
+
                 //binding.upcomingVaccinesRecyclerView.setAdapter(adapter);
             }else{
+                Toast.makeText(getContext(), "There is some error", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        babyViewModel.GetVacTakenList(preferences.RetrieveParentId());
+        babyViewModel.getResponse().observe(this,data->{
+            if(data!=null)
+            {
+                historyListAdapter = new HistoryListAdapter(data.getBabyDetails().getVaccineDetailsList(),
+                        getContext());
+                binding.historyRv.setAdapter(adapter);
+            }
+            else {
                 Toast.makeText(getContext(), "There is some error", Toast.LENGTH_SHORT).show();
             }
         });
@@ -116,6 +139,8 @@ public class VaccineFragment extends Fragment implements VaccineListAdapter.OnVa
 
         return binding.getRoot();
     }
+
+
 
 //    private void Load() {
 //
@@ -149,11 +174,11 @@ public class VaccineFragment extends Fragment implements VaccineListAdapter.OnVa
     public void onClickListener(int position, String vaccineId,
                                 String vaccineName, String whenToGive,
                                 String dose, String route, String site, String description) {
-
-
-
-        VaccineDetailsFragment vaccineDetailsFragment = VaccineDetailsFragment.newInstance(vaccineName, vaccineId,
+        VaccineDetailsFragment vaccineDetailsFragment = VaccineDetailsFragment.newInstance(vaccineId,vaccineName,
                 whenToGive, position, dose, route, site, description);
+
+        Log.d("vaccine id","from vaccinefragment"+" "+vaccineId);
+
 
         vaccineDetailsFragment.setEnterTransition(new MaterialSharedAxis(MaterialSharedAxis.Y, true));
 

@@ -49,6 +49,7 @@ public class VaccineListAdapter extends RecyclerView.Adapter<VaccineListAdapter.
         holder.vaccineCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Log.e("vaccineid","from adqapter onclick"+" "+currentItem.get_id());
                 //sending data to vaccine fragment for fragment
                 onVaccineCardClick.onClickListener(
                         position,

@@ -62,7 +62,25 @@ public class BabyViewModel extends AndroidViewModel {
     }
 
     public void GetVacTakenList(String parentId) {
+        apiHelper.GetBabyDetails(parentId).enqueue(new Callback<ResponseBabyDetails>() {
+            @Override
+            public void onResponse(Call<ResponseBabyDetails> call, Response<ResponseBabyDetails> response) {
+                if(response.code()<300)
+                {
+                 babyDetailsResponse.postValue(response.body());
+                 Log.d("VaccineshistoryList","success"+" "+response.code()+" "+response.body());
+                }
+                else if(response.code()>400)
+                {
+                    babyDetailsResponse.postValue(null);
+                }
+            }
 
+            @Override
+            public void onFailure(Call<ResponseBabyDetails> call, Throwable t) {
+                babyDetailsResponse.postValue(null);
+            }
+        });
 
     }
 

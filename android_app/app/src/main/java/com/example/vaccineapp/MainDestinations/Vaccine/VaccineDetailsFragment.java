@@ -54,8 +54,8 @@ public class VaccineDetailsFragment extends Fragment {
 
 
     public static VaccineDetailsFragment newInstance(
-            String vaccineName,
             String vaccineId,
+            String vaccineName,
             String whenToGive,
             int position,
             String dose,
@@ -136,6 +136,8 @@ public class VaccineDetailsFragment extends Fragment {
         babyViewModel.AddVaccines(vaccinesTaken);
         Log.e("babyid",preferences.RetrieveBabyId());
         Log.e("vaccineId",mVaccineId);
+        Log.e("check1",mWhenToGive);
+        Log.e("check2",mVaccineName);
         babyViewModel.getResponse().observe(getViewLifecycleOwner(),data->{
            if(data!=null)
            {
