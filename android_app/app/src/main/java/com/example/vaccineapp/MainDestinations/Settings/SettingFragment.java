@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.example.vaccineapp.AppPreferences.Preferences;
 import com.example.vaccineapp.ChildDetailsForm.ChildAccountFragment;
 import com.example.vaccineapp.MainActivity;
 import com.example.vaccineapp.R;
@@ -23,6 +24,7 @@ public class SettingFragment extends Fragment {
 
     private FragmentSettingBinding binding;
     private FirebaseAuth mAuth;
+    private Preferences preferences;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -30,6 +32,7 @@ public class SettingFragment extends Fragment {
         // Inflate the layout for this fragment
         binding = FragmentSettingBinding.inflate(inflater,container,false);
         View view = binding.getRoot();
+        preferences = new Preferences(getContext());
 
         mAuth = FirebaseAuth.getInstance();
 
@@ -39,6 +42,8 @@ public class SettingFragment extends Fragment {
                 Toast.makeText(getActivity(),"Logout",Toast.LENGTH_SHORT).show();
                 if(mAuth.getCurrentUser().getUid() != null)
                     mAuth.signOut();
+                preferences.AddBabyId(null);
+                preferences.AddParent(null);
                 Intent intent = new Intent(getActivity(), MainActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);

@@ -8,6 +8,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,6 +19,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.vaccineapp.AppPreferences.Preferences;
 import com.example.vaccineapp.ChildDetailsForm.ChildAccountFragment;
 import com.example.vaccineapp.ChildDetailsForm.ChildDetailsFormFragment;
 import com.example.vaccineapp.DummyFragment;
@@ -31,15 +33,22 @@ import com.google.android.material.transition.MaterialSharedAxis;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class LoginFragment extends Fragment {
 
 
     private SignupFragment signupFragment;
     private ForgatPasswordFragment forgatPasswordFragment;
+    private Preferences preferences;
 
 
     private FirebaseAuth mAuth;
+    private DatabaseReference databaseReference;
 
     private FragmentLoginBinding binding;
 
@@ -52,6 +61,8 @@ public class LoginFragment extends Fragment {
         View view = binding.getRoot();
         setExitTransition(new MaterialSharedAxis(MaterialSharedAxis.Z, false));
 
+        databaseReference = FirebaseDatabase.getInstance().getReference("Baby_Data");
+        preferences = new Preferences(getContext());
         mAuth = FirebaseAuth.getInstance();
         signupFragment = new SignupFragment();
         forgatPasswordFragment = new ForgatPasswordFragment();
@@ -116,6 +127,23 @@ public class LoginFragment extends Fragment {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
                             binding.progresslogin.setVisibility(View.INVISIBLE);
+                            databaseReference.child(mAuth.getCurrentUser().getUid()).addValueEventListener(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                    if(snapshot.exists()){
+                                        String id1 = snapshot.child("Parent_Id").getValue().toString();
+                                        String id2 = snapshot.child("Baby_Id").getValue().toString();
+                                        preferences.AddBabyId(id2);
+                                        preferences.AddParent(id1);
+                                        Log.i(""+id1," & "+id2);
+                                    }
+                                }
+
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError error) {
+
+                                }
+                            });
                             Toast.makeText(getActivity(),"Login Successful by " + binding.email.getText().toString().trim(),Toast.LENGTH_SHORT).show();
                             FirebaseUser user = mAuth.getCurrentUser();
                             if(user.isEmailVerified())

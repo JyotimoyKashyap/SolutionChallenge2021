@@ -12,6 +12,9 @@ import com.example.vaccineapp.data.Api.ApiHelper;
 import com.example.vaccineapp.data.Model.RegisterBaby;
 import com.example.vaccineapp.data.Model.ResponseBabyDetails;
 import com.example.vaccineapp.data.Model.VaccinesTaken;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -45,6 +48,13 @@ public class BabyViewModel extends AndroidViewModel {
                 if (response.code() < 300) {
                     babyDetailsResponse.postValue(response.body());
                     String babyid = response.body().getBabyDetails().get_id();
+                    //Firebase code
+                    FirebaseAuth mAuth;
+                    mAuth = FirebaseAuth.getInstance();
+                    String user = mAuth.getCurrentUser().getUid();
+                    DatabaseReference databaseReference;
+                    databaseReference = FirebaseDatabase.getInstance().getReference("Baby_Data");
+                    databaseReference.child(user).child("Baby_Id").setValue(babyid);
                     preferences.AddBabyId(babyid);
                     Log.d("register baby", String.valueOf(response.code())+" : success");
                     Log.d("babyid",babyid);
