@@ -19,6 +19,7 @@ import android.widget.DatePicker;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.example.vaccineapp.AppPreferences.Preferences;
 import com.example.vaccineapp.Authentication.LoginFragment;
 import com.example.vaccineapp.DummyFragment;
 import com.example.vaccineapp.MainDestinations.BottomNavFragment;
@@ -50,6 +51,7 @@ public class ChildDetailsFormFragment extends Fragment {
     private String gender = "";
 
     private BabyViewModel babyViewModel;
+    private Preferences preferences;
 
 
     @Override
@@ -59,6 +61,8 @@ public class ChildDetailsFormFragment extends Fragment {
         binding = FragmentChildDetailsFormBinding.inflate(inflater, container, false);
         View view = binding.getRoot();
         setExitTransition(new MaterialSharedAxis(MaterialSharedAxis.Z, false));
+
+        preferences = Preferences.getInstance(getContext());
 
         binding.progressBarChildDetailFragment.setVisibility(View.INVISIBLE);
 
@@ -166,7 +170,8 @@ public class ChildDetailsFormFragment extends Fragment {
     private void SendDataToServer(String baby, String father_name, String mother, int year, int month, int day, String gender) {
         RegisterBaby Rb = new RegisterBaby(baby,String.valueOf(day),String.valueOf(month),
                 String.valueOf(year),"00",mother,father_name);
-        babyViewModel.RegisterBaby(mAuth.getCurrentUser().getUid(),Rb);
+        babyViewModel.RegisterBaby(preferences.RetrieveParentId(),Rb);
+        Log.e("uid",mAuth.getCurrentUser().getUid()+"run");
         Log.e("outside function","yayy");
         babyViewModel.getResponse().observe(this,data->{
             if(data!=null)

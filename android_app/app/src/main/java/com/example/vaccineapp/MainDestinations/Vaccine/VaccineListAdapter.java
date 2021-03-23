@@ -41,6 +41,7 @@ public class VaccineListAdapter extends RecyclerView.Adapter<VaccineListAdapter.
     public void onBindViewHolder(@NonNull VaccineViewHolder holder, int position) {
         VaccineDetails currentItem = vaccineRowItem.get(position);
         Log.d("myvaccine", "from Adapter" + currentItem.getName());
+        Log.i("vaccineid","from adapter"+currentItem.get_id());
         holder.vaccineName.setText(currentItem.getName());
         holder.whenToGive.setText(currentItem.getWhenToGive());
 

@@ -35,21 +35,28 @@ public class Preferences implements SharedPrefsHelper{
 
     @Override
     public void AddBabyId(String id) {
-
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("BabyId",id);
+        editor.apply();
     }
 
     @Override
-    public void AddUserId(String id) {
-
+    public void AddParent(String id) {
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("ParentId", id);
+        editor.apply();
     }
+
 
     @Override
     public String RetrieveBabyId() {
-        return null;
+        return sharedPreferences.getString("BabyId",null);
     }
 
     @Override
-    public String RetrieveUserId() {
-        return null;
+    public String RetrieveParentId() {
+        return sharedPreferences.getString("ParentId",null);
     }
+
+
 }

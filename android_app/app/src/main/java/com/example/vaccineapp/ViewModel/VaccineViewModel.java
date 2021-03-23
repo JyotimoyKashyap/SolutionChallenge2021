@@ -7,6 +7,7 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.MutableLiveData;
 
+import com.example.vaccineapp.AppPreferences.Preferences;
 import com.example.vaccineapp.data.Api.ApiHelper;
 import com.example.vaccineapp.data.Model.*;
 import com.google.firebase.auth.FirebaseAuth;
@@ -26,11 +27,13 @@ public class VaccineViewModel extends AndroidViewModel {
     private MutableLiveData<ResponseVacTaken> vacTaken;
     private MutableLiveData<ResponseBabyDetails> babyResponse;
     private MutableLiveData<ResponseSignup> SignUpResponse;
+    private Preferences preferences;
 
 
     public VaccineViewModel(@NonNull Application application) {
         super(application);
         apiHelper = new ApiHelper(application);
+        preferences = new Preferences(application);
         vaccineRes = new MutableLiveData<ResponseVaccine>();
         vaccineDetails = new MutableLiveData<ResponseVaccineDetails>();
         vacTaken = new MutableLiveData<ResponseVacTaken>();
@@ -76,15 +79,17 @@ public class VaccineViewModel extends AndroidViewModel {
             public void onResponse(Call<ResponseSignup> call, Response<ResponseSignup> response) {
                 if(response.code()<300){
                     SignUpResponse.postValue(response.body());
-                    String mm = response.body().getUser().getId();
+                    String parentId = response.body().getUser().getId();
+                    preferences.AddParent(parentId);
                     //Parent id to firebase
                     FirebaseAuth mAuth;
                     mAuth = FirebaseAuth.getInstance();
                     String user = mAuth.getCurrentUser().getUid();
                     DatabaseReference databaseReference;
                     databaseReference = FirebaseDatabase.getInstance().getReference("Baby_Data");
-                    databaseReference.child(user).child("Parent_Id").setValue(mm);
+                    databaseReference.child(user).child("Parent_Id").setValue(parentId);
                     Log.d("sign up", String.valueOf(response.code())+" : success");
+                    Log.i("parentID",parentId);
                 }else if(response.code()>400){
                     SignUpResponse.postValue(null);
                     Log.d("sign ups", String.valueOf(response.code())+" : failure");

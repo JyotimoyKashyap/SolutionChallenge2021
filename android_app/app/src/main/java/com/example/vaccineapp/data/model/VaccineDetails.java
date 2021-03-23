@@ -8,6 +8,7 @@ import com.google.gson.annotations.SerializedName;
 
 public class VaccineDetails implements Parcelable {
 
+
     @SerializedName("_id")
     @Expose
     private String _id;

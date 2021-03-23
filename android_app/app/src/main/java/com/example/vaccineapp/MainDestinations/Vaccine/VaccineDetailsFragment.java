@@ -11,7 +11,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.example.vaccineapp.AppPreferences.Preferences;
 import com.example.vaccineapp.R;
+import com.example.vaccineapp.ViewModel.BabyViewModel;
 import com.example.vaccineapp.ViewModel.VaccineViewModel;
 import com.example.vaccineapp.data.Model.VaccinesTaken;
 import com.example.vaccineapp.databinding.FragmentVaccineDetailsBinding;
@@ -32,7 +34,8 @@ public class VaccineDetailsFragment extends Fragment {
     //view binding
     private FragmentVaccineDetailsBinding binding;
     //init view model
-    private VaccineViewModel viewModel;
+    private BabyViewModel babyViewModel;
+    private Preferences preferences;
 
 
     private String mVaccineName;
@@ -89,8 +92,8 @@ public class VaccineDetailsFragment extends Fragment {
             mPosition = getArguments().getInt(POSITION);
         }
 
-        viewModel = new ViewModelProvider(this,
-                ViewModelProvider.AndroidViewModelFactory.getInstance(getActivity().getApplication())).get(VaccineViewModel.class);
+        babyViewModel = new ViewModelProvider(this,
+                ViewModelProvider.AndroidViewModelFactory.getInstance(getActivity().getApplication())).get(BabyViewModel.class);
     }
 
     @Override
@@ -100,6 +103,7 @@ public class VaccineDetailsFragment extends Fragment {
         binding = FragmentVaccineDetailsBinding.inflate(inflater, container, false);
         setExitTransition(new MaterialSharedAxis(MaterialSharedAxis.Y, false));
 
+        preferences = Preferences.getInstance(getContext());
 
 
         //setting the text fields from the data of bundle
@@ -109,6 +113,7 @@ public class VaccineDetailsFragment extends Fragment {
         binding.route.setText(mRoute);
         binding.description.setText(mDescription);
         binding.dose.setText(mDose);
+        Log.e("vacccineid"+" ","from on create"+" "+mVaccineId);
 
 
         binding.confirmBtn.setOnClickListener(new View.OnClickListener() {
@@ -127,9 +132,11 @@ public class VaccineDetailsFragment extends Fragment {
 
     public void SendDataToServer()
     {
-        VaccinesTaken vaccinesTaken = new VaccinesTaken(babyId,mVaccineId);
-        viewModel.AddVaccines(vaccinesTaken);
-        viewModel.getVacTakenRes().observe(getViewLifecycleOwner(),data->{
+        VaccinesTaken vaccinesTaken = new VaccinesTaken(preferences.RetrieveBabyId(),mVaccineId);
+        babyViewModel.AddVaccines(vaccinesTaken);
+        Log.e("babyid",preferences.RetrieveBabyId());
+        Log.e("vaccineId",mVaccineId);
+        babyViewModel.getResponse().observe(getViewLifecycleOwner(),data->{
            if(data!=null)
            {
              Log.e("ApiCall","Successfull");

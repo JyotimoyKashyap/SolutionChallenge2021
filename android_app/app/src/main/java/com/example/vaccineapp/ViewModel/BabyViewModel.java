@@ -7,10 +7,11 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.MutableLiveData;
 
+import com.example.vaccineapp.AppPreferences.Preferences;
 import com.example.vaccineapp.data.Api.ApiHelper;
 import com.example.vaccineapp.data.Model.RegisterBaby;
 import com.example.vaccineapp.data.Model.ResponseBabyDetails;
-import com.example.vaccineapp.data.Model.ResponseBabyVacTaken;
+import com.example.vaccineapp.data.Model.VaccinesTaken;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -20,14 +21,15 @@ public class BabyViewModel extends AndroidViewModel {
 
     private ApiHelper apiHelper;
     private MutableLiveData<ResponseBabyDetails> babyDetailsResponse;
-    private MutableLiveData<ResponseBabyVacTaken> vaccineResponse;
+    private Preferences preferences;
 
 
     public BabyViewModel(@NonNull Application application) {
         super(application);
         apiHelper = new ApiHelper(application);
+        preferences = new Preferences(application);
         babyDetailsResponse = new MutableLiveData<ResponseBabyDetails>();
-        vaccineResponse = new MutableLiveData<ResponseBabyVacTaken>();
+
     }
 
 
@@ -35,9 +37,6 @@ public class BabyViewModel extends AndroidViewModel {
         return babyDetailsResponse;
     }
 
-    public MutableLiveData<ResponseBabyVacTaken> getVaccineResponse() {
-        return vaccineResponse;
-    }
 
     public void RegisterBaby(String userId, RegisterBaby registerBaby) {
         apiHelper.registerBaby(userId, registerBaby).enqueue(new Callback<ResponseBabyDetails>() {
@@ -46,6 +45,7 @@ public class BabyViewModel extends AndroidViewModel {
                 if (response.code() < 300) {
                     babyDetailsResponse.postValue(response.body());
                     String babyid = response.body().getBabyDetails().get_id();
+                    preferences.AddBabyId(babyid);
                     Log.d("register baby", String.valueOf(response.code())+" : success");
                     Log.d("babyid",babyid);
                 } else if (response.code() > 400) {
@@ -63,22 +63,29 @@ public class BabyViewModel extends AndroidViewModel {
 
     public void GetVacTakenList(String parentId) {
 
-        apiHelper.GetBabyDetails(parentId).enqueue(new Callback<ResponseBabyVacTaken>() {
+
+    }
+
+    public void AddVaccines(VaccinesTaken vaccinesTaken)
+    {
+        apiHelper.AddVaccinesTaken(vaccinesTaken).enqueue(new Callback<ResponseBabyDetails>() {
             @Override
-            public void onResponse(Call<ResponseBabyVacTaken> call, Response<ResponseBabyVacTaken> response) {
+            public void onResponse(Call<ResponseBabyDetails> call, Response<ResponseBabyDetails> response) {
                 if(response.code()<300)
                 {
-                    vaccineResponse.postValue(response.body());
+                    babyDetailsResponse.postValue(response.body());
+                    Log.d("apicall ",response.message() + "  "+ response.code()+ "  "+ " success");
                 }
                 else if(response.code()>400)
                 {
-                    vaccineResponse.postValue(null);
+                    babyDetailsResponse.postValue(null);
+                    Log.d("apicall ",response.message() + "  "+ response.code()+ "  "+ "failure");
                 }
             }
 
             @Override
-            public void onFailure(Call<ResponseBabyVacTaken> call, Throwable t) {
-                vaccineResponse.postValue(null);
+            public void onFailure(Call<ResponseBabyDetails> call, Throwable t) {
+                babyDetailsResponse.postValue(null);
             }
         });
     }

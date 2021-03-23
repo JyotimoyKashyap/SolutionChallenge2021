@@ -121,7 +121,7 @@ public class SignupFragment extends Fragment {
         String id = mAuth.getCurrentUser().getUid();
         String em = mAuth.getCurrentUser().getEmail();
         Log.e("email",em);
-        Log.e("uid",id);
+        Log.e("uid signup",id);
         Signup ss = new Signup(id,em);
         vaccineViewModel.SignUp(ss);
         vaccineViewModel.getSignUpResponse().observe(getViewLifecycleOwner(),data->{

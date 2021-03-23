@@ -85,7 +85,7 @@ public class ApiHelper implements ApiService {
     }
 
     @Override
-    public Call<ResponseBabyVacTaken> GetBabyDetails(String parentId) {
+    public Call<ResponseBabyDetails> GetBabyDetails(String parentId) {
         return  api.GetBabyDetails(parentId);
     }
 

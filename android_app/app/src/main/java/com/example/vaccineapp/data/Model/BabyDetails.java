@@ -7,6 +7,10 @@ import java.util.List;
 
 public class BabyDetails {
 
+    @SerializedName("vaccinesTaken")
+    @Expose
+    private List<VaccineDetails> vaccineDetailsList;
+
     @SerializedName("_id")
     @Expose
     private String _id;
@@ -35,9 +39,9 @@ public class BabyDetails {
     private Integer __v;
 
 
-    public BabyDetails(String _id, String name, String age, String parent,
-                       String motherName, String fatherName, Integer __v
-                       ) {
+    public BabyDetails(List<VaccineDetails> vaccineDetailsList,
+                       String _id, String name, String age, String parent, String motherName, String fatherName, Integer __v) {
+        this.vaccineDetailsList = vaccineDetailsList;
         this._id = _id;
         this.name = name;
         this.age = age;
@@ -45,9 +49,15 @@ public class BabyDetails {
         this.motherName = motherName;
         this.fatherName = fatherName;
         this.__v = __v;
-
     }
 
+    public List<VaccineDetails> getVaccineDetailsList() {
+        return vaccineDetailsList;
+    }
+
+    public void setVaccineDetailsList(List<VaccineDetails> vaccineDetailsList) {
+        this.vaccineDetailsList = vaccineDetailsList;
+    }
 
     public String get_id() {
         return _id;
