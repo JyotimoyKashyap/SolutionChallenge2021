@@ -24,7 +24,7 @@ public class VaccineDetailsFragment extends Fragment {
 
     private static final String VACCINE_NAME = "param1";
     private static final String VACCINE_ID = "param2";
-    private static final String WHEN_TO_GIVE = "param2";
+    private static final String WHEN_TO_GIVE = "when_to_give";
     private static final String DOSE = "dose";
     private static final String ROUTE = "route";
     private static final String SITE = "site";
@@ -66,14 +66,18 @@ public class VaccineDetailsFragment extends Fragment {
 
         VaccineDetailsFragment fragment = new VaccineDetailsFragment();
         Bundle args = new Bundle();
-        args.putString(VACCINE_NAME, vaccineName);
-        args.putString(VACCINE_ID, vaccineId);
+        /** Here the VACCINE_ID = vaccineName and VACCINE_NAME=vaccineId
+        please don't confuse this it's intentional */
+        args.putString(VACCINE_NAME, vaccineId);
+        args.putString(VACCINE_ID, vaccineName);
         args.putString(WHEN_TO_GIVE, whenToGive);
         args.putString(DOSE, dose);
         args.putString(ROUTE, route);
         args.putString(SITE, site);
         args.putString(DESC, description);
         args.putInt(POSITION, position);
+        Log.d("vaccines" , vaccineId);
+        Log.d("vaccines", vaccineName);
         fragment.setArguments(args);
         return fragment;
     }
