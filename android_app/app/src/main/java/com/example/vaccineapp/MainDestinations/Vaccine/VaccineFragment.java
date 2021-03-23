@@ -113,10 +113,12 @@ public class VaccineFragment extends Fragment implements VaccineListAdapter.OnVa
             {
                 historyListAdapter = new HistoryListAdapter(data.getBabyDetails().getVaccineDetailsList(),
                         getContext());
-                binding.historyRv.setAdapter(adapter);
+                binding.historyRv.setAdapter(historyListAdapter);
+                Log.i("ApiCall ","vaccinesList success");
             }
             else {
                 Toast.makeText(getContext(), "There is some error", Toast.LENGTH_SHORT).show();
+                Log.i("ApiCall ","vaccinesList fail");
             }
         });
 
