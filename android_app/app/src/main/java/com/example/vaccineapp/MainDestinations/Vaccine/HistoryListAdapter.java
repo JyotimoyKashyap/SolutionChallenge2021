@@ -14,8 +14,7 @@ import com.example.vaccineapp.data.Model.VaccineDetails;
 
 import java.util.List;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
+
 
 public class HistoryListAdapter extends RecyclerView.Adapter<HistoryListAdapter.HistoryListViewHolder> {
 
