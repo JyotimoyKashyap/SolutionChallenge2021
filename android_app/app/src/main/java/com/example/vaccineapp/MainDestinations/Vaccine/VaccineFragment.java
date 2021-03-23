@@ -178,12 +178,7 @@ public class VaccineFragment extends Fragment implements VaccineListAdapter.OnVa
                                 String dose, String route, String site, String description) {
         VaccineDetailsFragment vaccineDetailsFragment = VaccineDetailsFragment.newInstance(vaccineId,vaccineName,
                 whenToGive, position, dose, route, site, description);
-
-        Log.d("vaccine id","from vaccinefragment"+" "+vaccineId);
-
-
         vaccineDetailsFragment.setEnterTransition(new MaterialSharedAxis(MaterialSharedAxis.Y, true));
-
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
         transaction.replace(R.id.fragment_container, vaccineDetailsFragment);
         transaction.addToBackStack(null);
