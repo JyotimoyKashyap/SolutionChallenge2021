@@ -1,5 +1,7 @@
 package com.example.vaccineapp.SplashFragment;
 
+import android.animation.ObjectAnimator;
+import android.animation.PropertyValuesHolder;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -9,6 +11,7 @@ import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AnticipateOvershootInterpolator;
 
 import com.example.vaccineapp.Authentication.LoginFragment;
 import com.example.vaccineapp.Authentication.VarifyEmailFragment;
@@ -35,7 +38,17 @@ public class SplashFragment extends Fragment {
             public void run() {
                 setFragment(new LoginFragment());
             }
-        }, 600);
+        }, 1000);
+
+        PropertyValuesHolder scaleX = PropertyValuesHolder.ofFloat(View.SCALE_X, 1.2f);
+        PropertyValuesHolder scaleY = PropertyValuesHolder.ofFloat(View.SCALE_Y, 1.2f);
+
+        ObjectAnimator animator = ObjectAnimator.ofPropertyValuesHolder(binding.splashScreenAppIcon, scaleX, scaleY);
+        animator.setDuration(500);
+        animator.setRepeatMode(ObjectAnimator.REVERSE);
+        animator.setRepeatCount(1);
+        animator.setInterpolator(new AnticipateOvershootInterpolator());
+        animator.start();
 
 
 

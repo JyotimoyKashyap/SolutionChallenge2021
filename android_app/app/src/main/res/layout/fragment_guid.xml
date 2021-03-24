@@ -109,21 +109,24 @@
                         android:layout_marginTop="8dp"
                         app:cardElevation="0dp"
                         app:cardCornerRadius="18dp"/>
+
                     <com.google.android.material.card.MaterialCardView
                         android:id="@+id/card_active_cases_background"
                         android:layout_width="0dp"
                         android:layout_height="0dp"
-                        app:cardBackgroundColor="@color/warning_card_background"
-                        app:layout_constraintTop_toBottomOf="@id/guide_covid_country"
-                        app:layout_constraintStart_toEndOf="@id/guide_guideline1"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintBottom_toTopOf="@id/new_death_cases"
                         android:layout_marginStart="5dp"
+                        android:layout_marginTop="8dp"
                         android:layout_marginEnd="12dp"
                         android:layout_marginBottom="20dp"
-                        android:layout_marginTop="8dp"
+                        app:cardBackgroundColor="@color/warning_card_background"
+                        app:cardCornerRadius="18dp"
                         app:cardElevation="0dp"
-                        app:cardCornerRadius="18dp"/>
+                        app:layout_constraintBottom_toTopOf="@id/new_death_cases"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toEndOf="@id/guide_guideline1"
+                        app:layout_constraintTop_toBottomOf="@id/guide_covid_country"
+                        app:layout_constraintVertical_bias="0.0" />
 
                     <com.google.android.material.card.MaterialCardView
                         android:layout_width="0dp"
