@@ -100,7 +100,6 @@ public class VaccineFragment extends Fragment implements VaccineListAdapter.OnVa
         vaccineViewModel.getAllVaccinesResponse().observe(this,data->{
             if(data != null){
                 adapter = new VaccineListAdapter(data.getVaccineDetails(), getContext(),this::onClickListener);
-
                 //binding.upcomingVaccinesRecyclerView.setAdapter(adapter);
             }else{
                 Toast.makeText(getContext(), "There is some error", Toast.LENGTH_SHORT).show();

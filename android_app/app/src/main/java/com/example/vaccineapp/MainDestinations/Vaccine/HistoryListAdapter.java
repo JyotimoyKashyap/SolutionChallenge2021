@@ -44,10 +44,14 @@ public class HistoryListAdapter extends RecyclerView.Adapter<HistoryListAdapter.
 
     @Override
     public int getItemCount() {
-        return 0;
+        if(historyRowItem == null)
+            return 0;
+        else
+            return historyRowItem.size();
     }
 
     public class HistoryListViewHolder extends RecyclerView.ViewHolder {
+
 
         TextView vaccineName;
         TextView whenToGive;

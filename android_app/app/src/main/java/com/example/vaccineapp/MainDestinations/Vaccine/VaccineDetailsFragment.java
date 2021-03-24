@@ -139,6 +139,7 @@ public class VaccineDetailsFragment extends Fragment {
         VaccinesTaken vaccinesTaken = new VaccinesTaken(preferences.RetrieveBabyId(),mVaccineId);
         babyViewModel.AddVaccines(vaccinesTaken);
         Log.e("babyid",preferences.RetrieveBabyId());
+        Log.e("parentID",preferences.RetrieveParentId());
         Log.e("vaccineId",mVaccineId);
         Log.e("check1",mWhenToGive);
         Log.e("check2",mVaccineName);
