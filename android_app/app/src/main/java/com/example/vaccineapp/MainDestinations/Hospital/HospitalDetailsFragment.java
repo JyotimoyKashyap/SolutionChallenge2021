@@ -5,6 +5,7 @@ import android.os.Bundle;
 
 import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
@@ -15,6 +16,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.example.vaccineapp.MainDestinations.Hospital.Doctor.DoctorDetailFragment;
 import com.example.vaccineapp.R;
 import com.example.vaccineapp.ViewModel.HospitalViewModel;
 import com.example.vaccineapp.ViewModel.VaccineViewModel;
@@ -24,7 +26,7 @@ import com.google.android.material.transition.MaterialElevationScale;
 import com.google.android.material.transition.MaterialSharedAxis;
 
 
-public class HospitalDetailsFragment extends Fragment {
+public class HospitalDetailsFragment extends Fragment implements DoctorListAdapter.OnDoctorCardClick{
 
 
 
@@ -130,7 +132,7 @@ public class HospitalDetailsFragment extends Fragment {
         hospitalViewModel.getAllDoctorsRes().observe(this,data->{
             if(data!=null)
             {
-                doctorListAdapter = new DoctorListAdapter(getContext(),data.getDoctorDetails());
+                doctorListAdapter = new DoctorListAdapter(getContext(),data.getDoctorDetails(),this::onCardClick);
                 binding.doctorsList.setAdapter(doctorListAdapter);
             }
             else
@@ -165,5 +167,22 @@ public class HospitalDetailsFragment extends Fragment {
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
+    }
+
+    @Override
+    public void onCardClick(int position, String name, String contact,
+                            String Address, String Specialization) {
+
+
+
+        DoctorDetailFragment doctorDetailFragment = DoctorDetailFragment.newInstance(name,contact,
+                Address,Specialization);
+
+        doctorDetailFragment.setEnterTransition(new MaterialSharedAxis(MaterialSharedAxis.Y, true));
+        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+        transaction.replace(R.id.fragment_container,doctorDetailFragment );
+        transaction.addToBackStack(null);
+        transaction.commit();
+
     }
 }
