@@ -1,6 +1,7 @@
 package com.example.vaccineapp.MainDestinations.Vaccine;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,8 +15,6 @@ import com.example.vaccineapp.data.Model.VaccineDetails;
 
 import java.util.List;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
 
 
 public class HistoryListAdapter extends RecyclerView.Adapter<HistoryListAdapter.HistoryListViewHolder> {
@@ -39,8 +38,10 @@ public class HistoryListAdapter extends RecyclerView.Adapter<HistoryListAdapter.
     @Override
     public void onBindViewHolder(@NonNull HistoryListViewHolder holder, int position) {
         VaccineDetails currentItem = historyRowItem.get(position);
+        Log.d("apicall" , currentItem.getName() + " : from adapter");
         holder.vaccineName.setText(currentItem.getName());
         holder.whenToGive.setText(currentItem.getWhenToGive());
+
 
     }
 
@@ -55,16 +56,14 @@ public class HistoryListAdapter extends RecyclerView.Adapter<HistoryListAdapter.
     public class HistoryListViewHolder extends RecyclerView.ViewHolder {
 
 
-        @BindView(R.id.vaccine_name)
         TextView vaccineName;
-
-        @BindView(R.id.when_to_get)
         TextView whenToGive;
 
 
         public HistoryListViewHolder(@NonNull View itemView) {
             super(itemView);
-            ButterKnife.bind(itemView);
+            vaccineName = itemView.findViewById(R.id.vaccine_name);
+            whenToGive = itemView.findViewById(R.id.when_to_get);
         }
     }
 

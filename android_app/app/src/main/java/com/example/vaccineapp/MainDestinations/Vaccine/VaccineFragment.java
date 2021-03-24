@@ -106,6 +106,8 @@ public class VaccineFragment extends Fragment implements VaccineListAdapter.OnVa
             }
         });
 
+
+        binding.historyRv.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
         babyViewModel.GetVacTakenList(preferences.RetrieveParentId());
         babyViewModel.getResponse().observe(this,data->{
             if(data!=null)
@@ -114,6 +116,7 @@ public class VaccineFragment extends Fragment implements VaccineListAdapter.OnVa
                         getContext());
                 binding.historyRv.setAdapter(historyListAdapter);
                 Log.i("ApiCall ","vaccinesList success");
+                Log.d("apicall" , data.getBabyDetails().getVaccineDetailsList().get(0).getName());
             }
             else {
                 Toast.makeText(getContext(), "There is some error", Toast.LENGTH_SHORT).show();
