@@ -14,6 +14,8 @@ import com.example.vaccineapp.data.Model.VaccineDetails;
 
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 
 public class HistoryListAdapter extends RecyclerView.Adapter<HistoryListAdapter.HistoryListViewHolder> {
@@ -53,14 +55,16 @@ public class HistoryListAdapter extends RecyclerView.Adapter<HistoryListAdapter.
     public class HistoryListViewHolder extends RecyclerView.ViewHolder {
 
 
+        @BindView(R.id.vaccine_name)
         TextView vaccineName;
+
+        @BindView(R.id.when_to_get)
         TextView whenToGive;
 
 
         public HistoryListViewHolder(@NonNull View itemView) {
             super(itemView);
-            itemView.findViewById(R.id.vaccine_name);
-            itemView.findViewById(R.id.when_to_get);
+            ButterKnife.bind(itemView);
         }
     }
 
