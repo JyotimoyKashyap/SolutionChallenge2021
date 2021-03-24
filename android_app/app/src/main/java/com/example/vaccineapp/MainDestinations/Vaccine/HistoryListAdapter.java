@@ -1,6 +1,7 @@
 package com.example.vaccineapp.MainDestinations.Vaccine;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,8 +38,10 @@ public class HistoryListAdapter extends RecyclerView.Adapter<HistoryListAdapter.
     @Override
     public void onBindViewHolder(@NonNull HistoryListViewHolder holder, int position) {
         VaccineDetails currentItem = historyRowItem.get(position);
+        Log.d("apicall" , currentItem.getName() + " : from adapter");
         holder.vaccineName.setText(currentItem.getName());
         holder.whenToGive.setText(currentItem.getWhenToGive());
+
 
     }
 
@@ -59,8 +62,8 @@ public class HistoryListAdapter extends RecyclerView.Adapter<HistoryListAdapter.
 
         public HistoryListViewHolder(@NonNull View itemView) {
             super(itemView);
-            itemView.findViewById(R.id.vaccine_name);
-            itemView.findViewById(R.id.when_to_get);
+            vaccineName = itemView.findViewById(R.id.vaccine_name);
+            whenToGive = itemView.findViewById(R.id.when_to_get);
         }
     }
 
