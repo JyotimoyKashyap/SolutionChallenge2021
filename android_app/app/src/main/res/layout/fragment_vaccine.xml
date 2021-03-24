@@ -19,6 +19,210 @@
             android:layout_height="match_parent"
             android:background="@color/global_background">
 
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/account_info_card_view"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="12dp"
+                app:cardCornerRadius="18dp"
+                app:cardElevation="0dp"
+                android:layout_marginEnd="12dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <androidx.constraintlayout.widget.Guideline
+                        android:id="@+id/vaccine_guideline_2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        app:layout_constraintGuide_percent="0.5"/>
+
+                    <TextView
+                        android:id="@+id/stats_text_view"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="Stats"
+                        android:textSize="22dp"
+                        android:textColor="@color/green_primary"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginStart="14dp"
+                        android:fontFamily="@font/poppins_bold"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"/>
+
+                   <com.google.android.material.card.MaterialCardView
+                       android:id="@+id/upcoming_appointments_card"
+                       android:layout_width="0dp"
+                       android:layout_height="wrap_content"
+                       android:layout_marginStart="12dp"
+                       android:layout_marginEnd="6dp"
+                       android:clickable="true"
+                       app:cardCornerRadius="18dp"
+                       app:cardBackgroundColor="@color/normal_card_background"
+                       app:cardElevation="0dp"
+                       android:layout_marginTop="10dp"
+                       app:layout_constraintTop_toBottomOf="@id/stats_text_view"
+                       app:layout_constraintStart_toStartOf="parent"
+                       app:layout_constraintEnd_toStartOf="@id/vaccine_guideline_2">
+                       <androidx.constraintlayout.widget.ConstraintLayout
+                           android:layout_width="match_parent"
+                           android:layout_height="match_parent">
+
+                           <TextView
+                               android:id="@+id/recent_appointments_number_text_view"
+                               android:layout_width="0dp"
+                               android:layout_height="wrap_content"
+                               android:text="0"
+                               android:textSize="20dp"
+                               android:layout_marginTop="10dp"
+                               android:textAlignment="center"
+                               app:layout_constraintTop_toTopOf="parent"
+                               app:layout_constraintStart_toStartOf="parent"
+                               app:layout_constraintEnd_toEndOf="parent"
+                               android:textColor="@color/positive_btn_text_color"
+                               android:fontFamily="@font/poppins_light"/>
+
+                           <TextView
+                               android:layout_width="0dp"
+                               android:layout_height="wrap_content"
+                               android:text="Upcoming Appointments"
+                               app:layout_constraintTop_toBottomOf="@id/recent_appointments_number_text_view"
+                               app:layout_constraintStart_toStartOf="parent"
+                               app:layout_constraintEnd_toEndOf="parent"
+                               app:layout_constraintBottom_toBottomOf="parent"
+                               android:textAlignment="center"
+                               android:textSize="15dp"
+                               android:textColor="@color/positive_btn_text_color"
+                               android:layout_marginBottom="10dp"
+                               android:layout_marginTop="5dp"
+                               android:layout_marginStart="12dp"
+                               android:layout_marginEnd="12dp"/>
+
+                       </androidx.constraintlayout.widget.ConstraintLayout>
+                   </com.google.android.material.card.MaterialCardView>
+
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/account_go_card"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:layout_marginEnd="6dp"
+                        android:clickable="true"
+                        app:cardCornerRadius="18dp"
+                        app:cardBackgroundColor="@color/warning_card_background"
+                        app:cardElevation="0dp"
+                        android:layout_marginTop="10dp"
+                        app:layout_constraintTop_toBottomOf="@id/stats_text_view"
+                        app:layout_constraintStart_toEndOf="@id/vaccine_guideline_2"
+                        app:layout_constraintEnd_toEndOf="parent">
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <ImageView
+                                android:id="@+id/account_icon_btn"
+                                android:layout_width="50dp"
+                                android:layout_height="50dp"
+                                android:layout_marginTop="10dp"
+                                android:src="@drawable/ic_account_tinted"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintTop_toTopOf="parent"/>
+
+
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:text="Account"
+                                app:layout_constraintTop_toBottomOf="@id/account_icon_btn"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                android:textAlignment="center"
+                                android:textSize="15dp"
+                                android:textColor="@color/danger_color_text"
+                                android:layout_marginBottom="10dp"
+                                android:layout_marginTop="5dp"
+                                android:layout_marginStart="12dp"
+                                android:layout_marginEnd="12dp"/>
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:layout_marginEnd="6dp"
+                        app:cardBackgroundColor="@color/healthy_card_background"
+                        app:cardElevation="0dp"
+                        android:clickable="true"
+                        app:cardCornerRadius="18dp"
+                        android:layout_marginTop="10dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        android:layout_marginBottom="10dp"
+                        app:layout_constraintTop_toBottomOf="@id/upcoming_appointments_card"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent">
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <TextView
+                                android:id="@+id/vaccine_taken_count"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:text="0"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                android:textAlignment="center"
+                                android:textSize="20dp"
+                                android:textColor="@color/green_text_color"
+                                android:layout_marginStart="12dp"
+                                android:layout_marginTop="15dp"
+                                android:layout_marginEnd="12dp"/>
+
+
+
+
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:text="No. of vaccines taken"
+                                app:layout_constraintTop_toBottomOf="@id/vaccine_taken_count"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                android:textAlignment="center"
+                                android:textSize="15dp"
+                                android:textColor="@color/green_text_color"
+                                android:layout_marginBottom="15dp"
+                                android:layout_marginTop="5dp"
+                                android:layout_marginStart="12dp"
+                                android:layout_marginEnd="12dp"/>
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+                    </com.google.android.material.card.MaterialCardView>
+
+
+
+
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </com.google.android.material.card.MaterialCardView>
+
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/recycler_view_heading_tv"
@@ -33,7 +237,7 @@
                 android:textColor="@color/green_primary"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toBottomOf="@id/account_info_card_view"/>
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/vaccine_fragment_guideline"

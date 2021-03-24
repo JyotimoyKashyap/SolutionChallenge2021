@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.example.vaccineapp.AppPreferences.Preferences;
+import com.example.vaccineapp.ChildDetailsForm.ChildAccountFragment;
 import com.example.vaccineapp.MainDestinations.Hospital.Doctor.DoctorDetailFragment;
 import com.example.vaccineapp.R;
 import com.example.vaccineapp.ViewModel.BabyViewModel;
@@ -52,6 +53,7 @@ public class VaccineFragment extends Fragment implements VaccineListAdapter.OnVa
     private HistoryListAdapter historyListAdapter;
     private BabyViewModel babyViewModel;
     private Preferences preferences;
+    private String vaccinesTaken, vaccinesTotal;
 
     public VaccineFragment() {
         // Required empty public constructor
@@ -100,9 +102,10 @@ public class VaccineFragment extends Fragment implements VaccineListAdapter.OnVa
         vaccineViewModel.getAllVaccinesResponse().observe(this,data->{
             if(data != null){
                 adapter = new VaccineListAdapter(data.getVaccineDetails(), getContext(),this::onClickListener);
+                vaccinesTotal = String.valueOf(data.getVaccineDetails().size());
                 //binding.upcomingVaccinesRecyclerView.setAdapter(adapter);
             }else{
-                Toast.makeText(getContext(), "There is some error", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getContext(), "There is some error", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -114,6 +117,7 @@ public class VaccineFragment extends Fragment implements VaccineListAdapter.OnVa
             {
                 historyListAdapter = new HistoryListAdapter(data.getBabyDetails().getVaccineDetailsList(),
                         getContext());
+                binding.vaccineTakenCount.setText(String.valueOf(data.getBabyDetails().getVaccineDetailsList().size()));
                 binding.historyRv.setAdapter(historyListAdapter);
                 Log.i("ApiCall ","vaccinesList success");
                 Log.d("apicall" , data.getBabyDetails().getVaccineDetailsList().get(0).getName());
@@ -139,6 +143,24 @@ public class VaccineFragment extends Fragment implements VaccineListAdapter.OnVa
                 transaction.commit();
             }
         });
+
+        // stat card data insertion and input
+        binding.accountGoCard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ChildAccountFragment childAccountFragment = new ChildAccountFragment();
+                childAccountFragment.setEnterTransition(new MaterialSharedAxis(MaterialSharedAxis.Y, true));
+                FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                transaction.replace(R.id.fragment_container, childAccountFragment);
+                transaction.addToBackStack(null);
+                transaction.commit();
+
+            }
+        });
+
+
+
+
 
 
         return binding.getRoot();

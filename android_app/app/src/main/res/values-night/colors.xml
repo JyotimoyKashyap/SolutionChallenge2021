@@ -19,6 +19,7 @@
     <color name="warning_card_background">#4A483A</color>
     <color name="danger_card_background">#513C3E</color>
     <color name="healthy_card_background">#44593D</color>
+    <color name="green_text_color">#01F164</color>
 
 
 </resources>
