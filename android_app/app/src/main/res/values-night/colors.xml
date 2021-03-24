@@ -3,9 +3,9 @@
     <color name="link_text_color">#4455E6</color>
 
     <!-- custom theme colors -->
-    <color name="green_primary">#26D156</color>
-    <color name="green_secondary">#4FF87D</color>
-    <color name="green_light">#4AF6AE</color>
+    <color name="green_primary">#808FFF</color>
+    <color name="green_secondary">#96A2FF</color>
+    <color name="green_light">#BDC5FB</color>
 
     <color name="global_background">#121212</color>
     <color name="bottom_sheet_background">#2F2F2F</color>

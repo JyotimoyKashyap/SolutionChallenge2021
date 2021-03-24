@@ -30,6 +30,7 @@
                 android:fontFamily="@font/poppins_semibold"
                 android:text="Vaccines"
                 android:textSize="19dp"
+                android:textColor="@color/green_primary"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -179,6 +180,7 @@
                 android:fontFamily="@font/poppins_semibold"
                 android:text="History"
                 android:textSize="19dp"
+                android:textColor="@color/green_primary"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/vaccine_sample_card_1" />

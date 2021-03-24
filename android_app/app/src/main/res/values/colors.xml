@@ -11,9 +11,9 @@
 
 
     <!-- custom theme colors -->
-    <color name="green_primary">#388E3C</color>
-    <color name="green_secondary">#43A047</color>
-    <color name="green_light">#31DA93</color>
+    <color name="green_primary">#5E71F8</color>
+    <color name="green_secondary">#8492FA</color>
+    <color name="green_light">#A2ADFF</color>
 
     <!-- custom colors -->
     <color name="global_background">#F8F8F8</color>
