@@ -3,6 +3,7 @@ package com.example.vaccineapp.MainDestinations.Vaccine;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
@@ -20,6 +21,7 @@ import com.example.vaccineapp.MainDestinations.Hospital.Doctor.DoctorDetailFragm
 import com.example.vaccineapp.R;
 import com.example.vaccineapp.ViewModel.BabyViewModel;
 import com.example.vaccineapp.ViewModel.VaccineViewModel;
+import com.example.vaccineapp.data.Model.VaccineDetails;
 import com.example.vaccineapp.databinding.FragmentVaccineBinding;
 import com.google.android.material.transition.MaterialElevationScale;
 import com.google.android.material.transition.MaterialSharedAxis;
@@ -32,6 +34,15 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.time.LocalDate;
 import java.time.Period;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.LinkedHashSet;
+import java.util.List;
+import java.util.ListIterator;
+import java.util.Set;
 
 
 public class VaccineFragment extends Fragment implements VaccineListAdapter.OnVaccineCardClick{
@@ -54,6 +65,7 @@ public class VaccineFragment extends Fragment implements VaccineListAdapter.OnVa
     private BabyViewModel babyViewModel;
     private Preferences preferences;
     private String vaccinesTaken, vaccinesTotal;
+    private List<VaccineDetails> vaccineDetailsList;
 
     public VaccineFragment() {
         // Required empty public constructor
@@ -115,9 +127,11 @@ public class VaccineFragment extends Fragment implements VaccineListAdapter.OnVa
         babyViewModel.getResponse().observe(this,data->{
             if(data!=null)
             {
-                historyListAdapter = new HistoryListAdapter(data.getBabyDetails().getVaccineDetailsList(),
+                vaccineDetailsList = removeDuplicates(data.getBabyDetails().getVaccineDetailsList());
+                historyListAdapter = new HistoryListAdapter(vaccineDetailsList,
                         getContext());
-                binding.vaccineTakenCount.setText(String.valueOf(data.getBabyDetails().getVaccineDetailsList().size()));
+
+                binding.vaccineTakenCount.setText(String.valueOf(vaccineDetailsList.size()));
                 binding.historyRv.setAdapter(historyListAdapter);
                 Log.i("ApiCall ","vaccinesList success");
                 Log.d("apicall" , data.getBabyDetails().getVaccineDetailsList().get(0).getName());
@@ -166,7 +180,19 @@ public class VaccineFragment extends Fragment implements VaccineListAdapter.OnVa
         return binding.getRoot();
     }
 
+    public  List<VaccineDetails> removeDuplicates(List<VaccineDetails> list)
+    {
+        /*for(ListIterator<VaccineDetails> iterator = list.listIterator(); iterator.hasNext();) {
+            VaccineDetails vaccineDetails = iterator.next();
+            if(Collections.frequency(list, vaccineDetails) > 1) {
+                iterator.remove();
+            }*/
 
+        /*Set<VaccineDetails> modified = new LinkedHashSet<>(list);
+        list.clear();
+        list.addAll(modified);*/
+        return list;
+    }
 
 //    private void Load() {
 //
