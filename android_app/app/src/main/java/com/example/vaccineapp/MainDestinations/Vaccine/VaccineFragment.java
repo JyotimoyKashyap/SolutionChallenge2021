@@ -180,18 +180,21 @@ public class VaccineFragment extends Fragment implements VaccineListAdapter.OnVa
         return binding.getRoot();
     }
 
-    public  List<VaccineDetails> removeDuplicates(List<VaccineDetails> list)
+    public  List<VaccineDetails> removeDuplicates(final List<VaccineDetails> list)
     {
-        /*for(ListIterator<VaccineDetails> iterator = list.listIterator(); iterator.hasNext();) {
-            VaccineDetails vaccineDetails = iterator.next();
-            if(Collections.frequency(list, vaccineDetails) > 1) {
-                iterator.remove();
-            }*/
+//        Set<VaccineDetails> modified = new LinkedHashSet<>();
+//        modified.addAll(list);
+//        list.clear();
+//        list.addAll(modified);
+//        return list;
 
-        /*Set<VaccineDetails> modified = new LinkedHashSet<>(list);
-        list.clear();
-        list.addAll(modified);*/
-        return list;
+        Set<VaccineDetails> carSet = new HashSet<VaccineDetails>();
+        for (VaccineDetails car : list) {
+            carSet.add(car);
+        }
+        List<VaccineDetails> withoutDuplicates = new ArrayList<VaccineDetails>(carSet);
+
+        return withoutDuplicates;
     }
 
 //    private void Load() {
