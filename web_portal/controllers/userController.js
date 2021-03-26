@@ -127,6 +127,7 @@ exports.registerBaby = async (req, res) => {
     });
   }
 };
+
 // Function to get baby details
 exports.getBabyDetails = async (req, res) => {
   try {

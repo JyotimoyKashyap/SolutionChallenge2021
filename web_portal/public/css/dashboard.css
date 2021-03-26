@@ -36,13 +36,13 @@ body {
 .main-left-option {
   text-decoration: none;
   font-size: 25px;
-  color: #a9fbbb;
+  color: #7686f9;
   margin: 2.5px 0;
   border-radius: 2px;
 }
 
 .first-opt {
-  background-color: #a9fbbb;
+  background-color: #7686f9;
   padding: 20px 10px;
   color: black;
 }
@@ -55,7 +55,7 @@ body {
 }
 
 .main-left-option:hover {
-  background-color: #a9fbbb;
+  background-color: #7686f9;
   color: black;
 }
 
@@ -78,7 +78,7 @@ body {
 }
 
 .hospital_large {
-  background-color: #c1fccc;
+  background-color: #7686f9;
   max-width: 1000px;
   border-radius: 20px;
   padding: 40px;
@@ -86,7 +86,7 @@ body {
 }
 
 .doctors {
-  background-color: #c1fccc;
+  background-color: #7686f9;
   max-width: 1000px;
   border-radius: 20px;
   padding: 40px;
@@ -107,13 +107,13 @@ body {
 .doctors-card {
   width: 180px;
   height: 200px;
-  background-color: #e0d5d5;
+  background-color: #7686f9;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
   border-radius: 20px;
-  box-shadow: 5px 5px 5px #188255;
+  box-shadow: 5px 5px 5px #7686f9;
   margin: 25px;
 }
 
