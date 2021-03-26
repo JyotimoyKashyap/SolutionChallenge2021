@@ -29,6 +29,7 @@ import com.example.vaccineapp.MainDestinations.Vaccine.VaccineFragment;
 import com.example.vaccineapp.R;
 import com.example.vaccineapp.databinding.FragmentBottomNavBinding;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.transition.MaterialSharedAxis;
 
 
@@ -87,7 +88,10 @@ public class BottomNavFragment extends Fragment implements BottomNavigationView.
         setFragment(new VaccineFragment());
 
         //show permission request
-        showPermissionDialog();
+        if (!preferences.retrieveLocationPermission()){
+            showPermissionDialog();
+        }
+
 
 
         return binding.getRoot();
@@ -150,7 +154,7 @@ public class BottomNavFragment extends Fragment implements BottomNavigationView.
 
     private void explainPermissionRequest(){
         if(ActivityCompat.shouldShowRequestPermissionRationale(getActivity(), Manifest.permission.ACCESS_COARSE_LOCATION)){
-            new AlertDialog.Builder(getContext())
+            new MaterialAlertDialogBuilder(getContext(), R.style.MyRounded_MaterialComponents_MaterialAlertDialog)
                     .setTitle("Permission needed")
                     .setMessage("We are collecting approximate location of your device so that we can generate a heat map around our target users" +
                             " about whether which areas are less aware of immunization. This data is required only for research purposes and there is no " +
