@@ -4,15 +4,27 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" type="image/jpg" href="/img/favicon.png"/>
+    <link rel="shortcut icon" type="image/jpg" href="/assets/app_icon.svg"/>
     <link rel="stylesheet" href="/css/dashboard.css">
+    <link rel="stylesheet" href="/css/homepage.css">
     <title>Nirog | Dashboard</title>
 </head>
 <body>
-    <nav class="nav">
-        <img src="/img/logo.png" width="70px" alt="">
-        <h1>NIROG</h2>
-    </nav>
+    <div class="navbar">
+        <div class="navbar__logo">
+            <img class="logo" src="./public/assets/app_icon.svg" alt="">
+            <a href="./index.html" class="navbar__logo-name">Nirog</a>
+        </div>
+        <nav class="menu menu-3">
+                <ul>
+                  <!-- <li><a href="#our-motive">Our Motive</a></li>
+                  <li><a href="#our-solution">Our Solution</a></li>
+                  <li><a href="#app-section">App</a></li>
+                  <li><a href="#web-section">Web</a></li> -->
+                  <li><a class="button" href="/auth/signout">Sign out</a></li>
+                </ul>
+        </nav>
+    </div>
     <main class="main">
         <div class="main__div1">
             <a class="main-left-option first-opt" href="#">Hospitals</a>
@@ -20,8 +32,6 @@
             <a class="main-left-option" href="/hospital/update/bio/<%= hospital._id %>">Edit Bio</a>
             <a class="main-left-option" href="/hospital/add/doctor/<%= hospital._id %>">Add Doctor</a>
             <a class="main-left-option" href="/hospital/add/vaccine/<%= hospital._id %>">Add Vaccine</a>
-            <a class="main-left-option" href="/auth/signout">Log out</a>
-
         </div>
         <div class="main__div2">
             <p class="main__div2-heading">Hospital Details</p>

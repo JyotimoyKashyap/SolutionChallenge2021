@@ -100,7 +100,7 @@ body {
 }
 
 body {
-  background-color: #188255;
+  background-color: #7686f9;
   width: 100%;
   min-height: 100vh;
 
@@ -131,7 +131,7 @@ input {
 
 h1 {
   text-align: center;
-  color: #188255;
+  color: #7686f9;
 }
 h2 {
   text-align: center;
@@ -144,7 +144,7 @@ h2 {
 h2 span {
   text-decoration: underline;
   cursor: pointer;
-  color: #188255;
+  color: #7686f9;
 }
 
 /*  Field */
@@ -162,7 +162,7 @@ h2 span {
   position: absolute;
   width: 0px;
   height: 2px;
-  background: #188255;
+  background: #7686f9;
   bottom: 0;
   left: 50%;
   transform: translateX(-50%);
@@ -201,7 +201,7 @@ h2 span {
 }
 
 input[type='submit'] {
-  background: #188255;
+  background: #7686f9;
   color: white;
   padding: 12px 0;
   font-size: 1.2rem;
