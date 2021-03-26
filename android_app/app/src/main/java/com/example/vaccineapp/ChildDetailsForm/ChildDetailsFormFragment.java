@@ -9,7 +9,9 @@ import android.os.Bundle;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.lifecycle.ViewModelProvider;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,10 +19,14 @@ import android.widget.DatePicker;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.example.vaccineapp.AppPreferences.Preferences;
 import com.example.vaccineapp.Authentication.LoginFragment;
 import com.example.vaccineapp.DummyFragment;
 import com.example.vaccineapp.MainDestinations.BottomNavFragment;
 import com.example.vaccineapp.R;
+import com.example.vaccineapp.ViewModel.BabyViewModel;
+import com.example.vaccineapp.ViewModel.VaccineViewModel;
+import com.example.vaccineapp.data.Model.RegisterBaby;
 import com.example.vaccineapp.databinding.FragmentChildDetailsFormBinding;
 import com.google.android.material.transition.MaterialSharedAxis;
 import com.google.firebase.auth.FirebaseAuth;
@@ -44,6 +50,8 @@ public class ChildDetailsFormFragment extends Fragment {
     private int Year=0;
     private String gender = "";
 
+    private BabyViewModel babyViewModel;
+    private Preferences preferences;
 
 
     @Override
@@ -54,7 +62,12 @@ public class ChildDetailsFormFragment extends Fragment {
         View view = binding.getRoot();
         setExitTransition(new MaterialSharedAxis(MaterialSharedAxis.Z, false));
 
+        preferences = Preferences.getInstance(getContext());
+
         binding.progressBarChildDetailFragment.setVisibility(View.INVISIBLE);
+
+        babyViewModel = new ViewModelProvider(this,ViewModelProvider.AndroidViewModelFactory.
+                getInstance(getActivity().getApplication())).get(BabyViewModel.class);
 
         //Bundle Retrival
         Bundle bundle = this.getArguments();
@@ -149,8 +162,26 @@ public class ChildDetailsFormFragment extends Fragment {
         databaseReference.child(User_Id).child("Date").setValue(day);
         databaseReference.child(User_Id).child("Gender").setValue(Gender);
         Toast.makeText(getActivity(),"Data added",Toast.LENGTH_SHORT).show();
+        SendDataToServer(baby,father_Name,mother,year,month,day,Gender);
         binding.progressBarChildDetailFragment.setVisibility(View.INVISIBLE);
         setFragment(new LoginFragment());
+    }
+
+    private void SendDataToServer(String baby, String father_name, String mother, int year, int month, int day, String gender) {
+        RegisterBaby Rb = new RegisterBaby(baby,String.valueOf(day),String.valueOf(month),
+                String.valueOf(year),"00",mother,father_name);
+        babyViewModel.RegisterBaby(preferences.RetrieveParentId(),Rb);
+        Log.e("uid",mAuth.getCurrentUser().getUid()+"run");
+        Log.e("outside function","yayy");
+        babyViewModel.getResponse().observe(this,data->{
+            if(data!=null)
+            {
+                Log.e("inside function","yayy");
+            }
+            else {
+                Log.e("inside","didnt work");
+            }
+        });
     }
 
 

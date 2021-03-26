@@ -5,6 +5,7 @@ import com.example.vaccineapp.data.Model.*;
 import com.example.vaccineapp.data.Model.CovidTracker.CovidResponse;
 
 import retrofit2.Call;
+import retrofit2.Response;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.Headers;
@@ -46,5 +47,14 @@ public interface ApiService {
     @POST("api/user/baby/remove/vaccine")
     Call<ResponseBabyDetails> RemoveVaccine(@Body VaccinesTaken vaccinesTaken);
 
+    @POST("api/user/signup")
+    Call<ResponseSignup> AddUser(@Body Signup signup);
+
+
+    @GET("api/user/baby/details/{parentId}")
+    Call<ResponseBabyDetails> GetBabyDetails(@Path("parentId") String parentId);
+
+    @POST("api/user/baby/register/{userId}")
+    Call<ResponseBabyDetails> registerBaby(@Path("userId")String userId, @Body RegisterBaby registerBaby);
 
 }

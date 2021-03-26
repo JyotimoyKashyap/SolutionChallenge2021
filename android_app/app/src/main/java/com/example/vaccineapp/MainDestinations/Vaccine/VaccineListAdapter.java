@@ -41,6 +41,7 @@ public class VaccineListAdapter extends RecyclerView.Adapter<VaccineListAdapter.
     public void onBindViewHolder(@NonNull VaccineViewHolder holder, int position) {
         VaccineDetails currentItem = vaccineRowItem.get(position);
         Log.d("myvaccine", "from Adapter" + currentItem.getName());
+        Log.i("vaccineid","from adapter"+currentItem.get_id());
         holder.vaccineName.setText(currentItem.getName());
         holder.whenToGive.setText(currentItem.getWhenToGive());
 
@@ -48,6 +49,7 @@ public class VaccineListAdapter extends RecyclerView.Adapter<VaccineListAdapter.
         holder.vaccineCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Log.e("vaccineid","from adqapter onclick"+" "+currentItem.get_id());
                 //sending data to vaccine fragment for fragment
                 onVaccineCardClick.onClickListener(
                         position,

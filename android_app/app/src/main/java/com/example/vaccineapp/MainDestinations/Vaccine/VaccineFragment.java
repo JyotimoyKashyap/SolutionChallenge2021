@@ -3,19 +3,25 @@ package com.example.vaccineapp.MainDestinations.Vaccine;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.example.vaccineapp.AppPreferences.Preferences;
+import com.example.vaccineapp.ChildDetailsForm.ChildAccountFragment;
 import com.example.vaccineapp.MainDestinations.Hospital.Doctor.DoctorDetailFragment;
 import com.example.vaccineapp.R;
+import com.example.vaccineapp.ViewModel.BabyViewModel;
 import com.example.vaccineapp.ViewModel.VaccineViewModel;
+import com.example.vaccineapp.data.Model.VaccineDetails;
 import com.example.vaccineapp.databinding.FragmentVaccineBinding;
 import com.google.android.material.transition.MaterialElevationScale;
 import com.google.android.material.transition.MaterialSharedAxis;
@@ -28,6 +34,15 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.time.LocalDate;
 import java.time.Period;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.LinkedHashSet;
+import java.util.List;
+import java.util.ListIterator;
+import java.util.Set;
 
 
 public class VaccineFragment extends Fragment implements VaccineListAdapter.OnVaccineCardClick{
@@ -41,10 +56,16 @@ public class VaccineFragment extends Fragment implements VaccineListAdapter.OnVa
 
     private String mParam1;
     private String mParam2;
+    private String vacID;
 
     private FragmentVaccineBinding binding;
     private VaccineViewModel vaccineViewModel;
     private VaccineListAdapter adapter;
+    private HistoryListAdapter historyListAdapter;
+    private BabyViewModel babyViewModel;
+    private Preferences preferences;
+    private String vaccinesTaken, vaccinesTotal;
+    private List<VaccineDetails> vaccineDetailsList;
 
     public VaccineFragment() {
         // Required empty public constructor
@@ -70,6 +91,9 @@ public class VaccineFragment extends Fragment implements VaccineListAdapter.OnVa
 
         vaccineViewModel = new ViewModelProvider(this,ViewModelProvider.AndroidViewModelFactory.
                 getInstance(getActivity().getApplication())).get(VaccineViewModel.class);
+
+        babyViewModel = new ViewModelProvider(this,ViewModelProvider.AndroidViewModelFactory.
+                getInstance(getActivity().getApplication())).get(BabyViewModel.class);
     }
 
     @Override
@@ -82,19 +106,43 @@ public class VaccineFragment extends Fragment implements VaccineListAdapter.OnVa
         mAuth = FirebaseAuth.getInstance();
         databaseReference = FirebaseDatabase.getInstance().getReference("Baby_Data");
 
-        // layout manager
-        //binding.upcomingVaccinesRecyclerView.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
+        preferences = Preferences.getInstance(getContext());
+
 
 
         vaccineViewModel.getAllVaccines();
         vaccineViewModel.getAllVaccinesResponse().observe(this,data->{
             if(data != null){
                 adapter = new VaccineListAdapter(data.getVaccineDetails(), getContext(),this::onClickListener);
+                vaccinesTotal = String.valueOf(data.getVaccineDetails().size());
                 //binding.upcomingVaccinesRecyclerView.setAdapter(adapter);
             }else{
-                Toast.makeText(getContext(), "There is some error", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getContext(), "There is some error", Toast.LENGTH_SHORT).show();
             }
         });
+
+
+        binding.historyRv.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
+        babyViewModel.GetVacTakenList(preferences.RetrieveParentId());
+        babyViewModel.getResponse().observe(this,data->{
+            if(data!=null)
+            {
+                vaccineDetailsList = removeDuplicates(data.getBabyDetails().getVaccineDetailsList());
+                historyListAdapter = new HistoryListAdapter(vaccineDetailsList,
+                        getContext());
+
+                binding.vaccineTakenCount.setText(String.valueOf(vaccineDetailsList.size()));
+                binding.historyRv.setAdapter(historyListAdapter);
+                Log.i("ApiCall ","vaccinesList success");
+                Log.d("apicall" , data.getBabyDetails().getVaccineDetailsList().get(0).getName());
+            }
+            else {
+                Toast.makeText(getContext(), "There is some error", Toast.LENGTH_SHORT).show();
+                Log.i("ApiCall ","vaccinesList fail");
+            }
+        });
+
+
 
         binding.seeAllBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -110,8 +158,43 @@ public class VaccineFragment extends Fragment implements VaccineListAdapter.OnVa
             }
         });
 
+        // stat card data insertion and input
+        binding.accountGoCard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ChildAccountFragment childAccountFragment = new ChildAccountFragment();
+                childAccountFragment.setEnterTransition(new MaterialSharedAxis(MaterialSharedAxis.Y, true));
+                FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                transaction.replace(R.id.fragment_container, childAccountFragment);
+                transaction.addToBackStack(null);
+                transaction.commit();
+
+            }
+        });
+
+
+
+
+
 
         return binding.getRoot();
+    }
+
+    public  List<VaccineDetails> removeDuplicates(final List<VaccineDetails> list)
+    {
+//        Set<VaccineDetails> modified = new LinkedHashSet<>();
+//        modified.addAll(list);
+//        list.clear();
+//        list.addAll(modified);
+//        return list;
+
+        Set<VaccineDetails> carSet = new HashSet<VaccineDetails>();
+        for (VaccineDetails car : list) {
+            carSet.add(car);
+        }
+        List<VaccineDetails> withoutDuplicates = new ArrayList<VaccineDetails>(carSet);
+
+        return withoutDuplicates;
     }
 
 //    private void Load() {
@@ -146,14 +229,9 @@ public class VaccineFragment extends Fragment implements VaccineListAdapter.OnVa
     public void onClickListener(int position, String vaccineId,
                                 String vaccineName, String whenToGive,
                                 String dose, String route, String site, String description) {
-
-
-
-        VaccineDetailsFragment vaccineDetailsFragment = VaccineDetailsFragment.newInstance(vaccineName, vaccineId,
+        VaccineDetailsFragment vaccineDetailsFragment = VaccineDetailsFragment.newInstance(vaccineId,vaccineName,
                 whenToGive, position, dose, route, site, description);
-
         vaccineDetailsFragment.setEnterTransition(new MaterialSharedAxis(MaterialSharedAxis.Y, true));
-
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
         transaction.replace(R.id.fragment_container, vaccineDetailsFragment);
         transaction.addToBackStack(null);

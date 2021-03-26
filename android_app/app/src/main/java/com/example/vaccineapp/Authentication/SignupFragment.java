@@ -5,6 +5,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -20,6 +21,8 @@ import android.widget.Toast;
 import com.example.vaccineapp.ChildDetailsForm.ChildDetailsFormFragment;
 import com.example.vaccineapp.DummyFragment;
 import com.example.vaccineapp.R;
+import com.example.vaccineapp.ViewModel.VaccineViewModel;
+import com.example.vaccineapp.data.Model.Signup;
 import com.example.vaccineapp.databinding.FragmentSignupBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -37,7 +40,9 @@ public class SignupFragment extends Fragment {
     private DummyFragment dummyFragment;
     private ProgressBar progressBar;
 
+    private VaccineViewModel vaccineViewModel;
     private FragmentSignupBinding binding;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -46,6 +51,7 @@ public class SignupFragment extends Fragment {
         binding = FragmentSignupBinding.inflate(inflater, container, false);
         View view = binding.getRoot();
         setExitTransition(new MaterialSharedAxis(MaterialSharedAxis.Z, false));
+
 
         mAuth = FirebaseAuth.getInstance();
         dummyFragment = new DummyFragment();
@@ -109,6 +115,27 @@ public class SignupFragment extends Fragment {
         }
     }
 
+    private void SendingDataToServer() {
+        vaccineViewModel = new ViewModelProvider(this,ViewModelProvider.AndroidViewModelFactory.
+                getInstance(getActivity().getApplication())).get(VaccineViewModel.class);
+        String id = mAuth.getCurrentUser().getUid();
+        String em = mAuth.getCurrentUser().getEmail();
+        Log.e("email",em);
+        Log.e("uid signup",id);
+        Signup ss = new Signup(id,em);
+        vaccineViewModel.SignUp(ss);
+        vaccineViewModel.getSignUpResponse().observe(getViewLifecycleOwner(),data->{
+            if(data!=null)
+            {
+                Log.e("apicall","successs");
+            }
+            else
+            {
+                Log.e("apicall","fail");
+            }
+        });
+    }
+
     private void Signup() {
         mAuth.createUserWithEmailAndPassword(binding.email.getText().toString(),binding.password.getText().toString())
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
@@ -116,6 +143,7 @@ public class SignupFragment extends Fragment {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
                             FirebaseUser user = mAuth.getCurrentUser();
+                            SendingDataToServer();
                             user.sendEmailVerification().addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override
                                 public void onSuccess(Void aVoid) {

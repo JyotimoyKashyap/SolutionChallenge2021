@@ -7,6 +7,10 @@ import java.util.List;
 
 public class BabyDetails {
 
+    @SerializedName("vaccinesTaken")
+    @Expose
+    private List<VaccineDetails> vaccineDetailsList;
+
     @SerializedName("_id")
     @Expose
     private String _id;
@@ -34,13 +38,10 @@ public class BabyDetails {
     @SerializedName("__v")
     private Integer __v;
 
-    @SerializedName("vaccinesTaken")
-    @Expose
-    private List<VaccineDetails> vaccineDetails;
 
-    public BabyDetails(String _id, String name, String age, String parent,
-                       String motherName, String fatherName, Integer __v,
-                       List<VaccineDetails> vaccineDetails) {
+    public BabyDetails(List<VaccineDetails> vaccineDetailsList,
+                       String _id, String name, String age, String parent, String motherName, String fatherName, Integer __v) {
+        this.vaccineDetailsList = vaccineDetailsList;
         this._id = _id;
         this.name = name;
         this.age = age;
@@ -48,9 +49,15 @@ public class BabyDetails {
         this.motherName = motherName;
         this.fatherName = fatherName;
         this.__v = __v;
-        this.vaccineDetails = vaccineDetails;
     }
 
+    public List<VaccineDetails> getVaccineDetailsList() {
+        return vaccineDetailsList;
+    }
+
+    public void setVaccineDetailsList(List<VaccineDetails> vaccineDetailsList) {
+        this.vaccineDetailsList = vaccineDetailsList;
+    }
 
     public String get_id() {
         return _id;
@@ -108,11 +115,5 @@ public class BabyDetails {
         this.__v = __v;
     }
 
-    public List<VaccineDetails> getVaccineDetails() {
-        return vaccineDetails;
-    }
 
-    public void setVaccineDetails(List<VaccineDetails> vaccineDetails) {
-        this.vaccineDetails = vaccineDetails;
-    }
 }

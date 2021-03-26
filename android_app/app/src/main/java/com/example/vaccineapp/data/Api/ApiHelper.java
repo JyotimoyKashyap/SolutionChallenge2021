@@ -1,4 +1,4 @@
-package com.example.vaccineapp.data.api;
+package com.example.vaccineapp.data.Api;
 
 import android.content.Context;
 
@@ -78,4 +78,21 @@ public class ApiHelper implements ApiService {
     public Call<ResponseBabyDetails> RemoveVaccine(VaccinesTaken vaccinesTaken) {
         return api.RemoveVaccine(vaccinesTaken);
     }
+
+    @Override
+    public Call<ResponseSignup> AddUser(Signup signup){
+        return api.AddUser(signup);
+    }
+
+    @Override
+    public Call<ResponseBabyDetails> GetBabyDetails(String parentId) {
+        return  api.GetBabyDetails(parentId);
+    }
+
+    @Override
+    public Call<ResponseBabyDetails> registerBaby(String userId, RegisterBaby registerBaby) {
+        return  api.registerBaby(userId,registerBaby);
+    }
+
+
 }

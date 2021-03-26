@@ -20,6 +20,7 @@ import android.widget.Toast;
 import com.example.vaccineapp.MainActivity;
 import com.example.vaccineapp.R;
 import com.example.vaccineapp.ViewModel.SharedViewModel;
+import com.example.vaccineapp.ViewModel.VaccineViewModel;
 import com.example.vaccineapp.databinding.FragmentChildAccountBinding;
 import com.example.vaccineapp.databinding.FragmentChildDetailsFormBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -46,6 +47,8 @@ public class ChildAccountFragment extends Fragment {
     private ChildDetailsFormFragment childDetailsFormFragment;
     private String genderString = null;
     private SharedViewModel sharedViewModel;
+    String DOB = "///";
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -112,6 +115,7 @@ public class ChildAccountFragment extends Fragment {
                     binding.accountLottie.setAnimation(R.raw.male_avatar);
                     binding.accountLottie.playAnimation();
                     break;
+
             }
         });
 
@@ -174,14 +178,14 @@ public class ChildAccountFragment extends Fragment {
         String user = mAuth.getCurrentUser().getUid();
         sharedViewModel.setGender("pending");
 
-        databaseReference.addValueEventListener(new ValueEventListener() {
+        databaseReference.child(user).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if(snapshot.exists()){
-                    String name = snapshot.child(user).child("Baby_Name").getValue(String.class);
-                    String mother = snapshot.child(user).child("Mother_Name").getValue(String.class);
-                    String father = snapshot.child(user).child("Father_Name").getValue(String.class);
-                    String gender = snapshot.child(user).child("Gender").getValue(String.class);
+                    String name = snapshot.child("Baby_Name").getValue(String.class);
+                    String mother = snapshot.child("Mother_Name").getValue(String.class);
+                    String father = snapshot.child("Father_Name").getValue(String.class);
+                    String gender = snapshot.child("Gender").getValue(String.class);
                     String emailId = mAuth.getCurrentUser().getEmail();
 
                     String dob = String.valueOf(snapshot.child(user).child("Date")
@@ -189,20 +193,26 @@ public class ChildAccountFragment extends Fragment {
                             .child("Month").getValue(Long.class)) +"/"+ String.valueOf(snapshot.child(user)
                             .child("Year").getValue(Long.class));
 
-                    long years = snapshot.child(user).child("Year").getValue(Long.class);
-                    long month = snapshot.child(user).child("Month").getValue(Long.class);
-                    long day = snapshot.child(user).child("Date").getValue(Long.class);
-
-                    String ageInYears = calculateAge(years, month, day);
-                    binding.ageBaby.setText(ageInYears);
-
+                    Log.i("name : ",name);
+                    if(snapshot.child("Year").getValue(Integer.class)!=null) {
+                        int years = snapshot.child("Year").getValue(Integer.class);
+                        int month = snapshot.child("Month").getValue(Integer.class);
+                        int day = snapshot.child("Date").getValue(Integer.class);
+                        String ageInYears = calculateAge(years, month, day);
+                        binding.ageBaby.setText(ageInYears);
+                        DOB = day +"/" + month + "/" + years;
+                    }
                     binding.registeredEmail.setText(emailId);
                     binding.babyNameTextview.setText(name);
                     binding.genderTextview.setText(capitalizeFirstLetterOfWord(gender));
                     sharedViewModel.setGender(gender);
                     binding.motherNameTextview.setText(mother);
                     binding.fatherNameTextview.setText(father);
-                    binding.dateOfBirthTextview.setText(dob);
+                    binding.dateOfBirthTextview.setText(DOB);
+                    binding.progressBarChildAccountDetails.setVisibility(View.INVISIBLE);
+                    binding.editBtn.setEnabled(true);
+                }
+                else{
                     binding.progressBarChildAccountDetails.setVisibility(View.INVISIBLE);
                     binding.editBtn.setEnabled(true);
                 }

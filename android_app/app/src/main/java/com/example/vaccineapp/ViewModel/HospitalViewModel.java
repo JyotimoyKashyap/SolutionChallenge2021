@@ -7,7 +7,7 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.MutableLiveData;
 
-import com.example.vaccineapp.data.api.ApiHelper;
+import com.example.vaccineapp.data.Api.ApiHelper;
 import com.example.vaccineapp.data.Model.*;
 
 
