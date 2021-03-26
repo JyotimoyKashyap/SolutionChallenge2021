@@ -95,6 +95,7 @@ public class ViewPager extends Fragment {
         object1.setDescription("Regularly wash your hands or at least 40 second with soap and warm water," +
                 "or use an alcohol-based hand rub. " +
                 "This helps kill any germs that might be on your hands");
+        object1.setLottie_anim(R.raw.female_avatar);
 
 
 
@@ -102,6 +103,7 @@ public class ViewPager extends Fragment {
         object2.setDescription("Keep at least 3 feet(1 meter) away from people who have respiratory symptoms," +
                 "like coughing or sneezing. " +
                 "This helps avoid germs that might be in the air.");
+        object2.setLottie_anim(R.raw.male_avatar);
 
 
 
@@ -109,6 +111,7 @@ public class ViewPager extends Fragment {
         object3.setDescription(  "Whether you feel sick or not,make sure you cover coughs or sneezes " +
                 "with a tissue,or with your elbow. " +
                 "This helps stop your infection spreading to others.");
+        object3.setLottie_anim(R.raw.verification_lottie);
 
         onboardingItems.add(object1);
         onboardingItems.add(object2);

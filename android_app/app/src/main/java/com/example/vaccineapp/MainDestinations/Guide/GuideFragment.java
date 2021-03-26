@@ -74,8 +74,25 @@ public class GuideFragment extends Fragment {
             }
         });
 
+        binding.seeAdviceBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                setFragment(new ViewPager());
+            }
+        });
+
 
         return view;
+    }
+
+    public void setFragment(Fragment fragment){
+        // setting transitions
+        fragment.setEnterTransition(new MaterialSharedAxis(MaterialSharedAxis.Y, true));
+
+        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+        transaction.replace(R.id.fragment_container, fragment);
+        transaction.addToBackStack(null);
+        transaction.commit();
     }
 
     @Override
