@@ -42,7 +42,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins_light"
-                android:text="Addional Info"
+                android:text="Additional Info"
                 app:layout_constraintTop_toBottomOf="@id/hospital_name"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

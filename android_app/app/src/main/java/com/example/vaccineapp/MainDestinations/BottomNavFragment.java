@@ -3,6 +3,7 @@ package com.example.vaccineapp.MainDestinations;
 import android.Manifest;
 import android.content.DialogInterface;
 import android.content.pm.PackageManager;
+import android.graphics.RectF;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -30,6 +31,10 @@ import com.example.vaccineapp.R;
 import com.example.vaccineapp.databinding.FragmentBottomNavBinding;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+import com.google.android.material.shape.CornerFamily;
+import com.google.android.material.shape.CornerSize;
+import com.google.android.material.shape.MaterialShapeDrawable;
+import com.google.android.material.shape.ShapeAppearanceModel;
 import com.google.android.material.transition.MaterialSharedAxis;
 
 
@@ -92,7 +97,7 @@ public class BottomNavFragment extends Fragment implements BottomNavigationView.
             showPermissionDialog();
         }
 
-
+        customBottomNavShape();
 
         return binding.getRoot();
 
@@ -156,6 +161,7 @@ public class BottomNavFragment extends Fragment implements BottomNavigationView.
         if(ActivityCompat.shouldShowRequestPermissionRationale(getActivity(), Manifest.permission.ACCESS_COARSE_LOCATION)){
             new MaterialAlertDialogBuilder(getContext(), R.style.MyRounded_MaterialComponents_MaterialAlertDialog)
                     .setTitle("Permission needed")
+                    .setIcon(R.drawable.ic_location_on)
                     .setMessage("We are collecting approximate location of your device so that we can generate a heat map around our target users" +
                             " about whether which areas are less aware of immunization. This data is required only for research purposes and there is no " +
                             " other intention behind collecting this information")
@@ -191,5 +197,11 @@ public class BottomNavFragment extends Fragment implements BottomNavigationView.
                 //Toast.makeText(getContext(), "Permission Denied", Toast.LENGTH_SHORT).show();
             }
         }
+    }
+
+    private void customBottomNavShape(){
+        int radius = 40;
+        MaterialShapeDrawable bottomNavShapeBackground = (MaterialShapeDrawable) binding.bottomNavMenu.getBackground();
+        bottomNavShapeBackground.setCornerSize(radius);
     }
 }

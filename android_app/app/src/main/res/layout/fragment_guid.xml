@@ -394,6 +394,8 @@
                 app:cardCornerRadius="18dp"
                 android:backgroundTint="@color/bottom_sheet_background"
                 android:layout_marginStart="12dp"
+                android:layout_marginBottom="100dp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/card_view_1">
