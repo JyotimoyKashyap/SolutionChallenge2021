@@ -3,6 +3,7 @@ package com.example.vaccineapp.MainDestinations.Guide;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.util.Log;
@@ -10,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.vaccineapp.R;
 import com.example.vaccineapp.ViewModel.SharedViewModel;
 import com.example.vaccineapp.data.Api.ApiService;
 import com.example.vaccineapp.data.Model.CovidTracker.CovidResponse;
@@ -27,6 +29,7 @@ public class GuideFragment extends Fragment {
 
     private FragmentGuidBinding binding;
     private SharedViewModel viewModel;
+    private ViewPager viewPager;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -37,6 +40,7 @@ public class GuideFragment extends Fragment {
         viewModel = new ViewModelProvider(this,
                 ViewModelProvider.AndroidViewModelFactory.getInstance(getActivity().getApplication())).get(SharedViewModel.class);
         View view = binding.getRoot();
+
 
         //setting retrofit for getting response from other api
         Retrofit retrofit2 = new Retrofit.Builder()

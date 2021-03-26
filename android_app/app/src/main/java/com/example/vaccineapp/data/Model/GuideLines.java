@@ -10,6 +10,11 @@ public class GuideLines {
         this.description = description;
     }
 
+    public GuideLines()
+    {
+
+    }
+
     public String getTitle() {
         return title;
     }
