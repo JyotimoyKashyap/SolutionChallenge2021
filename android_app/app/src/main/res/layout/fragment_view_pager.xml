@@ -23,9 +23,7 @@
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/onboardingViewPager"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:layout_editor_absoluteX="38dp"
-        tools:layout_editor_absoluteY="-80dp" />
+        android:layout_height="match_parent"/>
 
     <LinearLayout
         android:id="@+id/layoutOnboardingIndicators"

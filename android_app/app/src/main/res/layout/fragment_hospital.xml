@@ -14,12 +14,12 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="5dp"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         android:backgroundTint="@color/global_background"
         android:layout_marginBottom="10dp"
-        app:strokeWidth="0.5dp"
+        app:strokeWidth="0dp"
         app:cardElevation="0dp"
         app:strokeColor="@color/purple_700"
         app:cardCornerRadius="10dp">
@@ -41,8 +41,9 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginEnd="16dp"
                 android:layout_marginTop="8dp"
-                android:text="This section will guide you with hospitals which are affiliated though our app"
-                android:fontFamily="@font/poppins_regular"
+                android:textAlignment="center"
+                android:text="Hospitals affiliated to our app"
+                android:fontFamily="@font/poppins_semibold"
                 android:textSize="17dp"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
