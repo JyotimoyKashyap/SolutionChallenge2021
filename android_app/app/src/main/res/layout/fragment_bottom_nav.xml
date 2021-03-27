@@ -20,9 +20,13 @@
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_nav_menu"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="250dp"
+        android:animateLayoutChanges="true"
+        android:layout_height="70dp"
         app:menu="@menu/bottom_nav_menu"
+        android:layout_marginBottom="20dp"
+        app:labelVisibilityMode="selected"
+        app:itemHorizontalTranslationEnabled="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
@@ -34,7 +38,7 @@
         app:layout_constraintTop_toBottomOf="@id/main_toolbar"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/bottom_nav_menu"/>
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
 
 

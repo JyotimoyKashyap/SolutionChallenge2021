@@ -1,34 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:layout_marginStart="30dp"
-    android:layout_marginEnd="30dp"
-    android:layout_marginBottom="50dp"
-    android:gravity="center"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/global_background">
 
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/lottie_guide_view_pager"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/guideline_view_pager"
+        android:layout_marginTop="60dp"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"/>
+
 
     <TextView
         android:id="@+id/textTitle"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:text="TITLE"
-        android:gravity="center"
-        android:textSize="35sp"
-        android:textStyle="bold" />
+        android:layout_marginTop="40dp"
+        android:text="Title"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:fontFamily="@font/poppins_semibold"
+        android:textAlignment="center"
+        app:layout_constraintTop_toBottomOf="@id/guideline_view_pager"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:textSize="20dp"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_view_pager"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.55"/>
 
     <TextView
         android:id="@+id/textDescription"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="DESCRIPTION"
-        android:textSize="20sp"
-        android:layout_marginTop="50dp"
-        />
+        android:text="Description"
+        android:textSize="16dp"
+        android:fontFamily="@font/poppins_regular"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="10dp"
+        app:layout_constraintTop_toBottomOf="@id/textTitle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="10dp" />
 
 
 
@@ -36,4 +63,4 @@
 
 
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

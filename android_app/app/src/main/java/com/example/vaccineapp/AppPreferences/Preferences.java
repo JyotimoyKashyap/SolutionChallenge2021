@@ -47,6 +47,19 @@ public class Preferences implements SharedPrefsHelper{
         editor.apply();
     }
 
+    @Override
+    public void setLocationPermission(Boolean access) {
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putBoolean("location_permission", access);
+        editor.apply();
+    }
+
+    @Override
+    public void showPrivacyPolicy(Boolean shown) {
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putBoolean("privacy_policy" , shown);
+    }
+
 
     @Override
     public String RetrieveBabyId() {
@@ -56,6 +69,16 @@ public class Preferences implements SharedPrefsHelper{
     @Override
     public String RetrieveParentId() {
         return sharedPreferences.getString("ParentId",null);
+    }
+
+    @Override
+    public Boolean retrieveLocationPermission() {
+        return sharedPreferences.getBoolean("location_permission" , false);
+    }
+
+    @Override
+    public Boolean retrievePrivacyPolicy() {
+        return sharedPreferences.getBoolean("privacy_policy", false);
     }
 
 

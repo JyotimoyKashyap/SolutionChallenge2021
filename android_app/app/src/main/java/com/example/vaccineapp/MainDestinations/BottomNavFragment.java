@@ -1,9 +1,19 @@
 package com.example.vaccineapp.MainDestinations;
 
+import android.Manifest;
+import android.animation.ObjectAnimator;
+import android.animation.PropertyValuesHolder;
+import android.animation.ValueAnimator;
+import android.content.DialogInterface;
+import android.content.pm.PackageManager;
+import android.graphics.RectF;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -13,7 +23,10 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AccelerateDecelerateInterpolator;
+import android.widget.Toast;
 
+import com.example.vaccineapp.AppPreferences.Preferences;
 import com.example.vaccineapp.MainDestinations.Guide.GuideFragment;
 import com.example.vaccineapp.MainDestinations.Hospital.HospitalFragment;
 import com.example.vaccineapp.MainDestinations.Settings.SettingFragment;
@@ -21,6 +34,11 @@ import com.example.vaccineapp.MainDestinations.Vaccine.VaccineFragment;
 import com.example.vaccineapp.R;
 import com.example.vaccineapp.databinding.FragmentBottomNavBinding;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+import com.google.android.material.shape.CornerFamily;
+import com.google.android.material.shape.CornerSize;
+import com.google.android.material.shape.MaterialShapeDrawable;
+import com.google.android.material.shape.ShapeAppearanceModel;
 import com.google.android.material.transition.MaterialSharedAxis;
 
 
@@ -33,6 +51,8 @@ public class BottomNavFragment extends Fragment implements BottomNavigationView.
 
     private String mParam1;
     private String mParam2;
+    private int LOCATION_PERMISSION_CODE = 1;
+    private Preferences preferences;
 
     private FragmentBottomNavBinding binding;
 
@@ -56,6 +76,8 @@ public class BottomNavFragment extends Fragment implements BottomNavigationView.
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
+        preferences = new Preferences(getActivity());
     }
 
     @Override
@@ -73,6 +95,16 @@ public class BottomNavFragment extends Fragment implements BottomNavigationView.
         binding.bottomNavMenu.setOnNavigationItemSelectedListener(this::onNavigationItemSelected);
         setHasOptionsMenu(true);
         setFragment(new VaccineFragment());
+
+        //show permission request
+        if (!preferences.retrieveLocationPermission()){
+            showPermissionDialog();
+        }
+
+        // custom bottom nav shape
+        customBottomNavShape();
+        // animate bottom nav
+        animateBottomNavBar();
 
         return binding.getRoot();
 
@@ -122,5 +154,79 @@ public class BottomNavFragment extends Fragment implements BottomNavigationView.
         fragmentTransaction.replace(R.id.fragment_container, fragment);
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
+    }
+
+    private void showPermissionDialog(){
+        if(ContextCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED){
+            //Toast.makeText(getContext(), "Permission Granted", Toast.LENGTH_SHORT).show();
+        }else{
+            explainPermissionRequest();
+        }
+    }
+
+    private void explainPermissionRequest(){
+        if(ActivityCompat.shouldShowRequestPermissionRationale(getActivity(), Manifest.permission.ACCESS_COARSE_LOCATION)){
+            new MaterialAlertDialogBuilder(getContext(), R.style.MyRounded_MaterialComponents_MaterialAlertDialog)
+                    .setTitle("Permission needed")
+                    .setIcon(R.drawable.ic_location_on)
+                    .setMessage("We are collecting approximate location of your device so that we can generate a heat map around our target users" +
+                            " about whether which areas are less aware of immunization. This data is required only for research purposes and there is no " +
+                            " other intention behind collecting this information")
+                    .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            ActivityCompat.requestPermissions(getActivity(),
+                                    new  String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, LOCATION_PERMISSION_CODE);
+                        }
+                    })
+                    .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            preferences.setLocationPermission(false);
+                            dialogInterface.dismiss();
+                        }
+                    })
+                    .create().show();
+
+        }else{
+            ActivityCompat.requestPermissions(getActivity(), new  String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, LOCATION_PERMISSION_CODE);
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        if(requestCode == LOCATION_PERMISSION_CODE){
+            if(grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
+                preferences.setLocationPermission(true);
+                //Toast.makeText(getContext(), "Permission Granted", Toast.LENGTH_SHORT).show();
+            }else{
+                preferences.setLocationPermission(false);
+                //Toast.makeText(getContext(), "Permission Denied", Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+
+    private void customBottomNavShape(){
+        int radius = 40;
+        MaterialShapeDrawable bottomNavShapeBackground = (MaterialShapeDrawable) binding.bottomNavMenu.getBackground();
+        bottomNavShapeBackground.setCornerSize(radius);
+        binding.bottomNavMenu.animate();
+        //bottomNavShapeBackground.setStroke(8, getResources().getColor(R.color.green_light));
+    }
+
+    private void animateBottomNavBar(){
+        PropertyValuesHolder scaleX = PropertyValuesHolder.ofFloat(View.SCALE_X, 0.9f);
+        PropertyValuesHolder scaleY = PropertyValuesHolder.ofFloat(View.SCALE_Y, 0.9f);
+
+
+
+        ObjectAnimator animator = ObjectAnimator.ofPropertyValuesHolder(binding.bottomNavMenu, scaleX, scaleY);
+
+        animator.setDuration(300);
+        animator.setStartDelay(300);
+        animator.setRepeatCount(1);
+        animator.setRepeatMode(ObjectAnimator.REVERSE);
+        animator.setInterpolator(new AccelerateDecelerateInterpolator());
+        animator.start();
     }
 }

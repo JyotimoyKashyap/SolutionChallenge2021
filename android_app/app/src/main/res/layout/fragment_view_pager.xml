@@ -10,21 +10,20 @@
     <com.google.android.material.button.MaterialButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="More Info"
+        android:textAllCaps="false"
+        android:fontFamily="@font/poppins_regular"
         android:id="@+id/buttonOnboardingAction"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="15dp"
-        android:textSize="15sp"
-        app:cornerRadius="20dp"
-        />
+        app:cornerRadius="8dp"/>
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/onboardingViewPager"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:layout_editor_absoluteX="38dp"
-        tools:layout_editor_absoluteY="-80dp" />
+        android:layout_height="match_parent"/>
 
     <LinearLayout
         android:id="@+id/layoutOnboardingIndicators"
@@ -37,8 +36,7 @@
         app:layout_constraintEnd_toStartOf="@id/buttonOnboardingAction"
         app:layout_constraintBottom_toBottomOf="@id/buttonOnboardingAction"
         app:layout_constraintTop_toTopOf="@id/buttonOnboardingAction"
-        app:layout_constraintStart_toStartOf="parent"
-        />
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 

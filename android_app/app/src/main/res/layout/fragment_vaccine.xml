@@ -27,6 +27,7 @@
                 android:layout_marginStart="12dp"
                 app:cardCornerRadius="18dp"
                 app:cardElevation="0dp"
+                android:backgroundTint="@color/bottom_sheet_background"
                 android:layout_marginEnd="12dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -113,8 +114,8 @@
                         android:id="@+id/account_go_card"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="12dp"
-                        android:layout_marginEnd="6dp"
+                        android:layout_marginStart="6dp"
+                        android:layout_marginEnd="12dp"
                         android:clickable="true"
                         app:cardCornerRadius="18dp"
                         app:cardBackgroundColor="@color/warning_card_background"
@@ -162,7 +163,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="12dp"
-                        android:layout_marginEnd="6dp"
+                        android:layout_marginEnd="12dp"
                         app:cardBackgroundColor="@color/healthy_card_background"
                         app:cardElevation="0dp"
                         android:clickable="true"
@@ -389,6 +390,38 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/vaccine_sample_card_1" />
 
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/no_vaccines_taken_history"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="12dp"
+                android:layout_marginBottom="100dp"
+                android:backgroundTint="@color/bottom_sheet_background"
+                app:cardCornerRadius="18dp"
+                app:cardElevation="0dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/appointment_heading"
+                app:layout_constraintVertical_bias="0.0">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="12dp"
+                    android:layout_marginBottom="20dp"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="No history vaccines data recorded till now"
+                    android:textAlignment="center" />
+
+
+            </com.google.android.material.card.MaterialCardView>
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/history_rv"
                 android:layout_width="match_parent"
@@ -399,7 +432,8 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/appointment_heading"
-                tools:listitem="@layout/vaccine_row_items" />
+                tools:listitem="@layout/vaccine_row_items"
+                android:paddingBottom="100dp"/>
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

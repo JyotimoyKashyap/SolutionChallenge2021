@@ -3,17 +3,17 @@
 
     <item
         android:id="@+id/vaccine_destination"
-        android:icon="@drawable/ic_syringe"
+        android:icon="@drawable/ic_syringe_filled"
         android:title="Vaccine"/>
 
     <item
         android:id="@+id/hospital_destination"
-        android:icon="@drawable/ic_hospital"
+        android:icon="@drawable/ic_hospital_minimalist"
         android:title="Hospital"/>
 
     <item
         android:id="@+id/guide_destination"
-        android:icon="@drawable/ic_heartbeat"
+        android:icon="@drawable/ic_heart_rate"
         android:title="Guide"/>
 
 

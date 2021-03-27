@@ -20,6 +20,7 @@
     <color name="danger_card_background">#513C3E</color>
     <color name="healthy_card_background">#44593D</color>
     <color name="green_text_color">#01F164</color>
+    <color name="text_color_primary">#121212</color>
 
 
 </resources>

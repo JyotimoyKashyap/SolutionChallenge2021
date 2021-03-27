@@ -2,13 +2,18 @@ package com.example.vaccineapp.ViewModel;
 
 import android.animation.ValueAnimator;
 import android.app.Application;
+import android.content.Context;
 import android.util.Log;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
+
+import com.google.android.material.transition.MaterialSharedAxis;
 
 import java.text.DecimalFormat;
 
@@ -86,5 +91,6 @@ public class SharedViewModel extends AndroidViewModel {
 
 
     }
+
 
 }

@@ -9,13 +9,13 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.example.vaccineapp.R;
 import com.example.vaccineapp.data.Model.GuideLines;
 
 import java.util.List;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
+
 
 public class ViewPagerAdapter extends RecyclerView.Adapter<ViewPagerAdapter.Holder> {
 
@@ -40,6 +40,8 @@ public class ViewPagerAdapter extends RecyclerView.Adapter<ViewPagerAdapter.Hold
         GuideLines guideLines = guideLinesList.get(position);
         holder.title.setText(guideLines.getTitle());
         holder.description.setText(guideLines.getDescription());
+        holder.lottieAnimationView.setAnimation(guideLines.lottie_anim);
+
 
     }
 
@@ -54,15 +56,16 @@ public class ViewPagerAdapter extends RecyclerView.Adapter<ViewPagerAdapter.Hold
     public class Holder extends RecyclerView.ViewHolder
     {
 
-        @BindView(R.id.textTitle)
-        TextView title;
 
-        @BindView(R.id.textDescription)
+        TextView title;
         TextView description;
+        LottieAnimationView lottieAnimationView;
 
         public Holder(@NonNull View itemView) {
             super(itemView);
-            ButterKnife.bind(itemView);
+            title = itemView.findViewById(R.id.textTitle);
+            description = itemView.findViewById(R.id.textDescription);
+            lottieAnimationView = itemView.findViewById(R.id.lottie_guide_view_pager);
         }
     }
     
