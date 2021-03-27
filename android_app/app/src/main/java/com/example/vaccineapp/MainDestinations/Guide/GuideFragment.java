@@ -56,7 +56,8 @@ public class GuideFragment extends Fragment {
             public void onResponse(Call<CovidResponse> call, Response<CovidResponse> response) {
                 if(response.code() < 300){
                     Log.d("Guide", "success");
-                    binding.guideCovidCountry.setText(response.body().getCountry());
+                    //binding.guideCovidCountry.setText(response.body().getCountry());
+                    binding.guideCovidCountry.setText("India");
                     viewModel.startCountAnimation(binding.activeCasesCovid, response.body().getActiveCases());
                     viewModel.startCountAnimation(binding.totalRecoveredCovid, response.body().getTotalRecovered());
                     viewModel.startCountAnimation(binding.newDeathCases, response.body().getNewDeaths());
