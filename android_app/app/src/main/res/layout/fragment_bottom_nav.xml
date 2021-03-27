@@ -20,7 +20,8 @@
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_nav_menu"
-        android:layout_width="wrap_content"
+        android:layout_width="250dp"
+        android:animateLayoutChanges="true"
         android:layout_height="70dp"
         app:menu="@menu/bottom_nav_menu"
         android:layout_marginBottom="20dp"

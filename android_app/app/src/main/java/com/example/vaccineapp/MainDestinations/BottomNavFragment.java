@@ -1,6 +1,9 @@
 package com.example.vaccineapp.MainDestinations;
 
 import android.Manifest;
+import android.animation.ObjectAnimator;
+import android.animation.PropertyValuesHolder;
+import android.animation.ValueAnimator;
 import android.content.DialogInterface;
 import android.content.pm.PackageManager;
 import android.graphics.RectF;
@@ -20,6 +23,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.Toast;
 
 import com.example.vaccineapp.AppPreferences.Preferences;
@@ -97,7 +101,10 @@ public class BottomNavFragment extends Fragment implements BottomNavigationView.
             showPermissionDialog();
         }
 
+        // custom bottom nav shape
         customBottomNavShape();
+        // animate bottom nav
+        animateBottomNavBar();
 
         return binding.getRoot();
 
@@ -203,5 +210,23 @@ public class BottomNavFragment extends Fragment implements BottomNavigationView.
         int radius = 40;
         MaterialShapeDrawable bottomNavShapeBackground = (MaterialShapeDrawable) binding.bottomNavMenu.getBackground();
         bottomNavShapeBackground.setCornerSize(radius);
+        binding.bottomNavMenu.animate();
+        //bottomNavShapeBackground.setStroke(8, getResources().getColor(R.color.green_light));
+    }
+
+    private void animateBottomNavBar(){
+        PropertyValuesHolder scaleX = PropertyValuesHolder.ofFloat(View.SCALE_X, 0.9f);
+        PropertyValuesHolder scaleY = PropertyValuesHolder.ofFloat(View.SCALE_Y, 0.9f);
+
+
+
+        ObjectAnimator animator = ObjectAnimator.ofPropertyValuesHolder(binding.bottomNavMenu, scaleX, scaleY);
+
+        animator.setDuration(300);
+        animator.setStartDelay(300);
+        animator.setRepeatCount(1);
+        animator.setRepeatMode(ObjectAnimator.REVERSE);
+        animator.setInterpolator(new AccelerateDecelerateInterpolator());
+        animator.start();
     }
 }
