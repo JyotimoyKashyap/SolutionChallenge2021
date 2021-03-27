@@ -134,7 +134,14 @@ public class VaccineFragment extends Fragment implements VaccineListAdapter.OnVa
                 binding.vaccineTakenCount.setText(String.valueOf(vaccineDetailsList.size()));
                 binding.historyRv.setAdapter(historyListAdapter);
                 Log.i("ApiCall ","vaccinesList success");
-                Log.d("apicall" , data.getBabyDetails().getVaccineDetailsList().get(0).getName());
+//                Log.d("apicall" , data.getBabyDetails().getVaccineDetailsList().get(0).getName());
+                if(data.getBabyDetails().getVaccineDetailsList().size() == 0){
+                    binding.historyRv.setVisibility(View.INVISIBLE);
+                    binding.noVaccinesTakenHistory.setVisibility(View.VISIBLE);
+                }else{
+                    binding.historyRv.setVisibility(View.VISIBLE);
+                    binding.noVaccinesTakenHistory.setVisibility(View.INVISIBLE);
+                }
             }
             else {
                 Toast.makeText(getContext(), "There is some error", Toast.LENGTH_SHORT).show();
