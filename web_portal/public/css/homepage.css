@@ -298,3 +298,15 @@ body {
   color: #7686f9;
   font-size: 30px;
 }
+
+.back-top-top {
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 30px;
+  margin-bottom: 30px;
+}
+
+.icon-btt {
+  position: relative;
+  width: 50px;
+}
