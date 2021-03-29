@@ -194,7 +194,7 @@ Steps to run the android app :
 ## Tech Stack
 
 <p align="center">
-  <img height="200px" src="./Nirog.png" />
+  <img src="./Nirog.png" />
 </p>
 
 ## Conclusion
