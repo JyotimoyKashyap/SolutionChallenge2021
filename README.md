@@ -19,7 +19,6 @@ example :
 
 - New vaccine that are available at present.
 - Doctors available at present and all the lastest information along with this.
-  <a href="http://nirog.herokuapp.com/" target="_blank">Visit Website</a>
 
 ## TARGET
 
@@ -106,6 +105,9 @@ npm start
 
 The web_portal now can be accessed at `localhost:8080`
 
+Currently the web portal is deployed in [Heroku](https://heroku.com)
+The web portal can be accessed [here](http://nirog.herokuapp.com/)
+
 #
 
 The structure of the `android_app` is:
@@ -177,15 +179,23 @@ The structure of the `android_app` is:
 
 
 ```
+
 ## How to run the android app on Android Studio ?
 
 Steps to run the android app :
- 1. Clone the repo [Link to repo]{https://github.com/JyotimoyKashyap/SolutionChallenge2021}
- 2. Now launch Android Studio in your machine.
- 3. Select the import project option from the file tab (or) if you are in the Welcome screen of Android Stdio then select "Open an existing project". 
- 4. Now, locate the repo and then inside the repo, locate the android_app directory and then open the "android_app" directory in Android Stduio. 
- 5. Wat for sometime for the build to finish successfully. 
- 6. After successful gradle build, from the top options panel, click on run button (or) play button to run the app on your device or on an emulator. 
+
+1.  Clone the [Repository](https://github.com/JyotimoyKashyap/SolutionChallenge2021)
+2.  Now launch Android Studio
+3.  Select the import project option from the file tab (or) select "Open an existing project".
+4.  Now, locate the repo and then inside the repo, locate the android_app directory and then open the `android_app` directory in Android Stduio.
+5.  Wait for sometime for the build to finish successfully.
+6.  After successful gradle build, from the top options panel, click on run button (or) play button to run the app on real device or on an emulator.
+
+## Tech Stack
+
+<p align="center">
+  <img height="200px" src="./Nirog.png" />
+</p>
 
 ## Conclusion
 
