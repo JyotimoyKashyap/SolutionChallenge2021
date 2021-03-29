@@ -17,8 +17,14 @@ body {
 .navbar {
   display: flex;
   justify-content: space-between;
-  /* padding: 20px 40px; */
-  margin: 20px 0px;
+  position: fixed;
+  top: 0px;
+  left: 0;
+  padding: 17px 0px;
+  z-index: 5;
+  width: 100%;
+  background-color: #fff;
+  box-shadow: 0px 5px 5px #e2e2e2;
 }
 
 .navbar__logo {
@@ -101,12 +107,11 @@ body {
 
 .header {
   display: flex;
-  margin-top: 200px;
+  margin-top: 270px;
 }
 
 .header__one {
   width: 500px;
-  /* background-color: red; */
 }
 
 .header__two {
