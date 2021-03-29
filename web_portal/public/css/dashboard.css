@@ -7,16 +7,17 @@ body {
   overflow-x: hidden;
 }
 
-.nav {
+/* .nav {
   display: flex;
   align-items: center;
   border-bottom: 2px solid rgb(161, 156, 156);
   box-shadow: 2.5px 2.5px 2.5px grey;
   width: 100vw;
-}
+} */
 
 .main {
   display: flex;
+  margin-top: 100px;
 }
 
 .main__div1 {
@@ -143,12 +144,20 @@ body {
 .navbar {
   display: flex;
   justify-content: space-between;
-  padding: 20px 20px;
-  /* margin: 20px 0px; */
+  position: fixed;
+  top: 0px;
+  left: 0;
+  right: 0;
+  padding: 17px 0px;
+  z-index: 5;
+  width: 100%;
+  background-color: #fff;
+  box-shadow: 0px 5px 5px #e2e2e2;
 }
 
 .navbar__logo {
   display: flex;
+  margin-left: 100px;
 }
 
 .navbar__logo-name {
@@ -158,6 +167,10 @@ body {
   color: #767a8d;
   margin: auto;
   flex-basis: 0;
+}
+
+.menu {
+  padding-right: 100px;
 }
 
 .logo {
@@ -183,7 +196,7 @@ body {
 .menu a {
   font-size: 17px;
   font-weight: 500;
-  text-transform: uppercase;
+  /* text-transform: uppercase; */
   text-decoration: none;
   color: #000;
   display: block;
