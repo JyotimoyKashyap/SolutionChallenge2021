@@ -9,7 +9,7 @@
     style="@style/CustomBottomSheetDialogFragment"
     app:layout_behavior="@string/bottom_sheet_behavior"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".Authentication.VarifyEmailFragment">
+    tools:context=".Authentication.VerifyEmailFragment">
 
 
     <TextView

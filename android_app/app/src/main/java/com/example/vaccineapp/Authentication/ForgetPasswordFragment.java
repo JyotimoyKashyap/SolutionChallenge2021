@@ -17,22 +17,23 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.vaccineapp.R;
-import com.example.vaccineapp.databinding.FragmentForgatPasswordBinding;
+
+import com.example.vaccineapp.databinding.FragmentForgetPasswordBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 
-public class ForgatPasswordFragment extends Fragment {
+public class ForgetPasswordFragment extends Fragment {
 
     private FirebaseAuth mAuth;
-    private FragmentForgatPasswordBinding binding;
+    private FragmentForgetPasswordBinding binding;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        binding = FragmentForgatPasswordBinding.inflate(inflater, container, false);
+        binding = FragmentForgetPasswordBinding.inflate(inflater, container, false);
         View view = binding.getRoot();
 
         mAuth = FirebaseAuth.getInstance();

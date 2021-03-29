@@ -17,7 +17,8 @@ import com.example.vaccineapp.MainActivity;
 import com.example.vaccineapp.MainDestinations.BottomNavFragment;
 import com.example.vaccineapp.R;
 import com.example.vaccineapp.databinding.FragmentLoginBinding;
-import com.example.vaccineapp.databinding.FragmentVarifyEmailBinding;
+
+import com.example.vaccineapp.databinding.FragmentVerifyEmailBinding;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
@@ -25,16 +26,16 @@ import com.google.android.material.transition.MaterialSharedAxis;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-public class VarifyEmailFragment extends BottomSheetDialogFragment {
+public class VerifyEmailFragment extends BottomSheetDialogFragment {
 
-    private FragmentVarifyEmailBinding binding;
+    private FragmentVerifyEmailBinding binding;
     private FirebaseAuth mAuth;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        binding = FragmentVarifyEmailBinding.inflate(inflater, container, false);
+        binding = FragmentVerifyEmailBinding.inflate(inflater, container, false);
         View view = binding.getRoot();
         setExitTransition(new MaterialSharedAxis(MaterialSharedAxis.Z, false));
         mAuth = FirebaseAuth.getInstance();

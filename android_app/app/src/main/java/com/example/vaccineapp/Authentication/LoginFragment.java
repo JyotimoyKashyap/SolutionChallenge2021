@@ -9,20 +9,12 @@ import androidx.fragment.app.FragmentTransaction;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
-import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ProgressBar;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.vaccineapp.AppPreferences.Preferences;
-import com.example.vaccineapp.ChildDetailsForm.ChildAccountFragment;
-import com.example.vaccineapp.ChildDetailsForm.ChildDetailsFormFragment;
-import com.example.vaccineapp.DummyFragment;
 import com.example.vaccineapp.MainDestinations.BottomNavFragment;
 import com.example.vaccineapp.R;
 import com.example.vaccineapp.databinding.FragmentLoginBinding;
@@ -43,7 +35,7 @@ public class LoginFragment extends Fragment {
 
 
     private SignupFragment signupFragment;
-    private ForgatPasswordFragment forgatPasswordFragment;
+    private ForgetPasswordFragment forgetPasswordFragment;
     private Preferences preferences;
 
 
@@ -65,7 +57,7 @@ public class LoginFragment extends Fragment {
         preferences = new Preferences(getContext());
         mAuth = FirebaseAuth.getInstance();
         signupFragment = new SignupFragment();
-        forgatPasswordFragment = new ForgatPasswordFragment();
+        forgetPasswordFragment = new ForgetPasswordFragment();
 
 
         //kept me logged in feature
@@ -85,7 +77,7 @@ public class LoginFragment extends Fragment {
         binding.forgotPasswordFragment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                setFragment(forgatPasswordFragment);
+                setFragment(forgetPasswordFragment);
             }
         });
 
@@ -150,7 +142,7 @@ public class LoginFragment extends Fragment {
                                 setFragmentNoBackStack(new BottomNavFragment());
                             else{
                                 //setFragment(new VarifyEmailFragment())
-                                VarifyEmailFragment emailFragment = new VarifyEmailFragment();
+                                VerifyEmailFragment emailFragment = new VerifyEmailFragment();
                                 emailFragment.show(getFragmentManager(), "Verification bottom sheet");
                             }
 

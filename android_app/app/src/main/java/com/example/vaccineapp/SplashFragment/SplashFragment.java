@@ -11,16 +11,12 @@ import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.AnticipateOvershootInterpolator;
 import android.view.animation.BounceInterpolator;
 
 import com.example.vaccineapp.Authentication.LoginFragment;
-import com.example.vaccineapp.Authentication.VarifyEmailFragment;
 import com.example.vaccineapp.R;
 import com.example.vaccineapp.databinding.FragmentSplashBinding;
 import com.google.android.material.transition.MaterialSharedAxis;
-
-import java.util.HashMap;
 
 public class SplashFragment extends Fragment {
 
