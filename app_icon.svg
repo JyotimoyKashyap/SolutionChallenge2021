@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="900.903" height="788.289" viewBox="0 0 900.903 788.289">
+  <defs>
+    <radialGradient id="radial-gradient" cx="-0.14" cy="0.057" r="1.458" gradientTransform="matrix(0.565, 0.825, -0.75, 0.513, -0.018, 0.143)" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#fff"/>
+      <stop offset="0.432" stop-color="#25a0e8"/>
+      <stop offset="1" stop-color="#155880"/>
+    </radialGradient>
+    <clipPath id="clip-path">
+      <path id="Icon_awesome-heart" data-name="Icon awesome-heart" d="M813.457,56.148c-96.423-82.171-239.826-67.39-328.331,23.93L450.463,115.8,415.8,80.078c-88.329-91.32-231.908-106.1-328.33-23.93C-23.029,150.459-28.836,319.727,70.05,421.957L410.522,773.513a55.162,55.162,0,0,0,79.707,0L830.7,421.957c99.062-102.229,93.256-271.5-17.244-365.809Z" transform="translate(0.001 -2.248)" fill="url(#radial-gradient)"/>
+    </clipPath>
+  </defs>
+  <g id="app_icon" transform="translate(-294.03 -363.902)">
+    <path id="Icon_awesome-heart-2" data-name="Icon awesome-heart" d="M813.457,56.148c-96.423-82.171-239.826-67.39-328.331,23.93L450.463,115.8,415.8,80.078c-88.329-91.32-231.908-106.1-328.33-23.93C-23.029,150.459-28.836,319.727,70.05,421.957L410.522,773.513a55.162,55.162,0,0,0,79.707,0L830.7,421.957c99.062-102.229,93.256-271.5-17.244-365.809Z" transform="translate(294.031 361.654)" fill="url(#radial-gradient)"/>
+    <g id="Mask_Group_2" data-name="Mask Group 2" transform="translate(294.03 363.902)" clip-path="url(#clip-path)">
+      <path id="Path_4" data-name="Path 4" d="M7066.411,497.293H6885.224s-38.986-219.029-53.9-157.1-49.312,412.829-79.127,345.171-47.016-188.066-47.016-188.066H6564.136" transform="translate(-6188.619 -116.663)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="28"/>
+    </g>
+  </g>
+</svg>
