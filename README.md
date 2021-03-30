@@ -193,12 +193,14 @@ Steps to run the android app :
 
 ## Screenshots for the Android App
 
+<br/>
+
 <p>
-  <img src="./app_1.png"/>
-  <img src="./app_2.png"/>
-  <img src="./app_3.png"/>
-  <img src="./app_4.png"/>
-  <img src="./app_5.png"/>
+  <img width="300px" src="./app_1.jpg"/>
+  <img width="300px" src="./app_2.jpg"/>
+  <img width="300px" src="./app_3.jpg"/>
+  <img width="300px" src="./app_4.jpg"/>
+  <img width="300px" src="./app_5.jpg"/>
 </p>
 
 ## Conclusion
