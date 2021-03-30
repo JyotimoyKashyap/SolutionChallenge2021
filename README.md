@@ -191,6 +191,16 @@ Steps to run the android app :
   <img src="./Nirog.png" />
 </p>
 
+## Screenshots for the Android App
+
+<p>
+  <img src="./app_1.png"/>
+  <img src="./app_2.png"/>
+  <img src="./app_3.png"/>
+  <img src="./app_4.png"/>
+  <img src="./app_5.png"/>
+</p>
+
 ## Conclusion
 
 As we know there are many people out there, those who do not know regarding the lastest medical facilities given by our government and the guidelines or measures to be followed to stay fit and healthy. With the help of this Solution we are trying to bridge the gap between the hospitals and the common people and make the common people more aware regarding their healthcare needs and requirements.
