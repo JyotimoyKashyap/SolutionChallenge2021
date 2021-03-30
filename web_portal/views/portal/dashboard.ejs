@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" type="image/jpg" href="/assets/app_icon.svg"/>
     <link rel="stylesheet" href="/css/dashboard.css">
     <title>Nirog | Dashboard</title>
 </head>
@@ -16,74 +15,71 @@
         </div>
         <nav class="menu menu-3">
                 <ul>
-                  <li><a class="button" href="/signout">Sign out</a></li>
+                  <li><a class="button" href="/auth/signout">Sign out</a></li>
                 </ul>
         </nav>
     </div>
+    <header class="header">
+        <img class="header-img" src="/assets/gmch.jpg" alt="img">
+    </header>
     <main class="main">
-        <div class="main__div1">
-            <a class="main-left-option first-opt" style="color: white !important;" href="#">Hospitals</a>
-            <a class="main-left-option" href="/hospital/update/contact/<%= hospital._id %>">Edit Contact Info</a>
-            <a class="main-left-option" href="/hospital/update/bio/<%= hospital._id %>">Edit Bio</a>
-            <a class="main-left-option" href="/hospital/add/doctor/<%= hospital._id %>">Add Doctor</a>
-            <a class="main-left-option" href="/hospital/add/vaccine/<%= hospital._id %>">Add Vaccine</a>
+        <div class="info">
+            <div class="info-top">
+                <div class="info-name">
+                    <h1><%= hospital.name %></h1>
+                    <h3><%= hospital.address %></h3>
+                </div>
+                <div class="info-contact">
+                    <h3>Contact: <span><%=hospital.phone %></span> </h3>
+                    <h3>Email:  <span><%=hospital.email %></span> </h3>
+                </div>
+            </div>
+            <div class="info-bio">
+                <div class="info-bio-content">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pretium integer odio viverra hendrerit faucibus sed amet. Felis hac potenti sit sit amet lobortis. Amet tellus ullamcorper eget vitae. Non scelerisque at ipsum eleifend ullamcorper cursus vestibulum. hendrerit faucibus sed amet. Felis hac potenti sit sit amet lobortis. Amet tellus ullamcorper eget vitae. Non scelerisque at ipsum eleifend ullamcorper cursus vestibulum.
+                </div>
+                <div class="info-bio-button">
+                    <a class="edit-bio-btn" href="/hospital/update/contact/<%= hospital._id %>"> <img class="svg" src="/assets/Edit.svg" alt=""> Edit Details</a>
+                </div>
+            </div>
         </div>
-        <div class="main__div2">
-            <p class="main__div2-heading">Hospital Details</p>
-            <img class="main-img" src="/img/amc.jpeg" alt="">
-            <br/>
-            <div class="hospital_large">
-                <h1><%= hospital.name %></h1>
-                <h3><%=hospital.address %></h3>
-                <br/>
-                <p class="hospital_desc"> <%=hospital.description %></p>
-                <br/>
-                <br/>
-                <div class="hospital_large-phone">
-                    <img src="/img/call.png" alt=""> 
-                    <p> &nbsp; &nbsp;<%=hospital.phone %></p>
-                </div>
-                <br/>
-                <div class="hospital_large-phone">
-                    <img src="/img/mail.png" alt=""> 
-                    <p> &nbsp; &nbsp; <%=hospital.email %></p>
-                </div>
-            </div>  
-            <br/>
+        <div class="doctors-heading">
+            <h1 class="doctors-heading-main">Doctors</h1>
+            <a class="edit-bio-btn" href="/hospital/add/doctor/<%= hospital._id %>"> <img class="svg" src="/assets/add-svg.svg" alt=""> Add Doctor</a>
+        </div>
+        <% for(let i=0; i < doctors.length; i++) { %>
             <div class="doctors">
-                <h1>Dcotor's List</h1>
-                <div class="border-bottom"></div>
-
-                <br/>
-                <br/>
-                <div class="lists">
-                <% for(let i=0; i < doctors.length; i++) { %>
-                    <div class="doctors-card">
-                        <img width="70px" src="/img/profile-user.png" alt="">
-                        <h3><%= doctors[i].name %></h2>
-                        <h5><%= doctors[i].specialization %></h3>
-                    </div>
-                 <% } %>
+                <div class="doctors-one">
+                    <h2><%= doctors[i].name %></h2>
+                    <br/>
+                    <h4><%= doctors[i].specialization %></h4>
                 </div>
-            </div>  
-            <br/>
-            <div class="hospital_large">
-                <h1>Vaccine List</h1>
-                <div class="border-bottom"></div>
-                <br/>
-                <% for(let i=0; i < vaccines.length; i++) { %>
-                    <div class="vaccine-single">
-                        <img src="/img/vaccine.png" height="50px" alt="">
-                        <div>
-                            <p class="vaccine-single-name">&nbsp; &nbsp;<%= vaccines[i].name %></p>
-                            <p class="vaccine-single-when-to-give">&nbsp; &nbsp; &nbsp;<%= vaccines[i].whenToGive %></p>
-                        </div>
-                    </div>
-                <br/>
-                 <% } %>
-            </div>  
+                <div class="doctors-two"><%= doctors[i].email %></div>
+            </div>
+         <% } %>
+        <div class="vaccines"></div>
+        <div class="doctors-heading">
+            <h1 class="doctors-heading-main">Vaccines</h1>
+            <a class="edit-bio-btn" href="/hospital/add/vaccine/<%= hospital._id %>"> <img class="svg" src="/assets/add-svg.svg" alt=""> Add Vaccine</a>
         </div>
-   
+        <br/>
+        <br/>
+
+        <% for(let i=0; i < vaccines.length/2; i++) { %>
+        <div class="vaccines">
+            <div class="vaccines-one">
+                <h2><%= vaccines[i].name %></h2>
+                <br/>
+                <h3><%= vaccines[i].whenToGive %></h3>
+            </div>
+            <div class="vl"></div>
+            <div class="vaccines-two">
+                <h2><%= vaccines[i+1].name %></h2>
+                <br/>
+                <h3><%= vaccines[i+1].whenToGive %></h3>
+            </div>
+        </div>
+         <% } %>
     </main>
 </body>
 </html>

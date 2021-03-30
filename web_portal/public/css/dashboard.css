@@ -1,144 +1,12 @@
 * {
   margin: 0;
   padding: 0;
+  scroll-behavior: smooth;
 }
 
 body {
+  font-family: 'Poppins', sans-serif;
   overflow-x: hidden;
-}
-
-/* .nav {
-  display: flex;
-  align-items: center;
-  border-bottom: 2px solid rgb(161, 156, 156);
-  box-shadow: 2.5px 2.5px 2.5px grey;
-  width: 100vw;
-} */
-
-.main {
-  display: flex;
-  margin-top: 100px;
-}
-
-.main__div1 {
-  height: 500px;
-  width: 250px;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  padding: 20px;
-}
-
-.main__div2 {
-  height: 500px;
-  flex: 1;
-}
-
-.main-left-option {
-  text-decoration: none;
-  font-size: 25px;
-  color: #7686f9;
-  margin: 2.5px 0;
-  border-radius: 2px;
-}
-
-.first-opt {
-  background-color: #7686f9;
-  padding: 20px 10px;
-  color: white;
-}
-
-.main-left-option {
-  text-decoration: none;
-  font-size: 25px;
-  color: black;
-  padding: 10px 10px;
-}
-
-.main-left-option:hover {
-  background-color: #7686f9;
-  color: white;
-}
-
-.main__div2 {
-  padding: 30px;
-}
-
-.main__div2-heading {
-  padding: 30px 0;
-  font-size: 40px;
-  border-bottom: 0.5px solid grey;
-}
-
-.main-img {
-  margin-left: auto;
-  margin-right: auto;
-  display: block;
-  margin-top: 50px;
-  border-radius: 20px;
-}
-
-.hospital_large {
-  background-color: #dff0f0;
-  max-width: 1000px;
-  border-radius: 20px;
-  padding: 40px;
-  margin: auto;
-}
-
-.doctors {
-  background-color: #dff0f0;
-  max-width: 1000px;
-  border-radius: 20px;
-  padding: 40px;
-  margin: auto;
-}
-
-.hospital_desc {
-  letter-spacing: 1px;
-  font-size: 20px;
-  line-height: 25px;
-}
-
-.hospital_large-phone {
-  display: flex;
-  align-items: center;
-}
-
-.doctors-card {
-  width: 180px;
-  height: 200px;
-  background-color: #dff0f0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-evenly;
-  border-radius: 20px;
-  box-shadow: 5px 5px 5px #7686f9;
-  margin: 25px;
-}
-
-.lists {
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.vaccine-single {
-  display: flex;
-  font-family: Arial, Helvetica, sans-serif;
-}
-
-.vaccine-single-name {
-  font-size: 22px;
-}
-
-.vaccine-single-when-to-give {
-  font-size: 17px;
-}
-
-.border-bottom {
-  padding-top: 15px;
-  border-bottom: 0.5px solid grey;
 }
 
 .navbar {
@@ -160,6 +28,10 @@ body {
   margin-left: 100px;
 }
 
+.menu {
+  padding-right: 100px;
+}
+
 .navbar__logo-name {
   text-decoration: none;
   font-size: 26px;
@@ -167,10 +39,6 @@ body {
   color: #767a8d;
   margin: auto;
   flex-basis: 0;
-}
-
-.menu {
-  padding-right: 100px;
 }
 
 .logo {
@@ -223,17 +91,105 @@ body {
   background: #7686f9;
 }
 
-.button {
-  background-color: #7686f9;
-  border-radius: 10px;
-  color: #ffffff !important;
-  font-weight: 800 !important;
-  padding: 7px 12px !important;
+.header-img {
+  height: 500px;
+  width: 100%;
 }
 
-.button:hover {
-  transform-origin: 50% 50%;
-  background: #fff;
-  color: black !important;
-  transition: all 0.5s !important;
+.main {
+  max-width: 1300px;
+  margin: auto;
+}
+
+.info {
+  margin-top: 70px;
+}
+
+.info-top {
+  display: flex;
+  justify-content: space-between;
+}
+
+.info-contact h3 {
+  color: #7686f9;
+}
+
+.info-contact span {
+  color: #4d4d4dc4;
+}
+
+.info-bio-button {
+  display: flex;
+  justify-content: flex-end;
+  /* height: 200px; */
+}
+
+.edit-bio-btn {
+  margin: 20px 30px;
+  padding: 15px 25px;
+  border-radius: 15px;
+  text-decoration: none;
+  background-color: #7686f9;
+  color: white;
+}
+
+.info-bio-content {
+  padding-top: 50px;
+  line-height: 30px;
+  font-size: 20px;
+}
+
+.doctors-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 100px;
+}
+
+.doctors-heading-main {
+  color: #7686f9;
+}
+
+.doctors {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid #e2e2e2;
+}
+
+.doctors .doctors-one h4 {
+  color: grey;
+}
+
+.vl {
+  border-left: 6px solid #e2e2e2;
+}
+
+.vaccines {
+  display: flex;
+  /* justify-content: space-between; */
+}
+
+.vaccines .vaccines-one h3 {
+  color: grey;
+}
+
+.vaccines .vaccines-two h3 {
+  color: grey;
+}
+
+.vaccines-one {
+  /* background-color: red;  */
+  width: 50%;
+}
+
+.vaccines-two {
+  /* background-color: green; */
+  padding: 0 100px;
+}
+
+.svg {
+  width: 17px;
 }
