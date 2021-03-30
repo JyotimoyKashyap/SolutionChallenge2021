@@ -195,7 +195,7 @@ Steps to run the android app :
 
 <br/>
 
-<div style="display: flex; justify-content: space-between">
+<div style="display: flex; justify-content: center">
   <img width="250px" height="500px" src="./app_1.jpg"/>
   <img width="250px" height="500px" src="./app_2.jpg"/>
   <img width="250px" height="500px" src="./app_3.jpg"/><br/>
