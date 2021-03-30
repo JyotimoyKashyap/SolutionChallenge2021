@@ -3,7 +3,7 @@
 ## Google Solution Challenge 2021
 
 <p align="center">
-  <img height="200px" src="./app_icon.svg" />
+  <img height="200px" src="./assets/app_icon.svg" />
 </p>
 
 Though India's healthcare is one of the fastest growing in the world, the lack of proper management is a major concern for the country's tremendous population. Apart from accessibility, awareness is another deterrent to addressing health issues, both in terms of timely and quality care. By providing all the neccessary informations digitally to everyone, we can avoid the complications to much extent. Our service is providing with one android application for the users and a web portal for the hospitals. The details are as follows:
@@ -25,7 +25,7 @@ example :
 ## USE CASE
 
 <p align="center">
-  <img height="300px" src="./Use_case.png" />
+  <img height="300px" src="./assets/Use_case.png" />
 </p>
 
 With the help of our application we are trying to creat an `ecosystem` which will connect all the common people (both rural and urban) and the medical authority (both private and government as well).
@@ -188,7 +188,7 @@ Steps to run the android app :
 ## Tech Stack
 
 <p align="center">
-  <img src="./Nirog.png" />
+  <img src="./assets/Nirog.png" />
 </p>
 
 ## Screenshots for the Android App
@@ -196,12 +196,12 @@ Steps to run the android app :
 <br/>
 
 <div style="display: flex; justify-content: center">
-  <img width="250px" height="500px" src="./app_1.jpg"/> &nbsp;
-  <img width="250px" height="500px" src="./app_2.jpg"/> &nbsp;
-  <img width="250px" height="500px" src="./app_3.jpg"/><br/>
+  <img width="250px" height="500px" src="./assets/app_1.jpg"/> &nbsp; &nbsp; &nbsp;
+  <img width="250px" height="500px" src="./assets/app_2.jpg"/> &nbsp; &nbsp; &nbsp;
+  <img width="250px" height="500px" src="./assets/app_3.jpg"/><br/>
   <p align="center">
-    <img width="250px" height="500px" src="./app_4.jpg"/> &nbsp;
-    <img width="250px" height="500px" src="./app_5.jpg"/>
+    <img width="250px" height="500px" src="./assets/app_4.jpg"/> &nbsp; &nbsp; &nbsp;
+    <img width="250px" height="500px" src="./assets/app_5.jpg"/>
   </p>
 </div>
 
