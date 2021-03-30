@@ -122,7 +122,7 @@ body {
 
 .header__two {
   flex: 1;
-  margin-left: 80px;
+  margin-left: 50px;
   margin-right: 50px;
   /* background-color: green; */
 }
@@ -140,26 +140,26 @@ body {
 }
 
 .hospital-svg {
-  width: 220px;
-  margin: -100px 5px 10px 100px;
+  width: 300px;
+  margin: -170px 5px 10px 100px;
 }
 
 .path-svg {
-  width: 300px;
+  width: 350px;
   position: absolute;
   margin: 100px 100px 0 -100px;
 }
 
 .user-svg {
-  width: 250px;
+  width: 320px;
   position: absolute;
-  margin: 250px 0px 0px 0px;
+  margin: 250px 0px 0px -20px;
 }
 
 .cloud-svg {
-  width: 150px;
+  width: 200px;
   position: absolute;
-  margin: 50px -200px 0 200px;
+  margin: 80px 0 0 220px;
 }
 
 .ellipse-2 {
