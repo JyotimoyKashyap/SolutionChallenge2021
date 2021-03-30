@@ -104,8 +104,8 @@ Currently the web portal is deployed in [Heroku](https://heroku.com)
 The web portal can be accessed [here](http://nirog.herokuapp.com/) <br/>
 <br/>
 Test Credentials for the web portal: <br/>
-`Eamil: amc@amc.gov.in` <br/>
-`Password: nirogtest`
+Eamil: `amc@amc.gov.in` <br/>
+Password: `nirogtest`
 
 #
 
