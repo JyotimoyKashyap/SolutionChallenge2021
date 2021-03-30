@@ -196,11 +196,11 @@ Steps to run the android app :
 <br/>
 
 <p>
-  <img width="250px" src="./app_1.jpg"/>
-  <img width="250px" src="./app_2.jpg"/>
-  <img width="250px" src="./app_3.jpg"/>
-  <img width="250px" src="./app_4.jpg"/>
-  <img width="250px" src="./app_5.jpg"/>
+  <img width="250px" height="500px" src="./app_1.jpg"/>
+  <img width="250px" height="500px" src="./app_2.jpg"/>
+  <img width="250px" height="500px" src="./app_3.jpg"/>
+  <img width="250px" height="500px" src="./app_4.jpg"/>
+  <img width="250px" height="500px" src="./app_5.jpg"/>
 </p>
 
 ## Conclusion
